@@ -7,7 +7,9 @@ import { getSortedPostsData } from '../lib/posts'
 
 function applet() {
   return {__html:
-            <applet code="AppletCode/APCS2017Minesweeper/silverlight/games/Minesweeper.class"></applet>
+            <applet code="../AppletCode/APCS2017Minesweeper/silverlight/games/Minesweeper.class">
+            <b>Sorry</b>
+            </applet>
           };
 }
 
@@ -16,8 +18,11 @@ export default function Minesweeper() {
 
       <>
       <Layout>
-      <Head>Minesweeper</Head>
-          <div dangerouslySetInnerHTML={applet()}/>
+          <article>
+              <h1 className={utilStyles.headingMd}>Minesweeper</h1>
+              <div dangerouslySetInnerHTML={applet()}/>
+          </article>
+
       </Layout>
       </>
     )
