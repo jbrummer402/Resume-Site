@@ -16,6 +16,7 @@ export default function Minesweeper() {
 
       <>
       <Layout>
+      <Head>Minesweeper</Head>
           <div dangerouslySetInnerHTML={applet()}/>
       </Layout>
       </>
