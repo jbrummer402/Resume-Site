@@ -5,25 +5,29 @@ import Layout, { siteTitle } from "../components/layout"
 import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData } from '../lib/posts'
 
-function applet() {
-  return {__html:
-            <applet code="../AppletCode/APCS2017Minesweeper/silverlight/games/Minesweeper.class">
-            <b>Sorry</b>
-            </applet>
-          };
-}
+var applet = {
+  __html:
+
+
+   <applet
+    width="540"
+    height="480"
+    code="Minesweeper.class">
+    </applet>
+  };
+
 
 export default function Minesweeper() {
     return (
 
       <>
-      <Layout>
-          <article>
-              <h1 className={utilStyles.headingMd}>Minesweeper</h1>
-              <div dangerouslySetInnerHTML={applet()}/>
-          </article>
+        <Layout>
+            <article>
+                <h1 className={utilStyles.headingMd}>Minesweeper</h1>
+                <div dangerouslySetInnerHTML={applet}></div>
+            </article>
 
-      </Layout>
+        </Layout>
       </>
     )
 

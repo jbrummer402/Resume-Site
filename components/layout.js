@@ -22,7 +22,7 @@ export default function Layout({ children, home }) {
                             Projects
                         </button>
                         <div className={styles.dropdownContent}>
-                            <a href="/Minesweeper">Minesweeper</a>
+                            <Link href="/Minesweeper"><a>Minesweeper</a></Link>
                         </div>
                     </div>
                 </li>
