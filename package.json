@@ -16,7 +16,7 @@
     "date-fns": "^2.15.0",
     "fs": "0.0.1-security",
     "gray-matter": "^4.0.2",
-    "next": "^9.5.2",
+    "next": "^10.0.5",
     "react": "^16.13.1",
     "react-bootstrap": "^1.3.0",
     "react-dom": "^16.13.1",
@@ -26,5 +26,9 @@
     "x-tag": "^2.0.3-beta"
   },
   "devDependencies": {},
-  "browser": {"fs": false, "path": false, "os": false}
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  }
 }

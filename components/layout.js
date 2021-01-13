@@ -49,11 +49,11 @@ export default function Layout({ children, home }) {
             </>
             ) : (
             <>
-
+                <main>{children}</main>
             </>
             )}
       </header>
-      <main>{children}</main>
+      
 
     </div>
     </div>
