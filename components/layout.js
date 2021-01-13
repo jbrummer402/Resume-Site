@@ -13,9 +13,10 @@ export default function Layout({ children, home }) {
         <div>
         <h1 style={{textAlign:"center"}} className={utilStyles.heading2Xl}>{name}</h1>
 
-        <div style={{lineHeight: "1.0px"}} className={styles.container}>
+        <div style={{lineHeight: "1.0px"}}>
             <ul>
                 <li><Link href="/"><a>Home</a></Link></li>
+                <li><Link href="/posts/about"><a>About</a></Link></li>
                 <li>
                     <div className={styles.dropdown}>
                         <button className={styles.dropbtn}>
@@ -26,7 +27,7 @@ export default function Layout({ children, home }) {
                         </div>
                     </div>
                 </li>
-                <li><Link href="/posts/about"><a>About</a></Link></li>
+
                 <li><Link href="/posts/contact"><a>Contact</a></Link></li>
                 <li><Link href="/comment"><a>Submit a comment</a></Link></li>
             </ul>
@@ -53,7 +54,7 @@ export default function Layout({ children, home }) {
             </>
             )}
       </header>
-      
+
 
     </div>
     </div>
