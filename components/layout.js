@@ -13,7 +13,7 @@ export default function Layout({ children, home }) {
         <div>
         <h1 style={{textAlign:"center"}} className={utilStyles.heading2Xl}>{name}</h1>
 
-        <div style={{lineHeight: "1.0px"}}>
+        <div style={{lineHeight: "1.0px"}} className={styles.container}>
             <ul>
                 <li><Link href="/"><a>Home</a></Link></li>
                 <li><Link href="/posts/about"><a>About</a></Link></li>

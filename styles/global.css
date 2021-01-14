@@ -23,7 +23,6 @@ a:hover{
 }
 
 ul {
-  border-radius: 10px;
   width: auto;
   list-style-type: none;
   padding: 0;
@@ -45,7 +44,7 @@ li a {
   text-align: center;
   padding: 20px;
   text-decoration: none;
-  transition: 0.3s;
+  transition: 0.7s;
   display: block;
 }
 
