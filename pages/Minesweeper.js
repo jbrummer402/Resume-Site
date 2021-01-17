@@ -1,14 +1,11 @@
 import Head from 'next/head'
-import Link from 'next/link'
-import styles from '../styles/utils.module.css'
-import Layout, { siteTitle } from "../components/layout"
+import styles from '../components/layout.module.css'
 import utilStyles from '../styles/utils.module.css'
-import { getSortedPostsData } from '../lib/posts'
+import Link from 'next/link'
+import Layout from "../components/layout"
 
 var applet = {
   __html:
-
-
    <applet
     width="540"
     height="480"
@@ -22,10 +19,9 @@ export default function Minesweeper() {
 
       <>
         <Layout>
-            <article>
                 <h1 className={utilStyles.headingMd}>Minesweeper</h1>
                 <div dangerouslySetInnerHTML={applet}></div>
-            </article>
+
 
         </Layout>
       </>
