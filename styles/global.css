@@ -24,7 +24,7 @@ a:hover{
 
 ul {
   width: auto;
-  list-style-type: none;
+  margin:0;
   padding: 0;
   overflow: hidden;
   background-color: #333333;
@@ -32,24 +32,27 @@ ul {
 }
 
 li {
+
+    color: white;
+    text-align: center;
+    text-decoration: none;
+
+    display: inline-flex;
   font-size: 18px;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  float: left;
+
 }
 
 li a {
-
+    transition: 0.7s;
   color: white;
   text-align: center;
-  padding: 20px;
   text-decoration: none;
-  transition: 0.7s;
-  display: block;
+  padding: 20px;
 }
 
 li a:hover {
   opacity: 1;
   background-color: #111111;
-  display: block;
 }

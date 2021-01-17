@@ -17,15 +17,25 @@
   margin: 3rem 0 0;
 }
 
+.siteName {
+    background-color: grey;
+    font-size: 18px;
+    width: auto;
+    text-align: center;
+    padding: 20px;
+    transition: 0.7s;
+}
+
 .dropbtn {
   background-color: #333333;
   color: white;
   border: none;
-  cursor: pointer;
   font-size: 18px;
-  
-  padding: 11px;
-  transition: 0.3s;
+  width: auto;
+  text-align: center;
+  padding: 24px;
+  text-decoration: none;
+  transition: 0.7s;
 }
 
 .dropdown {

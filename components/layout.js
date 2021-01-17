@@ -11,27 +11,27 @@ export default function Layout({ children, home }) {
     return (
         <>
         <div>
-        <h1 style={{textAlign:"center"}} className={utilStyles.heading2Xl}>{name}</h1>
-
-        <div style={{lineHeight: "1.0px"}} className={styles.container}>
-            <ul>
-                <li><Link href="/"><a>Home</a></Link></li>
-                <li><Link href="/posts/about"><a>About</a></Link></li>
-                <li>
-                    <div className={styles.dropdown}>
-                        <button className={styles.dropbtn}>
-                            Projects
-                        </button>
-                        <div className={styles.dropdownContent}>
-                            <Link href="/Minesweeper"><a>Minesweeper</a></Link>
-                        </div>
+        <ul>
+            <li className={styles.siteName}>{name + ".com"}</li>
+            <li><Link href="/"><a>Home</a></Link></li>
+            <li><Link href="/posts/about"><a>About</a></Link></li>
+            <li>
+                <div className={styles.dropdown}>
+                    <button className={styles.dropbtn}>
+                        Projects
+                    </button>
+                    <div className={styles.dropdownContent}>
+                        <Link href="/Minesweeper"><a>Minesweeper</a></Link>
                     </div>
-                </li>
-                <li><Link href="/blog"><a>Blog</a></Link></li>
-                <li><Link href="/posts/contact"><a>Contact</a></Link></li>
-                <li><Link href="/comment"><a>Submit a comment</a></Link></li>
+                </div>
+            </li>
+            <li><Link href="/blog"><a>Blog</a></Link></li>
+            <li><Link href="/posts/contact"><a>Contact</a></Link></li>
+            <li><Link href="/comment"><a>Submit a comment</a></Link></li>
 
-            </ul>
+        </ul>
+        <div className={styles.container}>
+
 
         <header className={styles.header}>
             {home ? (
