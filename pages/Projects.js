@@ -10,9 +10,9 @@ export default function Projects() {
       <>
         <Layout>
         <article>
-            <h1 className={utilStyles.headingMd}>Projects</h1>
+            <h1 className={utilStyles.heading2Xl}>Projects</h1>
 
-            <div style={{fontSize: "1.5rem",lineHeight: "1.6"}}> Test </div>
+            <div style={{fontSize: "1.5rem",lineHeight: "1.6"}}> Here is an overview of the projects I have done! </div>
 
         </article>
         </Layout>

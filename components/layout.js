@@ -42,7 +42,7 @@ export default function Layout({ children, home }) {
                 className={`${styles.headerHomeImage}`}
                 alt={name}
                 />
-                <section style={{paddingLeft: "15px"}} className={utilStyles.headingMd}>
+                <section style={{paddingLeft: "15px"}} className={utilStyles.headingLg}>
                     <h1>Welcome to my website</h1>
                     <p>
                     Here you'll find some of my favorite projects that I have worked on over the years.
