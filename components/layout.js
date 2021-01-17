@@ -18,10 +18,11 @@ export default function Layout({ children, home }) {
             <li>
                 <div className={styles.dropdown}>
                     <button className={styles.dropbtn}>
-                        Projects
+                        <Link href="/Projects"><a>Projects</a></Link>
                     </button>
                     <div className={styles.dropdownContent}>
                         <Link href="/Minesweeper"><a>Minesweeper</a></Link>
+                        <Link href="/MazePath"><a>Shortest Maze Path </a></Link>
                     </div>
                 </div>
             </li>
