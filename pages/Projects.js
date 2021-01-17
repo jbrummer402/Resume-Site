@@ -14,7 +14,19 @@ export default function Projects() {
                 <p style={{fontSize: "1.5rem",lineHeight: "1.6"}}> Here is an overview of the projects I have done! </p>
 
             </article>
+            <Grid
+                container
+                direction="row"
+                justify="center"
+                alignItems="center">
+                <Grid item xs={12} sm container>
+                    <h1 className={utilStyles.headingMd}> Test </h1>
+                </Grid>
+                <Grid item xs={12} sm container>
+                    <p /> Test 2
+                </Grid>
 
+            </Grid>
         </Layout>
       </>
     )
