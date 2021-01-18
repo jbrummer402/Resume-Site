@@ -6,6 +6,8 @@ import Layout from "../components/layout"
 import Grid from '@material-ui/core/Grid'
 import ProjectGrid from '../components/projectGrid'
 
+const projectItems = [['Minesweeper', 'This is Minesweeper'], ['Maze', 'This is maze'], ['Other', 'My other projects']];
+
 export default function Projects() {
         return (
             <Layout>
@@ -20,7 +22,9 @@ export default function Projects() {
                     justify="center"
                     alignItems="center">
 
-                    <ProjectGrid grid={['Minesweeper', 'Maze', 'Test']}/>
+                    <ProjectGrid grid={projectItems}>
+                        <section/> Test
+                    </ProjectGrid>
 
                 </Grid>
             </Layout>

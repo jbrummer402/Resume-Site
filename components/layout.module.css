@@ -4,6 +4,16 @@
   margin: 3rem auto 6rem;
 }
 
+.gridContainer {
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    width: 25rem;
+    padding: 2rem;
+    margin: 1rem;
+    text-align: center;
+    font-weight: 800;
+    letter-spacing: -0.05rem;
+}
+
 .header {
   display: flex;
   flex-direction: row;
