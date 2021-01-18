@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Date from '../../components/date'
 import utilStyles from '../../styles/utils.module.css'
 
-export default function Post({ postData }) {
+export default function Post({ postData, children }) {
     return (
         <Layout>
             <Head>
@@ -18,6 +18,7 @@ export default function Post({ postData }) {
                 </div>
                 <div style={{fontSize: "1.5rem",lineHeight: "1.6"}} dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
             </article>
+            <main>{children}</main>
         </Layout>
     )
 }

@@ -56,10 +56,8 @@ export default function Layout({ children, home }) {
                     <main>{children}</main>
                 </>
                 )}
-          </header>
-
-
-    </div>
+            </header>
+        </div>
     </div>
     </>
     )
