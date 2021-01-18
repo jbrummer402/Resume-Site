@@ -22,9 +22,7 @@ export default function Projects() {
                     justify="center"
                     alignItems="center">
 
-                    <ProjectGrid grid={projectItems}>
-                        <section/> Test
-                    </ProjectGrid>
+                    <ProjectGrid grid={projectItems} />
 
                 </Grid>
             </Layout>
