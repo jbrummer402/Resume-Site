@@ -4,31 +4,26 @@ import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 import Layout from "../components/layout"
 import Grid from '@material-ui/core/Grid'
+import ProjectGrid from '../components/projectGrid'
 
 export default function Projects() {
-    return (
-      <>
-        <Layout>
-            <article>
-                <h1 className={utilStyles.heading2Xl}>Projects</h1>
-                <p style={{fontSize: "1.5rem",lineHeight: "1.6"}}> Here is an overview of the projects I have done! </p>
+        return (
+            <Layout>
+                <article>
+                    <h1 className={utilStyles.heading2Xl}>Projects</h1>
+                    <p style={{fontSize: "1.5rem",lineHeight: "1.6"}}> Here is an overview of the projects I have done! </p>
 
-            </article>
-            <Grid
-                container
-                direction="row"
-                justify="center"
-                alignItems="center">
-                <Grid item xs={12} sm container>
-                    <h1 className={utilStyles.headingMd}> Test </h1>
-                </Grid>
-                <Grid item xs={12} sm container>
-                    <p /> Test 2
-                </Grid>
+                </article>
+                <Grid
+                    container
+                    direction="row"
+                    justify="center"
+                    alignItems="center">
 
-            </Grid>
-        </Layout>
-      </>
-    )
+                    <ProjectGrid grid={['Minesweeper', 'Maze', 'Test']}/>
+
+                </Grid>
+            </Layout>
+        )
 
 }
