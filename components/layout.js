@@ -35,28 +35,28 @@ export default function Layout({ children, home }) {
         <div className={styles.container}>
 
 
-        <header className={styles.header}>
-            {home ? (
-            <>
-                <img
-                src="/images/Jack_Brummer (1).jpg"
-                className={`${styles.headerHomeImage}`}
-                alt={name}
-                />
-                <section style={{paddingLeft: "15px"}} className={utilStyles.headingLg}>
-                    <h1>Welcome to my website</h1>
-                    <p>
-                    Here you'll find some of my favorite projects that I have worked on over the years.
-                    I hope you enjoy it!
-                    </p>
-                </section>
-            </>
-            ) : (
-            <>
-                <main>{children}</main>
-            </>
-            )}
-      </header>
+            <header className={styles.header}>
+                {home ? (
+                <>
+                    <img
+                    src="/images/Jack_Brummer (1).jpg"
+                    className={`${styles.headerHomeImage}`}
+                    alt={name}
+                    />
+                    <section style={{paddingLeft: "15px"}} className={utilStyles.headingLg}>
+                        <h1>Welcome to my website</h1>
+                        <p>
+                        Here you'll find some of my favorite projects that I have worked on over the years.
+                        I hope you enjoy it!
+                        </p>
+                    </section>
+                </>
+                ) : (
+                <>
+                    <main>{children}</main>
+                </>
+                )}
+          </header>
 
 
     </div>
