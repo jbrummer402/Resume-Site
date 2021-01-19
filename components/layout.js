@@ -48,9 +48,14 @@ export default function Layout({ children, home }) {
                         <h1>Welcome to my website</h1>
                         <p>
                         Here you'll find some of my favorite projects that I have worked on over the years.
-                        I hope you enjoy it!
                         </p>
                         <p>I made this site completely on my own using React and Next.js for the front end</p>
+                        <p>For the backend I used Spring boot, and I was able to put in login functionality as well as the ability to submit comments</p>
+                        <p>
+                            The source code can be found on my github
+                            <Link href="https://www.github.com/jbrummer402/Resume-site.git"><a> here</a></Link>
+                        </p>
+                        <p /> Take a look around the site, I hope you enjoy it!
                     </section>
                 </>
                 ) : (
