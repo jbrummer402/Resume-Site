@@ -28,14 +28,12 @@ export default function Layout({ children, home }) {
                     </div>
                 </div>
             </li>
-            <li><Link href="/blog"><a>Blog</a></Link></li>
+            <li><Link href="/Blog"><a>Blog</a></Link></li>
             <li><Link href="/posts/contact"><a>Contact</a></Link></li>
             <li><Link href="/comment"><a>Submit a comment</a></Link></li>
 
         </ul>
         <div style={{padding: "0"}} className={styles.container}>
-
-
             <header className={styles.header}>
                 {home ? (
                 <>
