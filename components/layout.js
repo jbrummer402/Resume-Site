@@ -16,11 +16,12 @@ export default function Layout({ children, home }) {
             <li className={styles.siteName}>{name + ".com"}</li>
             <li><Link href="/"><a>Home</a></Link></li>
             <li><Link href="/posts/about"><a>About</a></Link></li>
-            <li>
+            <li className={styles.dropdown}>
+
                 <div className={styles.dropdown}>
-                    <button className={styles.dropbtn}>
+                    <div className={styles.dropbtn}>
                         <Link href="/Projects"><a>Projects</a></Link>
-                    </button>
+                    </div>
                     <div className={styles.dropdownContent}>
                         <Link href="/Minesweeper"><a>Minesweeper</a></Link>
                         <Link href="/MazePath"><a>Shortest Maze Path </a></Link>

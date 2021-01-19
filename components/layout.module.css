@@ -33,24 +33,20 @@
     font-size: 18px;
     width: auto;
     text-align: center;
-    padding: 20px;
-    transition: 0.7s;
+    padding: 2rem 2rem 2rem 2rem;
 }
 
 .dropbtn {
-  background-color: #333333;
-  color: white;
-  border: none;
-  font-size: 18px;
+    height: inherit;
   width: auto;
+  border: none;
   text-align: center;
-  padding: 24px;
-  text-decoration: none;
   transition: 0.7s;
+  padding: 2rem 0 2rem 0;
 }
 
 .dropdown {
-  position: inherit;
+    overflow: auto;
   align-items: center;
 }
 
@@ -65,13 +61,14 @@
 
 .dropdownContent a {
   color: black;
-  padding: 12px 16px;
+  padding: 5px 16px;
   text-decoration: none;
   display: block;
 }
 
 .dropdownContent a:hover {
-  background-color: #f1f1f1}
+  background-color: #f1f1f1;
+}
 
 .dropdown:hover .dropdownContent {
   display: block;
@@ -79,5 +76,4 @@
 
 .dropdown:hover .dropbtn {
   opacity: 1;
-  background-color:black;
 }
