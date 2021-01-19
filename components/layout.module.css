@@ -1,7 +1,7 @@
 .container {
   max-width: 100rem;
   padding: 0 1rem;
-  margin: 3rem auto 6rem;
+  margin: 1rem auto 6rem;
 }
 
 .gridContainer {
@@ -21,7 +21,10 @@
 }
 
 .headerHomeImage {
+    padding: 2rem 2rem 0 0;
+    float:left;
   width: 30%;
+  max-height: 400px;
 }
 
 .backToHome {
