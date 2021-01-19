@@ -20,6 +20,8 @@
     "fs": "0.0.1-security",
     "gray-matter": "^4.0.2",
     "jquery": "^1.9.1",
+    "markdown-to-jsx": "^7.1.1",
+    "marked": "^1.2.7",
     "material-ui": "^0.20.2",
     "next": "^10.0.5",
     "path": "^0.12.7",

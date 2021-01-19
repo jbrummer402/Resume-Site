@@ -50,6 +50,7 @@ export default function Layout({ children, home }) {
                         Here you'll find some of my favorite projects that I have worked on over the years.
                         I hope you enjoy it!
                         </p>
+                        <p>I made this site completely on my own using React and Next.js for the front end</p>
                     </section>
                 </>
                 ) : (
