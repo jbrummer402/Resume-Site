@@ -51,11 +51,6 @@ export default function Layout({ children, home }) {
                         </p>
                         <p>I made this site completely on my own using React and Next.js for the front end</p>
                         <p>For the backend I used Spring boot, and I was able to put in login functionality as well as the ability to submit comments</p>
-                        <p>
-                            The source code can be found on my github
-                            <Link href="https://www.github.com/jbrummer402/Resume-site.git"><a> here</a></Link>
-                        </p>
-                        <p /> Take a look around the site, I hope you enjoy it!
                     </section>
                 </>
                 ) : (
@@ -64,6 +59,15 @@ export default function Layout({ children, home }) {
                 </>
                 )}
             </header>
+        </div>
+        <div className={styles.container}>
+            <section style={{paddingLeft: "15px"}} className={utilStyles.headingLg}>
+                <p>
+                    The source code can be found on my github
+                    <Link href="https://www.github.com/jbrummer402/Resume-site.git"><a> here</a></Link>
+                </p>
+                <p /> Take a look around the site, I hope you enjoy it!
+            </section>
         </div>
     </div>
     </>
