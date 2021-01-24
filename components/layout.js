@@ -41,13 +41,13 @@ export default function Layout({ children, home }) {
                     <img
                     src="/images/Jack_Brummer (1).jpg"
                     className={`${styles.headerHomeImage}`}
-                    alt={name}
-                    />
-                        <h1>Welcome to my website</h1>
+                    alt={name} />
+                        <h1>Welcome to my website!</h1>
                         <p>
                         Here you'll find some of my favorite projects that I have worked on over the years.
                         </p>
-                        <p>I made this site completely on my own using React and Next.js for the front end</p>
+                        <p>I made this site completely on my own using React and Next.js for the front end.
+                            I followed the next js tutorial here as a reference and then added my own content.</p>
                         <p>I have yet to finish the backend for it, but be on the lookout</p>
                         <p>
                             The source code can be found on my github
