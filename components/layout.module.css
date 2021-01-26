@@ -40,11 +40,9 @@
 }
 
 .dropbtn {
-    height: inherit;
   width: auto;
   border: none;
   text-align: center;
-  transition: 0.7s;
   padding: 2rem 0 2rem 0;
 }
 

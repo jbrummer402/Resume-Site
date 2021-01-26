@@ -28,11 +28,9 @@ ul {
   padding: 0;
   overflow: hidden;
   background-color: #333333;
-
 }
 
 li {
-
     color: white;
     text-align: center;
     text-decoration: none;
@@ -44,14 +42,16 @@ li {
 }
 
 li a {
+    padding: 0px;
     color: white;
   margin: 0px;
   text-align: center;
+  transition: 0.7s;
   text-decoration: none;
   padding: 2rem 2rem 2rem 2rem;
 }
 
-li:hover {
+li a:hover {
   opacity: 1;
   background-color: #111111;
 }
