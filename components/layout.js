@@ -16,8 +16,7 @@ export default function Layout({ children, home }) {
             <li className={styles.siteName}>{name + ".com"}</li>
             <li><Link href="/"><a>Home</a></Link></li>
             <li><Link href="/posts/about"><a>About</a></Link></li>
-            <li className={styles.dropdown}>
-
+            <li >
                 <div className={styles.dropdown}>
                     <div className={styles.dropbtn}>
                         <Link href="/Projects"><a>Projects</a></Link>
@@ -26,12 +25,15 @@ export default function Layout({ children, home }) {
                         <Link href="/Minesweeper"><a>Minesweeper</a></Link>
                         <Link href="/MazePath"><a>Shortest Maze Path </a></Link>
                     </div>
+
                 </div>
+
             </li>
             <li><Link href="/Blog"><a>Blog</a></Link></li>
             <li><Link href="/posts/contact"><a>Contact</a></Link></li>
             <li><Link href="/comment"><a>Submit a comment</a></Link></li>
-
+            <li style={{float: "right"}}><Link href="#"><a>Login</a></Link></li>
+            <li style={{float: "right"}}><Link href="#"><a>Sign up</a></Link></li>
         </ul>
         <div style={{padding: "0"}} className={styles.container}>
             <header className={styles.header}>
