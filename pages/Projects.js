@@ -6,7 +6,12 @@ import Layout from "../components/layout"
 import Grid from '@material-ui/core/Grid'
 import ProjectGrid from '../components/projectGrid'
 
-const projectItems = [['Minesweeper', 'This is Minesweeper'], ['Maze', 'This is maze'], ['Other', 'My other projects']];
+const projectItems = [['Minesweeper',
+                        'This is a clone I made of Minesweeper. I completed this in my junior year of high school in AP Computer Science A'],
+                        ['Maze',
+                        'This is maze. I made this my freshman year at Stevens in my data structures class.'],
+                        ['Other',
+                        'My other projects']];
 
 export default function Projects() {
         return (

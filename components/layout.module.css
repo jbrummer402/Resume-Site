@@ -79,4 +79,5 @@
 }
 
 .dropdown:hover .dropbtn {
+    opacity: 1;
 }
