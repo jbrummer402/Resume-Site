@@ -51,7 +51,7 @@ li a {
   padding: 2rem 2rem 2rem 2rem;
 }
 
-li a:hover {
+li:hover {
   opacity: 1;
   background-color: #111111;
 }

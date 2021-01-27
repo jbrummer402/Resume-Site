@@ -38,6 +38,9 @@
     text-align: center;
     padding: 2rem 2rem 2rem 2rem;
 }
+.siteName:not(.dontHover):hover {
+    background-color: grey;
+}
 
 .dropbtn {
   width: auto;
@@ -76,5 +79,4 @@
 }
 
 .dropdown:hover .dropbtn {
-  opacity: 1;
 }
