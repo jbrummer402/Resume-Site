@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Layout from "../components/layout"
 import Grid from '@material-ui/core/Grid'
 import React, {Component} from 'react'
-import DescriptionComponent from '../components/DescriptionComponent'
+import { getDescriptionsData } from '../lib/descriptions'
 
 class ProjectGrid extends Component {
     render() {
@@ -14,16 +14,12 @@ class ProjectGrid extends Component {
                 <Grid item>
                     <div style={{fontSize: "2.3rem", lineHeight: "1.3"}} className={styles.gridContainer}>
                         {project[0]}
-
-                        <DescriptionComponent filePath="../projectDescriptions/minesweeper.md" />
                     </div>
+                    {project[1]}
                 </Grid>
             ))
         );
     }
-
-
-
 }
 
 export default ProjectGrid;

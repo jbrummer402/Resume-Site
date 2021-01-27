@@ -16,7 +16,7 @@ export default function Layout({ children, home }) {
             <li className={styles.siteName}>{name + ".com"}</li>
             <li><Link href="/"><a>Home</a></Link></li>
             <li><Link href="/posts/about"><a>About</a></Link></li>
-            <li >
+            <li>
                 <div className={styles.dropdown}>
                     <div className={styles.dropbtn}>
                         <Link href="/Projects"><a>Projects</a></Link>
@@ -25,7 +25,6 @@ export default function Layout({ children, home }) {
                         <Link href="/Minesweeper"><a>Minesweeper</a></Link>
                         <Link href="/MazePath"><a>Shortest Maze Path </a></Link>
                     </div>
-
                 </div>
 
             </li>
