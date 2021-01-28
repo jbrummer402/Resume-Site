@@ -13,12 +13,12 @@ class ProjectGrid extends Component {
                 <Grid item>
                     <Link href={`/Projects/${project[0]}`}>
                         <a style={{color: "black"}}>
-                        <div style={{fontSize: "2.3rem", lineHeight: "1.3"}} className={styles.gridContainer}>
-                            {project[0]}
-                            <div style={{fontWeight: "50", fontSize: "1.5rem",lineHeight: "1.6"}}>
-                                {project[1]}
+                            <div style={{fontSize: "2.3rem", lineHeight: "1.3"}} className={styles.gridContainer}>
+                                {project[0]}
+                                <div style={{fontWeight: "50", fontSize: "1.5rem",lineHeight: "1.6"}}>
+                                    {project[1]}
+                                </div>
                             </div>
-                        </div>
                         </a>
                     </Link>
                 </Grid>

@@ -10,8 +10,8 @@ const projectItems = [['Minesweeper',
                         'This is a clone I made of Minesweeper. I completed this in my junior year of high school in AP Computer Science A'],
                         ['Maze',
                         'This is maze. I made this my freshman year at Stevens in my data structures class.'],
-                        ['Other',
-                        'My other projects']];
+                        ['Art tech projects',
+                        'Here are some of the projects I have worked on for my visual arts and tech minor.']];
 
 export default function Projects() {
         return (
