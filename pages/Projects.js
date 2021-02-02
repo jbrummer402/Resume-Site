@@ -10,12 +10,19 @@ const projectItems = [['Minesweeper',
                         'This is a clone I made of Minesweeper. I completed this in my junior year of high school in AP Computer Science A'],
                         ['Maze',
                         'This is maze. I made this my freshman year at Stevens in my data structures class.'],
+                        ['Systems Programming',
+                        'Here are some of the projects I did in my systems programming class: CS392. These can only be ran in a linux environment'],
+                        ['Data Science',
+                        'Here are some of the data science projects I have worked on in my free time. Mostly done in python.'],
                         ['Art tech projects',
                         'Here are some of the projects I have worked on for my visual arts and tech minor.']];
 
 export default function Projects() {
         return (
             <Layout>
+                <Head>
+                    <title/> My projects
+                </Head>
                 <article>
                     <h1 className={utilStyles.heading2Xl}>Projects</h1>
                     <p style={{fontSize: "1.5rem",lineHeight: "1.6"}}> Here is an overview of the projects I have done! </p>

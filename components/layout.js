@@ -6,7 +6,7 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, DropdownButton } 
 
 
 const name = 'Jack Brummer'
-export const siteTitle = 'Resume Site'
+export const siteTitle = "Jack Brummer.com"
 
 export default function Layout({ children, home }) {
     return (

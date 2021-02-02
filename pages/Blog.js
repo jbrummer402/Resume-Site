@@ -10,6 +10,9 @@ export default function Blog () {
         <Layout>
             <div className={utilStyles.headingMd}>
                 <h1> Blog </h1>
+                <p>I decided to write blog on this site for numerous topics.
+                These can include current events or opinion articles on current events in computer science.
+                Feel free to share anything on here with friends</p>
             </div>
         </Layout>
     )
