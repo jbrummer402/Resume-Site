@@ -2,8 +2,14 @@ import Head from 'next/head'
 import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, DropdownButton } from 'react-bootstrap';
 
+import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    useParams,
+  } from "react-router-dom";
 
 const name = 'Jack Brummer'
 export const siteTitle = "Jack Brummer.com"
@@ -12,7 +18,24 @@ export default function Layout({ children, home }) {
     return (
         <>
         <div>
-        <ul>
+          <Navbar bg="dark"
+                  variant="dark"
+                  sticky="top"
+                  collapseOnSelect>
+            <Navbar.Brand style={{fontSize: "2.4rem", padding: "1rem"}} href="#home">JackBrummer.com</Navbar.Brand>
+              <Nav style={{fontSize: "2.3rem", }}  className="mr-auto">
+                <Nav.Link style={{padding: "2rem"}} href="/">Home</Nav.Link>
+                <Nav.Link style={{padding: "2rem"}} href="/posts/about">About</Nav.Link>
+                <Nav.Link style={{padding: "2rem"}} href="/Projects">Projects</Nav.Link>
+                <Nav.Link style={{padding: "2rem"}} href="/Blog">Blog</Nav.Link>
+                <Nav.Link style={{padding: "2rem"}} href="/posts/contact"> Contact </Nav.Link>
+              </Nav>
+          </Navbar>
+        </div>
+        <div>
+
+        {/*<ul>
+
             <li className={styles.siteName}>{name + ".com"}</li>
             <li><Link href="/"><a>Home</a></Link></li>
             <li><Link href="/posts/about"><a>About</a></Link></li>
@@ -33,8 +56,8 @@ export default function Layout({ children, home }) {
             <li><Link href="/comment"><a>Submit a comment</a></Link></li>
             <li style={{float: "right"}}><Link href="#"><a>Login</a></Link></li>
             <li style={{float: "right"}}><Link href="#"><a>Sign up</a></Link></li>
-        </ul>
-        <div style={{padding: "0"}} className={styles.container}>
+        </ul>*/}
+        <div  className={styles.container}>
             <header className={styles.header}>
                 {home ? (
                 <>
