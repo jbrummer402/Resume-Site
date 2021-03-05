@@ -34,34 +34,12 @@ export default function Layout({ children, home }) {
         </div>
         <div>
 
-        {/*<ul>
-
-            <li className={styles.siteName}>{name + ".com"}</li>
-            <li><Link href="/"><a>Home</a></Link></li>
-            <li><Link href="/posts/about"><a>About</a></Link></li>
-            <li>
-                <div className={styles.dropdown}>
-                    <div className={styles.dropbtn}>
-                        <Link href="/Projects"><a>Projects</a></Link>
-                    </div>
-                    <div className={styles.dropdownContent}>
-                        <Link href="/Minesweeper"><a>Minesweeper</a></Link>
-                        <Link href="/MazePath"><a>Shortest Maze Path </a></Link>
-                    </div>
-                </div>
-
-            </li>
-            <li><Link href="/Blog"><a>Blog</a></Link></li>
-            <li><Link href="/posts/contact"><a>Contact</a></Link></li>
-            <li><Link href="/comment"><a>Submit a comment</a></Link></li>
-            <li style={{float: "right"}}><Link href="#"><a>Login</a></Link></li>
-            <li style={{float: "right"}}><Link href="#"><a>Sign up</a></Link></li>
-        </ul>*/}
-        <div  className={styles.container}>
+       
+        <div className={styles.container}>
             <header className={styles.header}>
                 {home ? (
                 <>
-                    <section style={{paddingLeft: "15px"}} className={utilStyles.headingLg}>
+                    <section style={{padding: "2rem 2rem"}} className={utilStyles.headingLg}>
                     <img
                     src="/images/Jack_Brummer (1).jpg"
                     className={`${styles.headerHomeImage}`}
