@@ -11,12 +11,12 @@ export default function Post({ postData, children }) {
                 <title>{postData.title}</title>
             </Head>
             <article>
-                <h1 className={utilStyles.headingLg}>{postData.title}</h1>
+                <h1 className={utilStyles.headingLg} style={{padding: "2rem 0rem 0rem 2rem"}}>{postData.title}</h1>
                 <div className={utilStyles.lightText}>
 
                 { /* <Date dateString={postData.date} /> */}
                 </div>
-                <div style={{fontSize: "1.5rem",lineHeight: "1.6"}} dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+                <div style={{fontSize: "1.5rem",lineHeight: "1.6", padding: "2rem"}} dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
             </article>
             <main>{children}</main>
         </Layout>
