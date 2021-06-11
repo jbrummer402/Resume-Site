@@ -19,15 +19,12 @@ const projectItems = [['Minesweeper',
 
 export default function Projects() {
         return (
-            <Layout>
-                <Head>
-                    <title/> My projects
-                </Head>
-                <article>
+            <Layout siteTitle={'My Projects'}>
+                <section>
                     <h1 className={utilStyles.heading2Xl}>Projects</h1>
-                    <p style={{fontSize: "1.5rem",lineHeight: "1.6"}}> Here is an overview of the projects I have done! </p>
-
-                </article>
+                    <p style={{fontSize: "1.5rem",lineHeight: "1.6", marginLeft: "1rem"}}> Here is an overview of the projects I have done! </p>
+                </section>
+                
                 <Grid
                     container
                     direction="row"

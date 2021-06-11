@@ -8,12 +8,14 @@
 .gridContainer {
     box-shadow: 5px 8px 16px 5px rgba(0,0,0,0.2);
     width: 25rem;
+    height: 20rem;
     padding: 2rem;
     margin: 1rem;
     border-radius: 10px;
     text-align: center;
     font-weight: 800;
     letter-spacing: -0.05rem;
+    line-height: 22rem;
 }
 
 .header {

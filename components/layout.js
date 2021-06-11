@@ -14,9 +14,10 @@ import {
 const name = 'Jack Brummer'
 export const siteTitle = "Jack Brummer.com"
 
-export default function Layout({ children, home }) {
+export default function Layout({ children, home, siteTitle }) {
     return (
         <>
+        
         <div>
           <Navbar bg="dark"
                   variant="dark"
@@ -39,6 +40,7 @@ export default function Layout({ children, home }) {
             <header className={styles.header}>
                 {home ? (
                 <>
+                    <title>Home</title>
                     <section style={{padding: "2rem 2rem"}} className={utilStyles.headingLg}>
                     <img
                     src="/images/Jack_Brummer (1).jpg"
@@ -64,6 +66,7 @@ export default function Layout({ children, home }) {
                 </>
                 ) : (
                 <>
+                    <title>{siteTitle}</title>
                     <main>{children}</main>
                 </>
                 )}

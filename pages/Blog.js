@@ -7,7 +7,7 @@ import Layout from "../components/layout"
 
 export default function Blog () {
     return (
-        <Layout>
+        <Layout siteTitle={'Blog'}>
             <div className={utilStyles.headingMd}>
                 <h1> Blog </h1>
                 <p>I decided to write blog on this site for numerous topics.
