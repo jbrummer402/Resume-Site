@@ -15,6 +15,7 @@ letter-spacing: -0.05rem;
 }
 
 .headingLg {
+padding: 2rem;
 font-size: 2rem;
 line-height: 1.3;
 }
