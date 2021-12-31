@@ -21,24 +21,23 @@ export default function blog(props) {
 
   return (
     <>
-      <Layout siteTitle={"Blog"}>
-        <div>
-          <h1 className={utilStyles.headingLg}> Blog </h1>
-          <p
-            style={{
-              fontSize: "1.5rem",
-              lineHeight: "1.6",
-              paddingLeft: "2rem",
-            }}
-          >
-            I decided to write blog on this site for numerous topics. These can
-            include current events or opinion articles on current events in
-            computer science. Feel free to share anything on here with friends
-          </p>
+      <div>
+        <h1 className={utilStyles.headingLg}> Blog </h1>
+        <p
+          style={{
+            fontSize: "1.5rem",
+            lineHeight: "1.6",
+            paddingLeft: "2rem",
+          }}
+        >
+          I decided to write blog on this site for numerous topics. These can
+          include current events or opinion articles on current events in
+          computer science. Feel free to share anything on here with friends
+        </p>
 
-          <li></li>
-        </div>
-      </Layout>
+        <li></li>
+      </div>
+
       <div
         style={{
           lineHeight: "1.6",

@@ -1,5 +1,6 @@
 .container {
   max-width: 100%;
+  height: auto;
   margin: 2rem 2rem 2rem 2rem;
   background-color: rgb(235, 231, 231);
   border-radius: 10px;
@@ -24,6 +25,7 @@
 }
 
 .headerHomeImage {
+    position: relative;
     padding: 0 2rem 0 0;
     float:left;
     max-width: 30%;
