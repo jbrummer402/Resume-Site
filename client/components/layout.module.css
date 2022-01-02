@@ -1,8 +1,7 @@
 .container {
-  max-width: 100%;
+  max-width: 63%;
   height: auto;
   margin: 2rem 2rem 2rem 2rem;
-  background-color: rgb(235, 231, 231);
   border-radius: 10px;
 }
 
@@ -25,10 +24,20 @@
 }
 
 .headerHomeImage {
+    border-radius: 2%;
+    overflow: hidden;
     position: relative;
     padding: 0 2rem 0 0;
     float:left;
     max-width: 30%;
+}
+
+.socialImages {
+  display: flex;
+
+  padding: 1rem 1rem 0 0;
+  flex-direction: row;
+  float: left;
 }
 
 .backToHome {

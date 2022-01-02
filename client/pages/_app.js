@@ -32,10 +32,11 @@ export default function App({ Component, pageProps }) {
   const router = useRouter();
   return (
     <>
-      <Layout />
-      <AnimatePresence exitBeforeEnter onExitComplete={handExitComplete}>
-        <Component {...pageProps} key={router.route} />
-      </AnimatePresence>
+      <Layout>
+        <AnimatePresence exitBeforeEnter onExitComplete={handExitComplete}>
+          <Component {...pageProps} key={router.route} />
+        </AnimatePresence>
+      </Layout>
     </>
   );
 }
