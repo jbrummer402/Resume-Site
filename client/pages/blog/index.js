@@ -8,6 +8,7 @@ import { useState } from "react";
 
 export default function blog(props) {
   let [formHidden, setFormHidden] = useState(true);
+  let [blogPosts, setBlogPosts] = useState([]);
 
   const onButtonClick = () => {
     setFormHidden(() => !formHidden);
@@ -21,23 +22,48 @@ export default function blog(props) {
 
   return (
     <>
-      <div>
-        <h1 className={utilStyles.headingLg}> Blog </h1>
-        <p
+      <div
+        style={{
+          height: "75vh",
+          width: "100vw",
+          overflow: "auto",
+          backgroundImage: "url(/images/1209438.jpeg)",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "100% 100%",
+        }}
+      >
+        <div
           style={{
-            fontSize: "1.5rem",
-            lineHeight: "1.6",
-            paddingLeft: "2rem",
+            maxWidth: "50%",
+            margin: "10rem auto",
+            maxHeight: "20%",
           }}
         >
-          I decided to write blog on this site for numerous topics. These can
-          include current events or opinion articles on current events in
-          computer science. Feel free to share anything on here with friends
-        </p>
-
-        <li></li>
+          <h1
+            style={{
+              color: "Button",
+              fontSize: "6rem",
+              fontWeight: "bold",
+            }}
+            className={utilStyles.headingXl}
+          >
+            Blog
+          </h1>
+          <h2
+            style={{
+              lineHeight: "1.6",
+              padding: "2rem",
+              color: "grey",
+            }}
+            className={utilStyles.headingLg}
+          >
+            I decided to write blog on this site for numerous topics. These can
+            include current events or opinion articles on current events in
+            computer science or accessibility. Feel free to share anything on
+            here with friends!
+          </h2>
+        </div>
       </div>
-
       <div
         style={{
           lineHeight: "1.6",
@@ -45,12 +71,13 @@ export default function blog(props) {
         }}
       >
         <h2>Blog posts</h2>
-        <Button
+        <h3>No Posts yet</h3>
+        {/* <Button
           style={{ marginTop: "2rem", fontSize: "1.3rem" }}
           onClick={onButtonClick}
         >
           Make Post
-        </Button>
+        </Button> */}
       </div>
 
       {formHidden ? (

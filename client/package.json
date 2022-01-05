@@ -16,6 +16,7 @@
     "@material-ui/core": "^4.12.3",
     "@mui/material": "^5.2.5",
     "auth0-js": "^9.18.0",
+    "axios": "^0.24.0",
     "bootstrap": "^4.6.1",
     "build": "^0.1.4",
     "core-js": "^3.20.1",
@@ -44,6 +45,7 @@
     "remark": "^12.0.1",
     "remark-html": "^12.0.0",
     "sass": "^1.45.1",
+    "sharp": "^0.29.3",
     "x-tag": "^2.0.3-beta"
   },
   "devDependencies": {
