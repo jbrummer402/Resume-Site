@@ -30,7 +30,7 @@ export default function AboutMe() {
           >
             About Me
           </h1>
-          <h2>Hello, my name is Jack Brummer</h2>
+          <h2>Hi there! My name is Jack Brummer</h2>
 
           <article>
             <p style={{ fontSize: "1.5rem", lineHeight: "1.6" }}>

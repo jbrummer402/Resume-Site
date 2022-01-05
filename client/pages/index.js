@@ -7,18 +7,73 @@ import utilStyles from "../styles/utils.module.css";
 import { getSortedPostsData } from "../lib/posts";
 import AboutMe from "../components/AboutMe";
 import Interests from "../components/Interests";
+import Education from "../components/Education";
+import Research from "../components/Research";
+
+import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 
 export default function Index() {
   return (
     <>
-      <div
+      <ul
         style={{
-          marginTop: "5rem",
+          position: "fixed",
+          right: "0",
+          height: "11.3rem",
+          margin: "5rem 2rem 0 0",
+          padding: ".4rem 2rem 0 2rem",
+          backgroundColor: "rgba(0,0,0,0)",
+          borderLeft: "1px solid black",
         }}
       >
+        <li style={{ display: "inline-flex" }}>
+          <ScrollLink
+            smooth={true}
+            style={{
+              fontSize: "1.5rem",
+              padding: "0",
+            }}
+            to="AboutMeSection"
+          >
+            About me
+          </ScrollLink>
+        </li>
+        <br />
+        <li style={{ display: "inline-flex" }}>
+          <ScrollLink
+            smooth={true}
+            style={{ fontSize: "1.5rem", padding: ".5rem 0 0 0" }}
+            to="InterestSection"
+          >
+            Interests and Projects
+          </ScrollLink>
+        </li>
+        <br />
+        <li style={{ display: "inline-flex" }}>
+          <ScrollLink
+            smooth={true}
+            style={{ fontSize: "1.5rem", padding: ".5rem 0 0 0" }}
+            to="EducationSection"
+          >
+            Education
+          </ScrollLink>
+        </li>
+        <br />
+        <li style={{ display: "inline-flex" }}>
+          <ScrollLink
+            smooth={true}
+            style={{ fontSize: "1.5rem", padding: ".5rem 0 0 0" }}
+            to="ResearchSection"
+          >
+            Research
+          </ScrollLink>
+        </li>
+      </ul>
+      <div>
         <Head>
           <title>{siteTitle}</title>
         </Head>
+
         <div
           style={{
             overflow: "auto",
@@ -105,6 +160,8 @@ export default function Index() {
         </div>
         <AboutMe />
         <Interests />
+        <Education />
+        <Research />
       </div>
     </>
   );

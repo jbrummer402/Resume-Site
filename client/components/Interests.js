@@ -14,7 +14,7 @@ export default function Interests() {
       }}
     >
       <section
-        id={"AboutMeSection"}
+        id={"InterestSection"}
         className={styles.container}
         style={{
           display: "flex",
@@ -31,45 +31,23 @@ export default function Interests() {
             Interests and Projects
           </h1>
 
-          <article>
-            <p style={{ fontSize: "1.5rem", lineHeight: "1.6" }}>
-              I am heavily interested in nearly all things computer science. I
-              began programming in my early teens and fell in love with the
-              problem solving that comes with it, and all the things you are
-              able to do and create.
+          <article style={{ fontSize: "1.5rem", lineHeight: "1.6" }}>
+            <p>
+              Throughout my years at school and in my personal life I've become
+              interested in several different areas, inside and out of computer
+              science.
             </p>
-            <p style={{ fontSize: "1.5rem", lineHeight: "1.6" }}>
-              I have experience in various different languages and practices,
-              including:
+            <p>
+              I began programming in Java and become heavily interested in the
+              object oriented programming paradigm. This then led me to try out
+              other object oriented languages like C++ and Python. When I
+              started at Stevens, I began to have more assignments that relied
+              on a more functional programming way of execution. The class where
+              this was most critical ended up being one of my favorite classes
+              I've taken: Programming languages.
             </p>
-            <ul
-              style={{
-                listStyleType: "circle",
-                fontSize: "1.5rem",
-                backgroundColor: "transparent",
-              }}
-            >
-              <li>Java</li>
-              <li>C++</li>
-              <li>JavaScript</li>
-              <li>React</li>
-              <li>Relational Databases</li>
-              <li>Functional Programming</li>
-            </ul>
+            <p style={{ fontSize: "1.5rem", lineHeight: "1.6" }}></p>
           </article>
-        </div>
-        <div
-          style={{
-            marginTop: "9rem",
-          }}
-        >
-          <Image
-            width={300}
-            height={450}
-            layout=""
-            quality={100}
-            src="/images/Jack_Brummer (1).jpg"
-          />
         </div>
       </section>
     </div>

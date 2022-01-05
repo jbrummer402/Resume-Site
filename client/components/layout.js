@@ -3,6 +3,8 @@ import styles from "./layout.module.css";
 import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
 
+const axios = require("axios");
+
 import {
   Navbar,
   Nav,
@@ -12,15 +14,21 @@ import {
   Button,
 } from "react-bootstrap";
 
-import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
-
 const name = "Jack Brummer";
 export const siteTitle = "Jack Brummer.com";
 
 export default function Layout({ children, home, siteTitle }) {
+  async function downloadResume() {
+    try {
+      console.log(data);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   return (
     <>
-      <div>
+      <div style={{ paddingBottom: "5rem" }}>
         <Navbar
           style={{
             position: "fixed",
@@ -50,10 +58,20 @@ export default function Layout({ children, home, siteTitle }) {
             <Nav.Link style={{ padding: "1.5rem" }} href="/blog/">
               Blog
             </Nav.Link>
+            <Nav.Link style={{ padding: "1.5rem" }}>
+              Freelance Services
+            </Nav.Link>
             <Nav.Link style={{ padding: "1.5rem" }} href="/posts/contact">
               Contact
             </Nav.Link>
-            <Nav.Link style={{ padding: "1.5rem" }}>Resume</Nav.Link>
+
+            <Nav.Link
+              style={{ padding: "1.5rem" }}
+              href={"/downloadables/JackBrummer_Resume_2021.pdf"}
+              download
+            >
+              Resume
+            </Nav.Link>
           </Nav>
         </Navbar>
       </div>
@@ -63,60 +81,6 @@ export default function Layout({ children, home, siteTitle }) {
             <>
               <title>{siteTitle}</title>
               <main>{children}</main>
-              <ul
-                style={{
-                  position: "fixed",
-                  right: "0",
-                  height: "11.3rem",
-                  margin: "10rem 2rem 0 1rem",
-                  padding: ".4rem 2rem 0 2rem",
-                  backgroundColor: "rgba(0,0,0,0)",
-                  borderLeft: "1px solid black",
-                }}
-              >
-                <li style={{ display: "inline-flex" }}>
-                  <ScrollLink
-                    smooth={true}
-                    style={{
-                      fontSize: "1.5rem",
-                      padding: "0",
-                    }}
-                    to="AboutMeSection"
-                  >
-                    About me
-                  </ScrollLink>
-                </li>
-                <br />
-                <li style={{ display: "inline-flex" }}>
-                  <ScrollLink
-                    smooth={true}
-                    style={{ fontSize: "1.5rem", padding: ".5rem 0 0 0" }}
-                    to="/#InterestSection"
-                  >
-                    Interests and Projects
-                  </ScrollLink>
-                </li>
-                <br />
-                <li style={{ display: "inline-flex" }}>
-                  <ScrollLink
-                    smooth={true}
-                    style={{ fontSize: "1.5rem", padding: ".5rem 0 0 0" }}
-                    to="/#EducationSection"
-                  >
-                    Education
-                  </ScrollLink>
-                </li>
-                <br />
-                <li style={{ display: "inline-flex" }}>
-                  <ScrollLink
-                    smooth={true}
-                    style={{ fontSize: "1.5rem", padding: ".5rem 0 0 0" }}
-                    to="ResearchSection"
-                  >
-                    Research
-                  </ScrollLink>
-                </li>
-              </ul>
             </>
           </header>
         </div>
