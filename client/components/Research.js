@@ -28,7 +28,7 @@ export default function Research() {
             style={{ margin: "5rem 0 0 -2rem", fontWeight: "bold" }}
             className={utilStyles.headingLg}
           >
-            Education
+            Research
           </h1>
           <h2>Hello, my name is Jack Brummer</h2>
 
