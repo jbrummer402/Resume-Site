@@ -5,10 +5,26 @@ import Link from "next/link";
 import Layout from "../../components/layout";
 import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
+import React from "react";
+import MarkdownInput from 'react-markdown'
+import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
+
+const input = `<div class="note">
+
+Some *emphasis* and <strong>strong</strong>!
+</div>`
 
 export default function blog(props) {
   let [formHidden, setFormHidden] = useState(true);
   let [blogPosts, setBlogPosts] = useState([]);
+
+  const [post, setPost] = useState('');
+
+  const handlePostChange = (e) => {
+    e.preventDefault();
+    console.log(e.target[0].value)
+  };
 
   const onButtonClick = () => {
     setFormHidden(() => !formHidden);
@@ -16,8 +32,7 @@ export default function blog(props) {
 
   const handleSubmit = (e) => {
     alert("Are you sure you want to post this?");
-    const form = e.currentTarget;
-    e.preventDefault();
+    console.log(e.target[0].value)
   };
 
   return (
@@ -72,36 +87,26 @@ export default function blog(props) {
       >
         <h2>Blog posts</h2>
         <h3>No Posts yet</h3>
-        {/* <Button
+        <Button
           style={{ marginTop: "2rem", fontSize: "1.3rem" }}
           onClick={onButtonClick}
         >
           Make Post
-        </Button> */}
+        </Button>
       </div>
 
       {formHidden ? (
         <div></div>
       ) : (
-        <Form
-          style={{
-            margin: "2rem",
-            fontSize: "2rem",
-          }}
-          onSubmit={handleSubmit}
-        >
-          <Form.Group>
-            <Form.Label>Title</Form.Label>
-            <Form.Control type="text" placeholder="Example: 'New Post'" />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-            <Form.Label>Post Content</Form.Label>
-            <Form.Control as="textarea" rows={3} />
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            Make Post
-          </Button>
-        </Form>
+        <div style={{ fontSize: '2rem',height: '70vh' }}>
+          
+
+          <form onSubmit={handlePostChange} id="confirmationForm" name="confirmationForm" method="post">
+            
+            <textarea id="confirmationText" class="text" cols="86" rows ="20" name="confirmationText" form="confirmationForm"></textarea>
+            <input type="submit"  />
+          </form>
+        </div>
       )}
     </>
   );

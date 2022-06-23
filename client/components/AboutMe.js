@@ -6,48 +6,49 @@ import styles from "../components/layout.module.css";
 
 export default function AboutMe() {
   return (
-    <div
-      style={{
-        height: "105vh",
-        display: "flex",
-        flexDirection: "row",
-      }}
-    >
+    <div>
       <section
         id={"AboutMeSection"}
         className={styles.container}
         style={{
-          display: "flex",
-          flexDirection: "row",
-          maxWidth: "80%",
-          height: "500px",
+          marginTop: "10vh",
+          height: "auto",
+          maxWidth: "100%"
         }}
       >
-        <div className={styles.container}>
+        <div className={styles.container}style={{ display: "flex",
+          flexDirection: "column",position: "relative", width: "150vw"}}>
+        
           <h1
-            style={{ margin: "5rem 0 0 -2rem", fontWeight: "bold" }}
+            style={{ fontSize: "3.5rem", fontWeight: "bold", marginTop: "9vh" }}
             className={utilStyles.headingLg}
           >
+            
             About Me
+            
           </h1>
-          <h2>Hi there! My name is Jack Brummer</h2>
-
-          <article>
-            <p style={{ fontSize: "1.5rem", lineHeight: "1.6" }}>
+          <h2 style={{ fontSize: "2.5rem", margin: "0 0 2rem 2rem"}}>Hi there! My name is Jack Brummer</h2>
+          
+          <article style={{ margin: "0 0 2rem 2rem", fontSize: "2.2rem", lineHeight: "1.6", maxWidth: "100%", width: "40vw"}}>
+            <p>
               I am heavily interested in nearly all things computer science. I
               began programming in my early teens and fell in love with the
               problem solving that comes with it, and all the things you are
               able to do and create.
             </p>
-            <p style={{ fontSize: "1.5rem", lineHeight: "1.6" }}>
+            
+            <p>
               I have experience in various different languages and practices,
               including:
             </p>
             <ul
               style={{
-                listStyleType: "circle",
-                fontSize: "1.5rem",
+                padding: "0",
+                margin: "0 0 0 -35%",
+                listStyleType: "none",
+                fontSize: "2.0rem",
                 backgroundColor: "transparent",
+                width: "100%"
               }}
             >
               <li>Java</li>
@@ -57,22 +58,22 @@ export default function AboutMe() {
               <li>Relational Databases</li>
               <li>Functional Programming</li>
             </ul>
+            
           </article>
+          <div style={{ position: "absolute",margin: "10vh 0 0 60%", width: "20.1%", height: "50vh"}}>
+              <Image
+                  layout="fill"
+                  objectFit="contain"
+                  quality={100}
+                  src="/images/Jack_Brummer (1).jpg"
+                />
+            </div>
+          
+        
         </div>
-        <div
-          style={{
-            marginTop: "9rem",
-          }}
-        >
-          <Image
-            width={300}
-            height={450}
-            layout=""
-            quality={100}
-            src="/images/Jack_Brummer (1).jpg"
-          />
-        </div>
+        
       </section>
+      
     </div>
   );
 }

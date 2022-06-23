@@ -28,14 +28,19 @@ export default function Layout({ children, home, siteTitle }) {
 
   return (
     <>
-      <div style={{ paddingBottom: "5rem" }}>
+      <div style={{ 
+        paddingBottom: "5rem",
+        }}>
         <Navbar
           style={{
+            
             position: "fixed",
+            
             width: "100%",
             justifyContent: "space-between",
             fontSize: "1.7rem",
-            background: "white",
+            background: "lightgrey",
+            filter: "brightness(95%)",
             zIndex: "1",
           }}
         >
@@ -50,7 +55,7 @@ export default function Layout({ children, home, siteTitle }) {
             JackBrummer.com
           </Navbar.Brand>
 
-          <Nav style={{ font: "sans-serif" }}>
+          <Nav style={{ color: "black", font: "sans-serif" }}>
             {/* <Nav.Link style={{ padding: "1.5rem" }} href="/posts/about">
               About
             </Nav.Link> */}
@@ -75,7 +80,8 @@ export default function Layout({ children, home, siteTitle }) {
           </Nav>
         </Navbar>
       </div>
-      <div>
+      <div style={{
+        }}>
         <div>
           <header className={styles.header}>
             <>

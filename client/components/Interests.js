@@ -8,7 +8,7 @@ export default function Interests() {
   return (
     <div
       style={{
-        height: "105vh",
+        marginTop: "20%",
         display: "flex",
         flexDirection: "row",
       }}
@@ -19,19 +19,19 @@ export default function Interests() {
         style={{
           display: "flex",
           flexDirection: "row",
-          maxWidth: "80%",
-          height: "500px",
+          width: "100vw",
+          height: "auto",
         }}
       >
-        <div className={styles.container}>
+        <div className={styles.container}style={{ marginLeft: "40%", maxWidth: "50%"}}>
           <h1
-            style={{ margin: "5rem 0 0 -2rem", fontWeight: "bold" }}
+            style={{ fontWeight: "bold", fontSize: "3.5rem" }}
             className={utilStyles.headingLg}
           >
             Interests and Projects
           </h1>
 
-          <article style={{ fontSize: "1.5rem", lineHeight: "1.6" }}>
+          <article style={{ fontSize: "2.2rem", lineHeight: "1.6"}}>
             <p>
               Throughout my years at school and in my personal life I've become
               interested in several different areas, inside and out of computer

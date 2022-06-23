@@ -17,21 +17,20 @@ export default function Index() {
     <>
       <ul
         style={{
+          fontSize: "2.0rem",
           position: "fixed",
           right: "0",
-          height: "11.3rem",
-          margin: "5rem 2rem 0 0",
-          padding: ".4rem 2rem 0 2rem",
+          margin: "5rem 1rem 0 0",
           backgroundColor: "rgba(0,0,0,0)",
           borderLeft: "1px solid black",
         }}
       >
+        <div style={{}}>
         <li style={{ display: "inline-flex" }}>
           <ScrollLink
             smooth={true}
             style={{
-              fontSize: "1.5rem",
-              padding: "0",
+              marginLeft: "-25%"
             }}
             to="AboutMeSection"
           >
@@ -42,7 +41,9 @@ export default function Index() {
         <li style={{ display: "inline-flex" }}>
           <ScrollLink
             smooth={true}
-            style={{ fontSize: "1.5rem", padding: ".5rem 0 0 0" }}
+            style={{
+              marginLeft: "-15%"
+            }}
             to="InterestSection"
           >
             Interests and Projects
@@ -52,7 +53,9 @@ export default function Index() {
         <li style={{ display: "inline-flex" }}>
           <ScrollLink
             smooth={true}
-            style={{ fontSize: "1.5rem", padding: ".5rem 0 0 0" }}
+            style={{
+              marginLeft: "-25%"
+            }}
             to="EducationSection"
           >
             Education
@@ -62,12 +65,15 @@ export default function Index() {
         <li style={{ display: "inline-flex" }}>
           <ScrollLink
             smooth={true}
-            style={{ fontSize: "1.5rem", padding: ".5rem 0 0 0" }}
+            style={{
+              marginLeft: "-25%"
+            }}
             to="ResearchSection"
           >
             Research
           </ScrollLink>
         </li>
+        </div>
       </ul>
       <div>
         <Head>
@@ -81,6 +87,8 @@ export default function Index() {
             backgroundRepeat: "no-repeat",
             backgroundSize: "100% 100%",
             height: "100vh",
+            width: "100vw", 
+            maxWidth: "150vw"
           }}
         >
           <header>
@@ -88,13 +96,10 @@ export default function Index() {
           </header>
           <div>
             <section
-              style={{
-                padding: "2rem 2rem",
-              }}
               className={utilStyles.headingLg}
             >
-              <div className={styles.container}>
-                <h1 style={{ fontWeight: "bold" }}> Welcome to My Website! </h1>
+              <div className={styles.container} style={{fontSize: "1em", lineHeight: "2.1"}}>
+                <h1 style={{ fontWeight: "bold", fontSize: "2.7rem" }}> Welcome to My Website! </h1>
                 <p />
                 Here you'll find some of my favorite projects that I have worked
                 on over the years.
