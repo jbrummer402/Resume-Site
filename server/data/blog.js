@@ -3,6 +3,12 @@ const ObjectId = require('mongodb').ObjectId;
 const blogDB = mongoCollection.blog;
 
 let exportedMethods = {
+    async getPosts() {
+        let blogCollection = await blogDB();
+        const blogList = await blogCollection.find({}).toArray();
+        
+        return blogList;
+    },
     async showPosts(skip, take, n, y) {
         try {
             let postIndex = 0;
@@ -35,7 +41,24 @@ let exportedMethods = {
         }
         
     },
-    async uploadBlogPost(id, file) {
+    async uploadBlogPost(id, date, title, content) {
+        try {
+            const blogCollection = await blogDB();
+
+            let newBlogPost = 
+                {
+                    date : "",
+                    title : "", 
+                    content : "",
+                };
+            
+                const insertInfo = await blogCollection.insertOne(newBlogPost)
+
+        } catch (e) {
+
+        }
+    }, 
+    async readByBlogId(id, file) {
         try {
             
         } catch (e) {
