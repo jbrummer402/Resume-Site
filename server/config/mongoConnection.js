@@ -1,26 +1,24 @@
-const MongoClient = require("mongodb").MongoClient;
-const path = require("path");
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const fs = require('fs');
 
-console.log(process.env.mongoDbUrl);
+const credentials = 'C:\Users\jackm\Desktop\Code\Resume-Site\server\config\X509-cert-9053477847688681488.pem'
 
-const settings = {
-  mongoConfig: {
-    serverUrl: process.env.mongoDbUrl,
-    database: process.env.mongoDbName,
-  },
-};
-
-const config = settings.mongoConfig;
-let _connection = undefined;
-let _db = undefined;
+const client = new MongoClient('mongodb+srv://resumesitecluster.sgdlp.mongodb.net/?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority', {
+    sslKey: credentials,
+    sslCert: credentials,
+    serverApi: ServerApiVersion.v1
+});
 
 module.exports = async () => {
-  if (!_connection) {
-    _connection = await MongoClient.connect(config.serverUrl, {
-      useNewUrlParser: true,
-    });
-    _db = await _connection.db(config.database);
-  }
-
-  return _db;
-};
+    try {
+        await client.connect();
+        const database = client.db("testDB");
+        const collection = database.collection("testCol");
+        const docCount = await collection.countDocuments({});
+        console.log(docCount);
+        // perform actions using client
+    } finally {
+        // Ensures that the client will close when you finish/error
+        await client.close();
+    }
+}
