@@ -17,7 +17,7 @@ export default function AboutMe() {
         }}
       >
         <div className={styles.container}style={{ display: "flex",
-          flexDirection: "column",position: "relative", width: "150vw"}}>
+          flexDirection: "column",position: "relative", width: "auto"}}>
         
           <h1
             style={{ fontSize: "3.5rem", fontWeight: "bold", marginTop: "9vh" }}
@@ -29,7 +29,7 @@ export default function AboutMe() {
           </h1>
           <h2 style={{ fontSize: "2.5rem", margin: "0 0 2rem 2rem"}}>Hi there! My name is Jack Brummer</h2>
           
-          <article style={{ margin: "0 0 2rem 2rem", fontSize: "2.2rem", lineHeight: "1.6", maxWidth: "100%", width: "40vw"}}>
+          <article style={{ margin: "0 0 2rem 2rem", fontSize: "2.2rem", lineHeight: "1.6", maxWidth: "80%", width: "40vw"}}>
             <p>
               I am heavily interested in nearly all things computer science. I
               began programming in my early teens and fell in love with the
@@ -44,10 +44,9 @@ export default function AboutMe() {
             <ul
               style={{
                 padding: "0",
-                margin: "0 0 0 -35%",
+                margin: "10% 0 0 -35%",
                 listStyleType: "none",
                 fontSize: "2.0rem",
-                backgroundColor: "transparent",
                 width: "100%"
               }}
             >
@@ -60,7 +59,7 @@ export default function AboutMe() {
             </ul>
             
           </article>
-          <div style={{ position: "absolute",margin: "10vh 0 0 60%", width: "20.1%", height: "50vh"}}>
+          <div style={{ position: "absolute",margin: "1vh 0 0 50%", width: "50.1%", height: "50vh"}}>
               <Image
                   layout="fill"
                   objectFit="contain"

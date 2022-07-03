@@ -23,7 +23,7 @@ export default function Interests() {
           height: "auto",
         }}
       >
-        <div className={styles.container}style={{ marginLeft: "40%", maxWidth: "50%"}}>
+        <div className={styles.container}style={{ maxWidth: "50%"}}>
           <h1
             style={{ fontWeight: "bold", fontSize: "3.5rem" }}
             className={utilStyles.headingLg}
