@@ -3,7 +3,7 @@ const ObjectId = require('mongodb').ObjectId;
 const blogDB = mongoCollection.blog;
 
 let exportedMethods = {
-    async getPosts() {
+    async getAllPosts() {
         let blogCollection = await blogDB();
         const blogList = await blogCollection.find({}).toArray();
         
@@ -58,7 +58,7 @@ let exportedMethods = {
 
         }
     }, 
-    async readByBlogId(id, file) {
+    async readByBlogId(id) {
         try {
             
         } catch (e) {

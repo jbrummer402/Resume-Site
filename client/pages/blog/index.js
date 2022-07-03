@@ -36,7 +36,8 @@ export default function blog(props) {
   };
 
   return (
-    <>
+      <>
+          <ReactMarkdown source={post}> </ReactMarkdown>
       <div
         style={{
           height: "75vh",

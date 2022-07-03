@@ -81,24 +81,26 @@ export default function Index() {
         </Head>
 
         <div
-          style={{
-            overflow: "auto",
-            backgroundImage: "url(/images/1668941.jpeg)",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "100% 100%",
-            height: "100vh",
-            width: "100vw", 
-            maxWidth: "150vw"
-          }}
         >
           <header>
             <title>Home</title>
           </header>
           <div>
             <section
-              className={utilStyles.headingLg}
+                          className={utilStyles.headingLg}
+                          style={{
+                          }}
             >
-              <div className={styles.container} style={{fontSize: "1em", lineHeight: "2.1"}}>
+                          <div className={styles.container} style={{
+                              backgroundImage: "url(/images/1668941.jpeg)",
+                              backgroundRepeat: "no-repeat",
+                              backgroundSize: "70%",
+                              backgroundPosition: "28vw 0",
+                              lineHeight: "2.1",
+                              width: "100vw",
+                              maxHeight: "100%",
+                              height: "50vh"
+                          }}>
                 <h1 style={{ fontWeight: "bold", fontSize: "2.7rem" }}> Welcome to My Website! </h1>
                 <p />
                 Here you'll find some of my favorite projects that I have worked
