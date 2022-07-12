@@ -6,24 +6,37 @@ import Layout from "../../components/layout";
 import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import React from "react";
-import MarkdownInput from 'react-markdown'
-import ReactMarkdown from 'react-markdown';
-import rehypeRaw from 'rehype-raw';
+import MarkdownInput from "react-markdown";
+import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
+
+import { ObjectID } from "bson";
+
+const blob = require("blob");
+const fs = require("fs");
 
 const input = `<div class="note">
 
 Some *emphasis* and <strong>strong</strong>!
-</div>`
+</div>`;
 
 export default function blog(props) {
   let [formHidden, setFormHidden] = useState(true);
   let [blogPosts, setBlogPosts] = useState([]);
 
-  const [post, setPost] = useState('');
+  const [post, setPost] = useState("");
 
   const handlePostChange = (e) => {
     e.preventDefault();
-    console.log(e.target[0].value)
+    console.log(e.target[0].value);
+
+    var a = document.createElement("a");
+
+    a.download = `${new Date().toISOString()}.md`;
+    a.href = URL.createObjectURL(
+      new Blob([e.target[0].value], { type: "text/plain" })
+    );
+    a.click();
   };
 
   const onButtonClick = () => {
@@ -32,12 +45,12 @@ export default function blog(props) {
 
   const handleSubmit = (e) => {
     alert("Are you sure you want to post this?");
-    console.log(e.target[0].value)
+    console.log(e.target[0].value);
   };
 
   return (
-      <>
-          <ReactMarkdown source={post}> </ReactMarkdown>
+    <>
+      <ReactMarkdown source={post}> </ReactMarkdown>
       <div
         style={{
           height: "75vh",
@@ -99,13 +112,22 @@ export default function blog(props) {
       {formHidden ? (
         <div></div>
       ) : (
-        <div style={{ fontSize: '2rem',height: '70vh' }}>
-          
-
-          <form onSubmit={handlePostChange} id="confirmationForm" name="confirmationForm" method="post">
-            
-            <textarea id="confirmationText" class="text" cols="86" rows ="20" name="confirmationText" form="confirmationForm"></textarea>
-            <input type="submit"  />
+        <div style={{ fontSize: "2rem", height: "70vh", marginLeft: "2vw" }}>
+          <form
+            onSubmit={handlePostChange}
+            id="confirmationForm"
+            name="confirmationForm"
+            method="post"
+          >
+            <textarea
+              id="confirmationText"
+              class="text"
+              cols="86"
+              rows="20"
+              name="confirmationText"
+              form="confirmationForm"
+            ></textarea>
+            <input type="submit" />
           </form>
         </div>
       )}
