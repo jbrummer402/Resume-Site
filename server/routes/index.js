@@ -1,7 +1,9 @@
-const constructorMethod = (app) => {
-  app.use("/");
+const blogRoutes = require("./blogRoutes");
 
-  app.use("*", (req, res) => {
+const constructorMethod = (app) => {
+  app.use("/blog", blogRoutes);
+
+  app.use("*", (_, res) => {
     res.sendStatus(404);
   });
 };

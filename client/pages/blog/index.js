@@ -15,11 +15,6 @@ import { ObjectID } from "bson";
 const blob = require("blob");
 const fs = require("fs");
 
-const input = `<div class="note">
-
-Some *emphasis* and <strong>strong</strong>!
-</div>`;
-
 export default function blog(props) {
   let [formHidden, setFormHidden] = useState(true);
   let [blogPosts, setBlogPosts] = useState([]);
@@ -36,6 +31,7 @@ export default function blog(props) {
     a.href = URL.createObjectURL(
       new Blob([e.target[0].value], { type: "text/plain" })
     );
+
     a.click();
   };
 
