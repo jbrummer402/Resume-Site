@@ -39,13 +39,21 @@ let exportedMethods = {
       console.log(e);
     }
   },
-  async uploadBlogPost(date, title, content) {
+  async uploadBlogPost(id, date, title, content) {
     try {
       const blogCollection = await blogDB();
       console.log("Successfully uploaded");
-      let newBlogPost = {};
+      
+      let newBlogPost = {
+        id: id,
+        date: date,
+        title: title,
+        content: content
+      };
 
       const insertInfo = await blogCollection.insertOne(newBlogPost);
+
+      return insertInfo
     } catch (e) {
       console.error(e);
       return false;

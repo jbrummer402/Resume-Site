@@ -8,6 +8,7 @@ import { useState } from "react";
 import React from "react";
 import uuid from "react-uuid";
 
+
 import ReactMarkdown from "react-markdown";
 
 import frontmatter from "front-matter";
@@ -18,6 +19,7 @@ import { ObjectID } from "bson";
 
 var Blob = require("blob");
 const fs = require("fs");
+const markdown = require("markdown").Markdown;
 
 export default function blog(props) {
   let [formHidden, setFormHidden] = useState(true);
@@ -28,12 +30,15 @@ export default function blog(props) {
   const handlePostChange = async (e) => {
     e.preventDefault();
     let text = e.target[0].value;
+    let md = frontmatter(text)
+    console.log(md)
     let postId = new ObjectID();
     try {
       await axios.post("http://localhost:3001/blog", {
         id: postId,
-        title: `test.md`,
-        content: text,
+        date: new Date().toString(),
+        title: md.attributes.title,
+        content: md.body,
       });
     } catch (e) {
       return e;

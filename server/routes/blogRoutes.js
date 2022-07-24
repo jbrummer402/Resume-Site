@@ -26,14 +26,14 @@ router.get("/", async (req, res) => {
 
 // Post a single blog post
 router.post("/", async (req, res) => {
-  let { id, title, content } = req.body;
+  let { id, date, title, content } = req.body;
   let blogPost;
   console.log("Posting blog post...");
-
+  console.log(title)
   try {
     blogPost = await blogData.uploadBlogPost(
-      new Date().toISOString(),
       id,
+      date,
       title,
       content
     );
