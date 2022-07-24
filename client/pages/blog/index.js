@@ -6,13 +6,17 @@ import Layout from "../../components/layout";
 import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import React from "react";
-import MarkdownInput from "react-markdown";
+import uuid from "react-uuid";
+
 import ReactMarkdown from "react-markdown";
-import rehypeRaw from "rehype-raw";
+
+import frontmatter from "front-matter";
+
+import axios from "axios";
 
 import { ObjectID } from "bson";
 
-const blob = require("blob");
+var Blob = require("blob");
 const fs = require("fs");
 
 export default function blog(props) {
@@ -21,18 +25,19 @@ export default function blog(props) {
 
   const [post, setPost] = useState("");
 
-  const handlePostChange = (e) => {
+  const handlePostChange = async (e) => {
     e.preventDefault();
-    console.log(e.target[0].value);
-
-    var a = document.createElement("a");
-
-    a.download = `${new Date().toISOString()}.md`;
-    a.href = URL.createObjectURL(
-      new Blob([e.target[0].value], { type: "text/plain" })
-    );
-
-    a.click();
+    let text = e.target[0].value;
+    let postId = new ObjectID();
+    try {
+      await axios.post("http://localhost:3001/blog", {
+        id: postId,
+        title: `test.md`,
+        content: text,
+      });
+    } catch (e) {
+      return e;
+    }
   };
 
   const onButtonClick = () => {

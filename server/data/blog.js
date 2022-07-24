@@ -42,7 +42,7 @@ let exportedMethods = {
   async uploadBlogPost(date, title, content) {
     try {
       const blogCollection = await blogDB();
-
+      console.log("Successfully uploaded");
       let newBlogPost = {};
 
       const insertInfo = await blogCollection.insertOne(newBlogPost);

@@ -12,10 +12,10 @@ function checkInputs(data) {
 
 // Get every blog post
 router.get("/", async (req, res) => {
-  let { blogTitle, content, date } = req.body;
   let blogList;
   try {
     blogList = await blogData.getAllPosts();
+    console.log(blogList);
   } catch (e) {
     console.error(e);
     res.sendStatus(500);
@@ -26,16 +26,22 @@ router.get("/", async (req, res) => {
 
 // Post a single blog post
 router.post("/", async (req, res) => {
-  let { date, title, content } = req.body;
+  let { id, title, content } = req.body;
   let blogPost;
+  console.log("Posting blog post...");
+
   try {
-    blogPost = await blogData.uploadBlogPost(id, date, title, content);
+    blogPost = await blogData.uploadBlogPost(
+      new Date().toISOString(),
+      id,
+      title,
+      content
+    );
   } catch (e) {
     console.error(e);
     res.sendStatus(500);
   }
-
-  res.json(blogPost);
+  return blogPost;
 });
 
 // Get a single blog post
