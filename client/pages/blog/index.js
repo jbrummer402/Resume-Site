@@ -4,7 +4,7 @@ import utilStyles from "../../styles/utils.module.css";
 import Link from "next/link";
 import Layout from "../../components/layout";
 import { Form, Button } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import uuid from "react-uuid";
 
@@ -28,10 +28,10 @@ export default function blog(props) {
   const [post, setPost] = useState("");
 
   const handlePostChange = async (e) => {
-    e.preventDefault();
+    
     let text = e.target[0].value;
     let md = frontmatter(text)
-    console.log(md)
+    
     let postId = new ObjectID();
     try {
       await axios.post("http://localhost:3001/blog", {
@@ -44,6 +44,12 @@ export default function blog(props) {
       return e;
     }
   };
+
+  useEffect(async () => {
+    let blogList = 
+      await axios.get("http://localhost:3001/blog");
+      setBlogPosts(blogList)
+  }, [])
 
   const onButtonClick = () => {
     setFormHidden(() => !formHidden);

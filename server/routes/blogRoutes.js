@@ -16,12 +16,12 @@ router.get("/", async (req, res) => {
   try {
     blogList = await blogData.getAllPosts();
     console.log(blogList);
+    return blogList
   } catch (e) {
     console.error(e);
     res.sendStatus(500);
   }
 
-  res.json(blogList);
 });
 
 // Post a single blog post

@@ -3,7 +3,7 @@ const fs = require("fs");
 const { MongoClient, ServerApiVersion } = require("mongodb");
 
 const credentials =
-  "/Users/jackbrummer/Code/Resume-Site/server/config/X509-cert-1690571406920126027.pem";
+  "./X509-cert-9053477847688681488.pem";
 
 const client = new MongoClient(
   "mongodb+srv://resumesitecluster.sgdlp.mongodb.net/?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority",
