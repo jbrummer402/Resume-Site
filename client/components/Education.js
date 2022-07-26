@@ -25,7 +25,7 @@ export default function Education() {
           height: "500px",
         }}
       >
-        <div className={styles.container}style={{  border: "solid", fontSize: "2.2rem", lineHeight: "1.6" }}>
+        <div className={styles.container}style={{  border: "solid", fontSize: "2.2rem", lineHeight: "1.6", marginTop: "8vh" }}>
           <h1
             style={{  fontWeight: "bold", fontSize: "3.5rem" }}
             className={utilStyles.headingLg}
