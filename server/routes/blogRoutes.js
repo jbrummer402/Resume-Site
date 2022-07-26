@@ -13,15 +13,17 @@ function checkInputs(data) {
 // Get every blog post
 router.get("/", async (req, res) => {
   let blogList;
+
+  console.log("Getting every blog post...");
+
   try {
     blogList = await blogData.getAllPosts();
-    console.log(blogList);
   } catch (e) {
     console.error(e);
     res.sendStatus(500);
   }
 
-  res.json(blogList);
+  res.json({ data: blogList });
 });
 
 // Post a single blog post
@@ -29,14 +31,9 @@ router.post("/", async (req, res) => {
   let { id, date, title, content } = req.body;
   let blogPost;
   console.log("Posting blog post...");
-  console.log(title)
+
   try {
-    blogPost = await blogData.uploadBlogPost(
-      id,
-      date,
-      title,
-      content
-    );
+    blogPost = await blogData.uploadBlogPost(id, date, title, content);
   } catch (e) {
     console.error(e);
     res.sendStatus(500);
@@ -45,7 +42,7 @@ router.post("/", async (req, res) => {
 });
 
 // Get a single blog post
-router.get("/:blogTitle", async (req, res) => {
+router.get("/:blogId", async (req, res) => {
   let blogPostById;
 
   let { id, date, title } = req.body;

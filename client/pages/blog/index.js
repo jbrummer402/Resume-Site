@@ -4,10 +4,9 @@ import utilStyles from "../../styles/utils.module.css";
 import Link from "next/link";
 import Layout from "../../components/layout";
 import { Form, Button } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import uuid from "react-uuid";
-
 
 import ReactMarkdown from "react-markdown";
 
@@ -29,12 +28,12 @@ export default function blog(props) {
 
   const handlePostChange = async (e) => {
     e.preventDefault();
+
     let text = e.target[0].value;
-    let md = frontmatter(text)
-    console.log(md)
+    let md = frontmatter(text);
     let postId = new ObjectID();
     try {
-      await axios.post("http://localhost:3001/blog", {
+      let post = await axios.post("http://localhost:3001/blog", {
         id: postId,
         date: new Date().toString(),
         title: md.attributes.title,
@@ -44,6 +43,16 @@ export default function blog(props) {
       return e;
     }
   };
+  useEffect(async () => {
+    console.log("UseEffect fired");
+    try {
+      let { data } = await axios.get("http://localhost:3001/blog");
+      console.log(data);
+      await setBlogPosts(data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
 
   const onButtonClick = () => {
     setFormHidden(() => !formHidden);
@@ -53,10 +62,9 @@ export default function blog(props) {
     alert("Are you sure you want to post this?");
     console.log(e.target[0].value);
   };
-
+  console.log(blogPosts);
   return (
     <>
-      <ReactMarkdown source={post}> </ReactMarkdown>
       <div
         style={{
           height: "75vh",
@@ -106,7 +114,13 @@ export default function blog(props) {
         }}
       >
         <h2>Blog posts</h2>
-        <h3>No Posts yet</h3>
+        {blogPosts.length > 0 ? (
+          blogPosts.map((post) => {
+            return <h2>{post.title}</h2>;
+          })
+        ) : (
+          <h2>no posts</h2>
+        )}
         <Button
           style={{ marginTop: "2rem", fontSize: "1.3rem" }}
           onClick={onButtonClick}
