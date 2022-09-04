@@ -4,7 +4,7 @@ import utilStyles from "../../styles/utils.module.css";
 import Link from "next/link";
 import Layout from "../../components/layout";
 import { Form, Button } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import React from "react";
 import uuid from "react-uuid";
 
@@ -24,7 +24,11 @@ export default function blog(props) {
   let [formHidden, setFormHidden] = useState(true);
   let [blogPosts, setBlogPosts] = useState([]);
 
-  const [post, setPost] = useState("");
+  function reducer(state, singlePost) {
+    return { blogPosts: blogPosts + singlePost };
+  }
+
+  const [state, dispatch] = useReducer(reducer, { blogPosts: [] });
 
   const handlePostChange = async (e) => {
     e.preventDefault();
@@ -33,22 +37,29 @@ export default function blog(props) {
     let md = frontmatter(text);
     let postId = new ObjectID();
     try {
-      let post = await axios.post("http://localhost:3001/blog", {
-        id: postId,
-        date: new Date().toString(),
-        title: md.attributes.title,
-        content: md.body,
-      });
+      let { data } = await axios
+        .post("http://localhost:3001/blog", {
+          id: postId,
+          date: new Date().toString(),
+          title: md.attributes.title,
+          content: md.body,
+        })
+        .then((payload) =>
+          dispatch({ state: blogPosts, singlePost: data.data })
+        );
+
+      setBlogPosts(data.data);
     } catch (e) {
       return e;
     }
   };
+
   useEffect(async () => {
     console.log("UseEffect fired");
     try {
       let { data } = await axios.get("http://localhost:3001/blog");
       console.log(data);
-      await setBlogPosts(data.data);
+      setBlogPosts(data.data);
     } catch (e) {
       console.log(e);
     }
@@ -58,10 +69,6 @@ export default function blog(props) {
     setFormHidden(() => !formHidden);
   };
 
-  const handleSubmit = (e) => {
-    alert("Are you sure you want to post this?");
-    console.log(e.target[0].value);
-  };
   console.log(blogPosts);
   return (
     <>

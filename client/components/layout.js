@@ -18,14 +18,7 @@ const name = "Jack Brummer";
 export const siteTitle = "Jack Brummer.com";
 
 export default function Layout({ children, home, siteTitle }) {
-  async function downloadResume() {
-    try {
-      console.log(data);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
+  
   return (
     <>
       <div style={{ 
@@ -76,6 +69,11 @@ export default function Layout({ children, home, siteTitle }) {
               download
             >
               Resume
+            </Nav.Link>
+            <Nav.Link
+              style={{ padding: "1.5rem" }}
+            >
+              Login/Signup
             </Nav.Link>
           </Nav>
         </Navbar>

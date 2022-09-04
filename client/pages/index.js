@@ -95,7 +95,7 @@ export default function Index() {
                               lineHeight: "2.1",
                               position: "absolute",
                               minHeight: "100%",
-                              width: "100%",
+                              maxWidth: "70%",
                               height: "auto",
                               top: "5vh",
                               left: "0",

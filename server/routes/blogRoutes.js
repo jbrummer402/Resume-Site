@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
     console.error(e);
     res.sendStatus(500);
   }
-  return blogPost;
+  res.send({ data: blogPost });
 });
 
 // Get a single blog post
