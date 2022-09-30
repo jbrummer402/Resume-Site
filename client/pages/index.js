@@ -90,17 +90,17 @@ export default function Index() {
                           className={utilStyles.headingLg}
                           style={{
                               zIndex: "-1",
-                              backgroundImage: "url(/images/1668941.jpeg)",
+                              backgroundImage: "url(/images/FrontPageBackground.svg)",
                               backgroundRepeat: "no-repeat",
                               lineHeight: "2.1",
                               position: "absolute",
                               minHeight: "100%",
-                              maxWidth: "70%",
+                              maxWidth: "80%",
                               height: "auto",
                               top: "5vh",
-                              left: "0",
-                              backgroundPositionX: "50vw"
-                          }}
+                              backgroundSize: "cover",
+                              backgroundPositionX: "-20vw"
+                            }}
             >
                           <div className={styles.container} style={{
 
