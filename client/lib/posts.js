@@ -1,6 +1,6 @@
 import matter from 'gray-matter'
 import path from 'path'
-import remark from 'remark'
+import { remark } from 'remark'
 import html from 'remark-html'
 
 const postsDirectory = path.join(process.cwd(), 'blogPosts')
