@@ -23,7 +23,6 @@ export default function Layout({ children, home, siteTitle }) {
   
   return (
     <>
-
       <div style={{ 
           paddingBottom: "5rem",
           }}>

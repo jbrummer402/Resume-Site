@@ -20,41 +20,39 @@ import {
 
   export default function LandingLayout() {
     return (
-      <Container maxW={'100%'}
-      >
-        <Stack
-        bgImage='/images/FrontPageBackground.svg'
-        bgRepeat={"no-repeat"}
-          align={'center'}
-          spacing={{ base: 8, md: 10 }}
-          py={{ base: 20, md: 28 }}
-          direction={{ base: 'column', md: 'row' }}>
-          <Stack >
+        <Container maxW={"100%"} 
+        bgRepeat="no-repeat"
+        bgImage={"/images/FrontPageBackground.svg"}>
+            <Stack
+            spacing={{ base: 8, md: 10 }}
+            py={{ base: 20, md: 28 }}
+            direction={{ base: 'row', md: 'column' }}>
+            <Stack>
             <Heading
-              lineHeight={1.1}
-              fontWeight={600}
-              fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }}>
-              <Text
+                lineHeight={1.1}
+                fontWeight={600}
+                fontSize={['4xl','6xl']}>
+                <Text
                 as={'span'}
                 position={'relative'}
                 _after={{
-                  content: "''",
-                  width: 'full',
-                  height: '30%',
-                  position: 'absolute',
-                  bottom: 1,
-                  left: 0,
-                  bg: 'gray.500',
-                  zIndex: -1,
+                    content: "''",
+                    width: 'full',
+                    height: '30%',
+                    position: 'absolute',
+                    bottom: 1,
+                    left: 0,
+                    bg: 'gray.500',
+                    zIndex: -1,
                 }}>
                 Welcome to 
-              </Text>
-
-              <Text as={'span'} color={'gray.500'}>
+                </Text>
+                <Text />
+                <Text as={'span'} color={'gray.500'}>
                 my website!
-              </Text>
+                </Text>
             </Heading>
-            <Text color={'gray.550'} maxW={{sm : '10em', md : '20em', lg: "35em"}}>
+            <Text color={'gray.550'} maxW={{base : '20em', lg: "35em"}}>
                     Here you'll find some of my favorite projects that I have worked
                     on over the years.
 
@@ -71,22 +69,21 @@ import {
                     This site may change in appearance or function as time goes on
                     as I learn new things
 
-                    
-
             </Text>
             <Stack
-              spacing={{ base: 4, sm: 6 }}
-              direction={{ base: 'column', sm: 'row' }}>
-                    <div className={styles.socialImages}>
+                spacing={{ base: 2, sm: 4}}
+                direction={{ base: 'column', sm: 'row' }}
+                className={styles.socialImages}>
+
                         <Link
-                          href="https://www.linkedin.com/in/jack-brummer"
-                          passHref={true}
+                            href="https://www.linkedin.com/in/jack-brummer"
+                            passHref={true}
                         >
-                          <Image
+                            <Image
                             layout="intrinsic"
                             quality={100}
                             src="/images/logos/5282542_linkedin_network_social network_linkedin logo_icon.png"
-                          />
+                            />
                         </Link>
 
 
@@ -98,25 +95,25 @@ import {
 
 
                         <Image
-                          layout="intrinsic"
-                          quality={100}
-                          src="/images/logos/317712_code repository_github_repository_resource_icon.png"
+                            layout="intrinsic"
+                            quality={100}
+                            src="/images/logos/317712_code repository_github_repository_resource_icon.png"
                         />
 
-                      
+                        
                         <Image
-                          layout="intrinsic"
-                          quality={100}
-                          src="/images/logos/4691519_twitch_icon.png"
+                            layout="intrinsic"
+                            quality={100}
+                            src="/images/logos/4691519_twitch_icon.png"
                         />
-                      </div>
+
             </Stack>
-          </Stack>
+            </Stack>
 
             
-           
-              
-              {/* <Image
+            
+                
+                {/* <Image
                 alt={'Hero Image'}
                 boxSize={'lg'}
                 marginLeft={'2.5rem'}
@@ -124,11 +121,13 @@ import {
                     "/images/FrontPageBackground.svg"
                 }
 
-              /> */}
+                /> */}
 
 
-        </Stack>
-      </Container>
+            </Stack>
+        </Container>
+        
+
     );
   }
   

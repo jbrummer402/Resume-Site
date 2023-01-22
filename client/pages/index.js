@@ -60,13 +60,15 @@ export default function Index() {
          
             
 
-        <Stack align={'center'} w={"100%"} spacing={10}>
+        <Stack maxW="100%" spacing={20} direction='column'>
           <LandingLayout />
           <AboutMe />
           <Interests />
           <Education />
           <Research />
         </Stack>
+
+        
     </>
   );
 }

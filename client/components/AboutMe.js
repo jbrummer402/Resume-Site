@@ -8,7 +8,7 @@ import { Container, Heading, Text } from "@chakra-ui/react";
 
 export default function AboutMe() {
   return (
-    <Container maxW={['50%','70%', '95%']}>
+    <Container maxW={['70%', '95%']}>
 <Stack direction={{base : 'column', lg : 'row'}} fontSize={'xl'}>
           <VStack align={'flex-start'}>
             <Heading lineHeight={1.1}
