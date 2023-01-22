@@ -11,15 +11,6 @@ import * as React from "react";
 export default function Resume() {
   return (
     <>
-      <Head>
-        <title>Resume and Skills</title>
-      </Head>
-      <section>
-        <h1 className={utilStyles.heading2Xl}>Resume and Skills</h1>
-        <p
-          style={{ fontSize: "1.5rem", lineHeight: "1.6", marginLeft: "1rem" }}
-        ></p>
-      </section>
     </>
   );
 }

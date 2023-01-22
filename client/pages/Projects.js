@@ -40,11 +40,11 @@ export default function Projects() {
     <Layout siteTitle={"My Projects"}>
       <section>
         <h1 className={utilStyles.heading2Xl}>Projects</h1>
-        <p
+        {/* <p
           style={{ fontSize: "1.5rem", lineHeight: "1.6", marginLeft: "1rem" }}
         >
           Here is an overview of the projects I have done!{" "}
-        </p>
+        </p> */}
       </section>
 
       <Grid container direction="row" justify="center" alignItems="center">

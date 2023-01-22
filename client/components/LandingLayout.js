@@ -29,7 +29,7 @@ import {
           spacing={{ base: 8, md: 10 }}
           py={{ base: 20, md: 28 }}
           direction={{ base: 'column', md: 'row' }}>
-          <Stack flex={1} spacing={{ base: 5, md: 10 }}>
+          <Stack >
             <Heading
               lineHeight={1.1}
               fontWeight={600}
@@ -49,12 +49,12 @@ import {
                 }}>
                 Welcome to 
               </Text>
-              <br />
+
               <Text as={'span'} color={'gray.500'}>
                 my website!
               </Text>
             </Heading>
-            <Text color={'gray.550'} maxW={{base : '40vw', md : '45vw', lg: "50vw"}}>
+            <Text color={'gray.550'} maxW={{sm : '10em', md : '20em', lg: "35em"}}>
                     Here you'll find some of my favorite projects that I have worked
                     on over the years.
 
@@ -64,14 +64,14 @@ import {
                     I followed the next js tutorial here as a
                     reference and then added my own content.
 
-                    The source code can be found on my github
-                    <Link href="https://www.github.com/jbrummer402/Resume-site.git">
-                      <a target="none"> here</a>
-                    </Link>
+                    The source code can be found on my github here.
                     Take a look around the site, I hope you enjoy it!
+
 
                     This site may change in appearance or function as time goes on
                     as I learn new things
+
+                    
 
             </Text>
             <Stack
@@ -88,22 +88,22 @@ import {
                             src="/images/logos/5282542_linkedin_network_social network_linkedin logo_icon.png"
                           />
                         </Link>
-                    </div>
-                    <div className={styles.socialImages}>
+
+
                     <Image
                         layout="intrinsic"
                         quality={100}
                         src="/images/logos/5282544_camera_instagram_social media_social network_instagram logo_icon.png"
                     />
-                    </div>
-                      <div className={styles.socialImages}>
+
+
                         <Image
                           layout="intrinsic"
                           quality={100}
                           src="/images/logos/317712_code repository_github_repository_resource_icon.png"
                         />
-                      </div>
-                      <div className={styles.socialImages}>
+
+                      
                         <Image
                           layout="intrinsic"
                           quality={100}
