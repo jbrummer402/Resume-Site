@@ -1,4 +1,8 @@
 import {
+    Menu, 
+    MenuButton,
+    MenuList,
+    MenuItem,
     Container,
     Stack,
     Flex,
@@ -14,66 +18,101 @@ import {
     useColorModeValue,
   } from '@chakra-ui/react';
   
+import { HamburgerIcon } from '@chakra-ui/icons'
+
   import styles from "./layout.module.css";
 
   import Link from 'next/link';
 
-  export default function LandingLayout() {
+import { useRef } from 'react'
+
+export default function LandingLayout() {
+
+    let ref = useRef(null)
+
     return (
-        <Container maxW={"100%"} 
-        bgRepeat="no-repeat"
-        bgImage={"/images/FrontPageBackground.svg"}>
+        <Container maxW={"90%"}
+            bgRepeat="no-repeat"
+            bgPos={'right'}
+            bgImage={"/images/FrontPageBackground.svg"}>
+
+            <Menu>
+                <MenuButton
+                    as={IconButton}
+                    aria-label='Options'
+                    icon={<HamburgerIcon />}
+                    variant='outline'
+                    />
+                <MenuList>
+                    <MenuItem >
+                        About Me
+                    </MenuItem>
+                    <MenuItem >
+                        New Window
+                    </MenuItem>
+                    <MenuItem >
+                        Open Closed Tab
+                    </MenuItem>
+                    <MenuItem  >
+                        Open File...
+                    </MenuItem>
+                </MenuList>
+            </Menu> 
             <Stack
-            spacing={{ base: 8, md: 10 }}
-            py={{ base: 20, md: 28 }}
-            direction={{ base: 'row', md: 'column' }}>
-            <Stack>
-            <Heading
-                lineHeight={1.1}
-                fontWeight={600}
-                fontSize={['4xl','6xl']}>
-                <Text
-                as={'span'}
-                position={'relative'}
-                _after={{
-                    content: "''",
-                    width: 'full',
-                    height: '30%',
-                    position: 'absolute',
-                    bottom: 1,
-                    left: 0,
-                    bg: 'gray.500',
-                    zIndex: -1,
-                }}>
-                Welcome to 
-                </Text>
-                <Text />
-                <Text as={'span'} color={'gray.500'}>
-                my website!
-                </Text>
-            </Heading>
-            <Text color={'gray.550'} maxW={{base : '20em', lg: "35em"}}>
-                    Here you'll find some of my favorite projects that I have worked
-                    on over the years.
+                spacing={{ base: 8, md: 10 }}
+                py={{ base: 20, md: 28 }}
+                direction={{ base: 'row', md: 'column' }}>
+                <Stack>
+                    <Heading
+                        lineHeight={1.1}
+                        fontWeight={600}
+                        fontSize={['6xl']}>
+                        <Text
+                        as={'span'}
+                        position={'relative'}
+                        _after={{
+                            content: "''",
+                            width: 'full',
+                            height: '30%',
+                            position: 'absolute',
+                            bottom: 1,
+                            left: 0,
+                            bg: 'gray.500',
+                            zIndex: -1,
+                        }}>
+                        Welcome to 
+                        </Text>
+                        <Text />
+                        <Text as={'span'} color={'gray.500'}>
+                            my website!
+                        </Text>
+                    </Heading>
 
-                    I made this site completely on my own using React and Next.js
-                    for the front end. 
+                    <Text color={'gray.550'} 
+                        fontSize={'xl'}
+                        maxW={{sm : '10em', md: "20em",  lg: "25em"}}>
+                            Here you'll find some of my favorite projects that I have worked
+                            on over the years.
 
-                    I followed the next js tutorial here as a
-                    reference and then added my own content.
+                            I made this site completely on my own using React and Next.js
+                            for the front end. 
 
-                    The source code can be found on my github here.
-                    Take a look around the site, I hope you enjoy it!
+                            I followed the next js tutorial here as a
+                            reference and then added my own content.
+
+                            The source code can be found on my github here.
+                            Take a look around the site, I hope you enjoy it!
 
 
-                    This site may change in appearance or function as time goes on
-                    as I learn new things
+                            This site may change in appearance or function as time goes on
+                            as I learn new things
 
-            </Text>
-            <Stack
-                spacing={{ base: 2, sm: 4}}
-                direction={{ base: 'column', sm: 'row' }}
-                className={styles.socialImages}>
+                    </Text>
+                
+                    <Stack
+                        spacing={{ base: 2, sm: 4}}
+                        direction={{ base: 'column', sm: 'row' }}
+                        className={styles.socialImages}>
 
                         <Link
                             href="https://www.linkedin.com/in/jack-brummer"
@@ -87,11 +126,11 @@ import {
                         </Link>
 
 
-                    <Image
-                        layout="intrinsic"
-                        quality={100}
-                        src="/images/logos/5282544_camera_instagram_social media_social network_instagram logo_icon.png"
-                    />
+                        <Image
+                            layout="intrinsic"
+                            quality={100}
+                            src="/images/logos/5282544_camera_instagram_social media_social network_instagram logo_icon.png"
+                        />
 
 
                         <Image
@@ -107,24 +146,21 @@ import {
                             src="/images/logos/4691519_twitch_icon.png"
                         />
 
+                    </Stack>
+                    
+                        
+                    
+                </Stack>      
             </Stack>
-            </Stack>
-
-            
-            
-                
-                {/* <Image
-                alt={'Hero Image'}
-                boxSize={'lg'}
-                marginLeft={'2.5rem'}
-                src={
-                    "/images/FrontPageBackground.svg"
-                }
-
-                /> */}
-
-
-            </Stack>
+            <Blob
+                        w={'80%'}
+                        h={'80%'}
+                        position={'absolute'}
+                        top={'0%'}
+                        left={600}
+                        zIndex={-1}
+                        color={useColorModeValue('blue.200', 'blue.800')}
+                    />
         </Container>
         
 
@@ -143,7 +179,7 @@ import {
       <Icon
         width={'100%'}
         viewBox="0 0 578 440"
-        fill="none"
+        fill='none'
         xmlns="http://www.w3.org/2000/svg"
         {...props}>
         <path
