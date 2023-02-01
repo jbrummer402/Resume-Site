@@ -41,15 +41,13 @@ export default function Index() {
           <title>Home</title>
         </header>
          
-        <Stack maxW="100%" spacing={"35vh"} direction='column' marginRight='2rem'>
+        <Stack maxW="100%" spacing={"35vh"} direction='column'>
           <LandingLayout />
           <AboutMe id="#foo" />
-          <Interests />
           <Education />
           <Research />
+          <Interests />
         </Stack>
-
-        
     </>
   );
 }

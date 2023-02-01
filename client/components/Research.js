@@ -1,54 +1,62 @@
 import Head from "next/head";
 import Link from "next/link";
-import Image from "next/image";
 import utilStyles from "../styles/utils.module.css";
 import styles from "../components/layout.module.css";
 
+import { Container, Stack, VStack, Heading, UnorderedList, 
+  ListItem, Text, Image, HStack, Flex } from "@chakra-ui/react";
+
+
 export default function Research() {
   return (
-    <>
-    </>
-    // <div
-    //   style={{
-    //     height: "105vh",
-    //     display: "flex",
-    //     flexDirection: "row",
-    //   }}
-    // >
-    //   <section
-    //     id={"ResearchSection"}
-    //     className={styles.container}
-    //     style={{
-    //       display: "flex",
-    //       flexDirection: "row",
-    //       maxWidth: "80%",
-    //       height: "500px",
-    //     }}
-    //   >
-    //     <div className={styles.container}>
-    //       <h1
-    //         style={{ margin: "5rem 0 0 -2rem", fontWeight: "bold", fontSize: "3.5rem" }}
-    //         className={utilStyles.headingLg}
-    //       >
-    //         Research
-    //       </h1>
-    //       <article style={{ fontSize: "2.2rem", lineHeight: "1.6" }}>
-    //         {/* <p>
-    //           Here are some of the projects I am either pursuing now or would like to pursure in the future.
-    //         </p>
-    //         <p>
-    //           I began programming in Java and become heavily interested in the
-    //           object oriented programming paradigm. This then led me to try out
-    //           other object oriented languages like C++ and Python. When I
-    //           started at Stevens, I began to have more assignments that relied
-    //           on a more functional programming way of execution. The class where
-    //           this was most critical ended up being one of my favorite classes
-    //           I've taken: Programming languages.
-    //         </p> */}
+      <>
+        <Container maxW={'100%'}>
+          <Stack direction={{base : 'column', lg : 'row'}} fontSize={'xl'}>
+            <HStack >
+              
+              <VStack align='left'>
+                <Heading lineHeight={1.1}
+                  fontWeight={600}
+                  fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }} as={'span'}
+                    position={'relative'}
+                    _after={{
+                      content: "''",
+                      width: 'full',
+                      height: '30%',
+                      position: 'absolute',
+                      bottom: 1,
+                      left: 0,
+                      bg: 'gray.500',
+                      zIndex: -1,
+                    }} >Research </Heading>
+                <Heading fontSize={'2xl'}>Here are some of the Research I've conducted during my time at Stevens</Heading>
+                  
+                  
+  
+                  <Text marginLeft={"1rem"} color={'gray.550'} >
+                    During the summer of 2020 I assisted with Professor Samantha Kleinberg.
+                    She was conducting a survery in which people rated their emotional response
+                    to different means of protecting themselves from COVID-19.
 
-    //       </article>
-    //     </div>
-    //   </section>
-    // </div>
-  );
+                    I was in charge of looking through all the responses and cateogrizing them 
+                    based on their content.
+                  </Text>
+                  <Text>
+                    For example, if you had one survey response that was 'wear ppe' then that response
+                    would be put into the social distance category. As time went on the categories got more 
+                    and more specific.
+                  </Text>
+                  <Text>
+                    Apart from that, I have a significantly vested interest in artificial intelligence and machine learning.
+                    I have taken every AI course that was offered at Stevens and have learned more than 
+                    I ever imagined.
+                  </Text>
+              </VStack>
+              </HStack>
+          </Stack>
+        </Container>
+  
+  
+      </>
+        );
 }
