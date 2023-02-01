@@ -27,28 +27,23 @@ import {
 
 import { useRef } from 'react'
 
-export default function Index() {
 
-  const ref = useRef(null);
-  const handleScroll = () => ref.current.scrollIntoView()
+
+export default function Index() {
 
 
   return (
     <>
-
         <Head>
           <title>{siteTitle}</title>
         </Head>
         <header>
           <title>Home</title>
         </header>
-        {/* */}
          
-            
-
-        <Stack maxW="100%" spacing={"35vh"} direction='column'>
+        <Stack maxW="100%" spacing={"35vh"} direction='column' marginRight='2rem'>
           <LandingLayout />
-          <AboutMe ref={ref} />
+          <AboutMe id="#foo" />
           <Interests />
           <Education />
           <Research />

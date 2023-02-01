@@ -18,17 +18,36 @@ import {
     useColorModeValue,
   } from '@chakra-ui/react';
   
+import SimpleSidebar from './Sidebar';
+
 import { HamburgerIcon } from '@chakra-ui/icons'
 
-  import styles from "./layout.module.css";
+import styles from "./layout.module.css";
 
-  import Link from 'next/link';
+import Link from 'next/link';
 
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
+
+
 
 export default function LandingLayout() {
 
-    let ref = useRef(null)
+    function scroll() {
+
+        let element = document.getElementById("#about")
+    
+        if (element) {
+          element.scrollIntoView({
+            block: 'start',
+            inline: 'nearest',
+            behavior: 'smooth', 
+            scrollTarget: document.body // Pass in the scroll container here
+          });
+        }
+        else {
+          console.log("no element")
+        }
+    }  
 
     return (
         <Container maxW={"90%"}
@@ -44,17 +63,17 @@ export default function LandingLayout() {
                     variant='outline'
                     />
                 <MenuList>
-                    <MenuItem >
+                    <MenuItem onClick={() => scroll()}>
                         About Me
                     </MenuItem>
-                    <MenuItem >
-                        New Window
+                    <MenuItem>
+                        Education
                     </MenuItem>
                     <MenuItem >
-                        Open Closed Tab
+                        Research
                     </MenuItem>
                     <MenuItem  >
-                        Open File...
+                        Resume
                     </MenuItem>
                 </MenuList>
             </Menu> 
