@@ -26,28 +26,17 @@ import styles from "./layout.module.css";
 
 import Link from 'next/link';
 
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 
 
 
 export default function LandingLayout() {
 
-    function scroll() {
 
-        let element = document.getElementById("#about")
+
     
-        if (element) {
-          element.scrollIntoView({
-            block: 'start',
-            inline: 'nearest',
-            behavior: 'smooth', 
-            scrollTarget: document.body // Pass in the scroll container here
-          });
-        }
-        else {
-          console.log("no element")
-        }
-    }  
+
+    
 
     return (
         <Container maxW={"90%"}
@@ -55,28 +44,7 @@ export default function LandingLayout() {
             bgPos={'right'}
             bgImage={"/images/FrontPageBackground.svg"}>
 
-            <Menu>
-                <MenuButton
-                    as={IconButton}
-                    aria-label='Options'
-                    icon={<HamburgerIcon />}
-                    variant='outline'
-                    />
-                <MenuList>
-                    <MenuItem onClick={() => scroll()}>
-                        About Me
-                    </MenuItem>
-                    <MenuItem>
-                        Education
-                    </MenuItem>
-                    <MenuItem >
-                        Research
-                    </MenuItem>
-                    <MenuItem  >
-                        Resume
-                    </MenuItem>
-                </MenuList>
-            </Menu> 
+            
             <Stack
                 spacing={{ base: 8, md: 10 }}
                 py={{ base: 20, md: 28 }}
@@ -109,7 +77,7 @@ export default function LandingLayout() {
 
                     <Text color={'gray.550'} 
                         fontSize={'xl'}
-                        maxW={{sm : '10em', md: "20em",  lg: "25em"}}>
+                        maxW={{sm : '10em', md: "20em",  lg: "50em"}}>
                             Here you'll find some of my favorite projects that I have worked
                             on over the years.
 

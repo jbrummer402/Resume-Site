@@ -14,7 +14,7 @@ export default function Research() {
           <Stack direction={{base : 'column', lg : 'row'}} fontSize={'xl'}>
             <HStack >
               
-              <VStack align='left'>
+              <VStack maxW={'90vw'} marginLeft={'4em'} align='left'>
                 <Heading lineHeight={1.1}
                   fontWeight={600}
                   fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }} as={'span'}
@@ -33,7 +33,7 @@ export default function Research() {
                   
                   
   
-                  <Text marginLeft={"1rem"} color={'gray.550'} >
+                  <Text color={'gray.550'} >
                     During the summer of 2020 I assisted with Professor Samantha Kleinberg.
                     She was conducting a survery in which people rated their emotional response
                     to different means of protecting themselves from COVID-19.

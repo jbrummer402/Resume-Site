@@ -6,30 +6,15 @@ import styles from "../components/layout.module.css";
 
 import { Container, Heading, Text } from "@chakra-ui/react";
 
+import { useEffect } from 'react'
 
-export default function AboutMe() {
-  let name = "#about"
-
-  function scroll() {
-    let element = document.querySelector(name);
-    console.log(element);
-    if (element) {
-      element.scrollIntoView({
-        block: 'start',
-        inline: 'nearest',
-        behavior: 'smooth', 
-        scrollTarget: document.body // Pass in the scroll container here
-      });
-    }
-    else {
-      console.log("no element")
-    }
+export default function AboutMe(props) {
+  
 
     
-  }  
-
+  
   return (
-    <Container paddingLeft={"3em"} maxW={'100%'} id={name}>
+    <Container paddingLeft={"6em"} maxW={'100%'} id={'about'} >
       <Stack direction={{base : 'column', lg : 'row'}} fontSize={'xl'}>
         <VStack align={'flex-start'}>
           <Heading lineHeight={1.1}
@@ -45,10 +30,10 @@ export default function AboutMe() {
                 left: 0,
                 bg: 'gray.500',
                 zIndex: -1,
-              }} >About Me </Heading>
+              }} id={props.id}>About Me </Heading>
           <Heading  fontSize={'2xl'}>Hi there! My name is Jack Brummer</Heading>
 
-            <Text id={name} color={'gray.550'} maxW={{base : '40vw', md : '45vw', lg: "50vw"}}>
+            <Text id={"#foo"} color={'gray.550'} maxW={{base : '40vw', md : '45vw', lg: "50vw"}}>
               I am heavily interested in nearly all things computer science. I
               began programming in my early teens and fell in love with the
               problem solving that comes with it, and all the things you are
@@ -70,8 +55,9 @@ export default function AboutMe() {
         </VStack>
         
         <Image
+            
             paddingLeft={"3em"}
-            maxW={{base : "200px", md : "300px", lg: "400px"}}
+            maxW={{base : "10vw", md : "20vw", lg: "30vw"}}
             style={{maxHeight : "auto"}}
             quality={100}
             src="/images/Jack_Brummer (1).jpg" />

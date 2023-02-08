@@ -25,11 +25,33 @@ import {
   MenuDivider,
 } from '@chakra-ui/react'
 
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 
 
 
 export default function Index() {
+
+   let element = null;
+
+  useEffect(() => {
+    element = document.getElementById("about")
+    console.log(element)
+})
+
+function scroll() {
+    console.log(element)
+    if (element) {
+      element.scrollIntoView({
+        block: 'start',
+        inline: 'nearest',
+        behavior: 'smooth', 
+        scrollTarget: document.body // Pass in the scroll container here
+      });
+    }
+    else {
+      console.log("no element")
+    }
+}  
 
 
   return (
@@ -40,10 +62,31 @@ export default function Index() {
         <header>
           <title>Home</title>
         </header>
-         
-        <Stack maxW="100%" spacing={"35vh"} direction='column'>
+        <Menu>
+                <MenuButton
+                    as={IconButton}
+                    aria-label='Options'
+                    icon={<HamburgerIcon />}
+                    variant='outline'
+                    />
+                <MenuList>
+                    <MenuItem onClick={() => scroll()}>
+                        About Me
+                    </MenuItem>
+                    <MenuItem>
+                        Education
+                    </MenuItem>
+                    <MenuItem >
+                        Research
+                    </MenuItem>
+                    <MenuItem  >
+                        Resume
+                    </MenuItem>
+                </MenuList>
+            </Menu> 
+        <Stack  spacing={"50vh"} direction='column'>
           <LandingLayout />
-          <AboutMe id="#foo" />
+          <AboutMe paddingLeft={'7em'} id="about" />
           <Education />
           <Research />
           <Interests />
