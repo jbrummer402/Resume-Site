@@ -17,6 +17,7 @@
     "babel-polyfill": "^6.26.0",
     "blob": "^0.1.0",
     "bootstrap": "^5.2.3",
+    "date-fns": "^2.29.3",
     "framer-motion": "^10.6.0",
     "front-matter": "^4.0.2",
     "fsevents": "^2.3.2",
