@@ -7,10 +7,10 @@ import { Container, Stack, VStack, Heading, UnorderedList,
   ListItem, Text, Image, HStack, Flex } from "@chakra-ui/react";
 
 
-export default function Interests() {
+export default function Interests(props) {
   return (
     <>
-      <Container maxW={'100%'}>
+      <Container paddingTop={"2em"} maxW={'100%'} id={props.id} >
           <Stack direction={{base : 'column', lg : 'row'}} fontSize={'xl'}>
             <HStack >
               

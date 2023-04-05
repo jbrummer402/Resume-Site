@@ -8,12 +8,12 @@ import { Container, Stack, VStack, Heading, UnorderedList,
 
 
 
-export default function Education() {
+export default function Education(props) {
 
   let photo = '../public/images/logos/download.jepg';
   return (
     <>
-      <Container maxW={'100%'}>
+      <Container paddingTop={"2em"} maxW={'100%'} id={props.id}>
         <Stack direction={{base : 'column', lg : 'row'}} fontSize={'xl'}>
           <HStack >
             <Image

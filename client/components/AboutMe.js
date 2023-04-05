@@ -14,9 +14,9 @@ export default function AboutMe(props) {
     
   
   return (
-    <Container paddingLeft={"6em"} maxW={'100%'} id={'about'} >
-      <Stack direction={{base : 'column', lg : 'row'}} fontSize={'xl'}>
-        <VStack align={'flex-start'}>
+    <Container paddingLeft={"6em"} paddingTop={"2em"} maxW={'100%'} id={props.id}>
+      <Stack direction={{base : 'column', lg : 'row'}}   fontSize={'xl'}>
+        <VStack align={'flex-start'} >
           <Heading lineHeight={1.1}
             fontWeight={600}
             fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }} as={'span'}
@@ -30,7 +30,7 @@ export default function AboutMe(props) {
                 left: 0,
                 bg: 'gray.500',
                 zIndex: -1,
-              }} id={props.id}>About Me </Heading>
+              }} >About Me </Heading>
           <Heading  fontSize={'2xl'}>Hi there! My name is Jack Brummer</Heading>
 
             <Text id={"#foo"} color={'gray.550'} maxW={{base : '40vw', md : '45vw', lg: "50vw"}}>

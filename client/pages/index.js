@@ -31,28 +31,21 @@ import { useRef, useEffect } from 'react'
 
 export default function Index() {
 
-   let element = null;
+  const handleScroll = (e) => {
+    // first prevent the default behavior
+    e.preventDefault();
+    // get the href and remove everything before the hash (#)
+    const href = e.currentTarget.href;
+    let targetId = href.replace(/.*\#/, "");
+    let elem = document.getElementById(targetId);
+    console.log(elem)
+    window.scrollTo({
+      top: elem?.getBoundingClientRect().top,
+      behavior: "smooth",
+    });
+  };
 
-  useEffect(() => {
-    element = document.getElementById("about")
-    console.log(element)
-})
-
-function scroll() {
-    console.log(element)
-    if (element) {
-      element.scrollIntoView({
-        block: 'start',
-        inline: 'nearest',
-        behavior: 'smooth', 
-        scrollTarget: document.body // Pass in the scroll container here
-      });
-    }
-    else {
-      console.log("no element")
-    }
-}  
-
+  
 
   return (
     <>
@@ -63,33 +56,44 @@ function scroll() {
           <title>Home</title>
         </header>
         <Menu>
-                <MenuButton
-                    as={IconButton}
-                    aria-label='Options'
-                    icon={<HamburgerIcon />}
-                    variant='outline'
-                    />
-                <MenuList>
-                    <MenuItem onClick={() => scroll()}>
-                        About Me
-                    </MenuItem>
-                    <MenuItem>
-                        Education
-                    </MenuItem>
-                    <MenuItem >
-                        Research
-                    </MenuItem>
-                    <MenuItem  >
-                        Resume
-                    </MenuItem>
-                </MenuList>
-            </Menu> 
-        <Stack  spacing={"50vh"} direction='column'>
+            <MenuButton
+                as={IconButton}
+                aria-label='Options'
+                icon={<HamburgerIcon />}
+                variant='outline'
+                />
+              <MenuList>
+                <Link href="#about" className="btn" >
+                  <a onClick={handleScroll}>
+                  <MenuItem>
+                      About Me
+                  </MenuItem>
+                  </a>
+                            
+                </Link>
+                <Link href="#education" className="btn" >
+                  <a onClick={handleScroll}>
+                  <MenuItem>
+                    Education
+                  </MenuItem>
+                  </a>
+                            
+                </Link>
+                <Link href="#resume" className="btn" >
+                  <a onClick={handleScroll}>
+                  <MenuItem>
+                    Resume
+                  </MenuItem>
+                  </a>
+                </Link>
+              </MenuList>
+        </Menu>
+
+        <Stack spacing={"50vh"} direction='column'>
           <LandingLayout />
-          <AboutMe paddingLeft={'7em'} id="about" />
-          <Education />
-          <Research />
-          <Interests />
+          <AboutMe paddingLeft={'7em'} id= {"about"} />
+          <Education id={"education"}/>
+          <Interests id={"resume"}/>
         </Stack>
     </>
   );
