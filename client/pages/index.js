@@ -89,23 +89,17 @@ export default function Index() {
             <section
                           className={utilStyles.headingLg}
                           style={{
-                              zIndex: "-1",
-                              backgroundImage: "url(/images/FrontPageBackground.svg)",
-                              backgroundRepeat: "no-repeat",
-                              lineHeight: "2.1",
-                              position: "absolute",
-                              minHeight: "100%",
-                              maxWidth: "80%",
-                              height: "auto",
-                              top: "5vh",
-                              backgroundSize: "cover",
-                              backgroundPositionX: "-20vw"
-                            }}
+                          }}
             >
                           <div className={styles.container} style={{
-
-                              
-                              
+                              backgroundImage: "url(/images/1668941.jpeg)",
+                              backgroundRepeat: "no-repeat",
+                              backgroundSize: "70%",
+                              backgroundPosition: "28vw 0",
+                              lineHeight: "2.1",
+                              width: "100vw",
+                              maxHeight: "100%",
+                              height: "50vh"
                           }}>
                 <h1 style={{ fontWeight: "bold", fontSize: "2.7rem" }}> Welcome to My Website! </h1>
                 <p />

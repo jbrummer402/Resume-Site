@@ -11,7 +11,7 @@ export default function AboutMe() {
         id={"AboutMeSection"}
         className={styles.container}
         style={{
-          marginTop: "100vh",
+          marginTop: "10vh",
           height: "auto",
           maxWidth: "100%"
         }}
@@ -20,7 +20,7 @@ export default function AboutMe() {
           flexDirection: "column",position: "relative", width: "auto"}}>
         
           <h1
-            style={{ fontSize: "3.5rem", fontWeight: "bold", marginTop: "8vh" }}
+            style={{ fontSize: "3.5rem", fontWeight: "bold", marginTop: "9vh" }}
             className={utilStyles.headingLg}
           >
             
@@ -59,7 +59,7 @@ export default function AboutMe() {
             </ul>
             
           </article>
-          <div style={{ position: "absolute",margin: "10vh 0 0 50%", width: "50.1%", height: "50vh"}}>
+          <div style={{ position: "absolute",margin: "1vh 0 0 50%", width: "50.1%", height: "50vh"}}>
               <Image
                   layout="fill"
                   objectFit="contain"

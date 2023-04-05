@@ -46,6 +46,11 @@ export default function Research() {
             <p style={{ fontSize: "1.5rem", lineHeight: "1.6" }}></p>
           </article>
         </div>
+        <div
+          style={{
+            marginTop: "9rem",
+          }}
+        ></div>
       </section>
     </div>
   );
