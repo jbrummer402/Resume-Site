@@ -24,7 +24,7 @@ import { isEmpty } from 'lodash';
 const blogURL = 'jackbrummer.com/wp-json/wp/v2/posts'
 
 async function loading() {
-  let [loading, setLoading] = useEffect(false);
+  let [loading, setLoading] = useEffect(true);
 
 }
 
@@ -70,13 +70,22 @@ function ArticleList(props) {
     let posts = getPosts()
   })
 
+  if (loading) {
+    <Container maxW={'7xl'} p="12">
+        <Heading align='center' fontSize={'5xl'} as="h1">Loading</Heading>
+        
+        <Heading align='left' as='h2' marginTop='5'>End of posts</Heading>
+        
+      </Container>
+  }
+
   if (isEmpty(posts)) {
     return (
       <Container maxW={'7xl'} p="12">
         <Heading align='center' fontSize={'5xl'} as="h1">Hell on Wheels</Heading>
         
-        <Heading align='left' as='h2' marginTop='5'>End of posts</Heading>
-        <Text align='left' fontSize='2xl'>Enter the mailing list to stay up to date!</Text> 
+        <Heading align='left' as='h2' marginTop='5'>Nothing yet!</Heading>
+        <Text align='left' fontSize='2xl'>Enter the mailing list to stay up to date</Text> 
         
         <Divider marginTop="5" />
         
