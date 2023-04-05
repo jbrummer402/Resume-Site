@@ -38,3 +38,5 @@ yarn-error.log*
 
 next.config.js
 /.vs
+*.lock
+*.lock

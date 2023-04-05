@@ -33,11 +33,8 @@
 }
 
 .socialImages {
-  display: flex;
-
-  padding: 1rem 1rem 0 0;
-  flex-direction: row;
-  float: left;
+  width: 45px;
+  max-height: 10%;
 }
 
 .backToHome {

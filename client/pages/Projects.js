@@ -3,8 +3,6 @@ import styles from "../components/layout.module.css";
 import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
 import Layout from "../components/layout";
-import Grid from "@material-ui/core/Grid";
-import ProjectGrid from "../components/projectGrid";
 
 import * as React from "react";
 
@@ -40,16 +38,16 @@ export default function Projects() {
     <Layout siteTitle={"My Projects"}>
       <section>
         <h1 className={utilStyles.heading2Xl}>Projects</h1>
-        <p
+        {/* <p
           style={{ fontSize: "1.5rem", lineHeight: "1.6", marginLeft: "1rem" }}
         >
           Here is an overview of the projects I have done!{" "}
-        </p>
+        </p> */}
       </section>
 
-      <Grid container direction="row" justify="center" alignItems="center">
+      {/* <Grid container direction="row" justify="center" alignItems="center">
         <ProjectGrid grid={projectItems} />
-      </Grid>
+      </Grid> */}
     </Layout>
   );
 }
