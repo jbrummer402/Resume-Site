@@ -16,12 +16,17 @@ import {
   VStack,
 } from '@chakra-ui/react';
 
-import { axios } from 'axios'
+import axios  from 'axios'
 
 import { useState, useEffect } from 'react';
 import { isEmpty } from 'lodash';
 
-const blogURL = 'jackbrummer.com/wp-json/wp/v2/posts'
+const blogURL = 'https://resume-site-brummer.herokuapp.com/admin/content-manager/collectionType/api::post.post'
+
+
+const config = {
+  headers: { Authorization: `Bearer ${process.env.STRAPI_API_KEY}` }
+};
 
 async function loading() {
   let [loading, setLoading] = useEffect(true);
@@ -31,19 +36,22 @@ async function loading() {
 const BlogTags = (props) => {
   return (
     <HStack spacing={2} marginTop={props.marginTop}>
-      {props.tags.map((tag) => {
+      {/* {props.tags.map((tag) => {
         return (
           <Tag size={'md'} variant="solid" colorScheme="orange" key={tag}>
             {tag}
           </Tag>
         );
-      })}
+      })} */}
     </HStack>
   );
 };
 
 async function getPosts() {
+  const { data } = await axios.get('https://resume-site-brummer.herokuapp.com/api/posts',
+                      config)
 
+  return data
 }
 
 export const BlogAuthor = (props) => {
@@ -64,29 +72,52 @@ export const BlogAuthor = (props) => {
 
 function ArticleList(props) {
 
-  let [posts, setPosts] = useState([])
-
+  let [posts, setPosts] = useState([]);
+  let [loading, setLoading] = useState(true)
   useEffect(() => {
-    let posts = getPosts()
-  })
+    if (props.data) {
+      setPosts(props.data);
+      console.log(posts)
+    }
 
-  if (loading) {
-    <Container maxW={'7xl'} p="12">
-        <Heading align='center' fontSize={'5xl'} as="h1">Loading</Heading>
-        
-        <Heading align='left' as='h2' marginTop='5'>End of posts</Heading>
-        
-      </Container>
-  }
+    if (isEmpty(props.data)) {
+      setLoading(true)
+    }
+
+  })
 
   if (isEmpty(posts)) {
     return (
       <Container maxW={'7xl'} p="12">
         <Heading align='center' fontSize={'5xl'} as="h1">Hell on Wheels</Heading>
         
-        <Heading align='left' as='h2' marginTop='5'>Nothing yet!</Heading>
+        <Heading align='left' as='h2' marginTop='5'>{loading ? "Loading..." : "New Postsasdc"}</Heading>
+        {/* <Text align='left' fontSize='2xl'>Enter the mailing list to stay up to date</Text> 
+        
+        <Divider marginTop="5" />
+        
+        <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
+          <Heading as="h2">What I write about</Heading>        
+        </VStack> */}
+      </Container>
+    );
+  } else {
+    return (
+      <Container maxW={'7xl'} p="12">
+        <Heading align='center' fontSize={'5xl'} as="h1">Hell on Wheels</Heading>
+        
+        <Heading align='left' as='h2' marginTop='5'>New posts</Heading>
         <Text align='left' fontSize='2xl'>Enter the mailing list to stay up to date</Text> 
         
+        { posts.map((post) => {
+            return (
+              <Heading as='h3' fontSize={'2xl'}>
+                {post.attributes.Title}
+              </Heading>
+            )
+          })
+        }
+
         <Divider marginTop="5" />
         
         <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
@@ -95,7 +126,20 @@ function ArticleList(props) {
       </Container>
     );
   }
+    
+  }
   
-};
 
 export default ArticleList;
+
+export async function getStaticProps() {
+
+  const { data } = await getPosts()
+  
+  return {
+    props: { data },
+    revalidate : 86400
+  }
+
+}
+
