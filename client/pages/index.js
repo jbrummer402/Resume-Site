@@ -2,7 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "../components/layout.module.css";
-import Layout, { siteTitle } from "../components/layout";
+import Layout from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
 import { getSortedPostsData } from "../lib/posts";
 import AboutMe from "../components/AboutMe";
@@ -27,7 +27,7 @@ import {
 
 import { useRef, useEffect } from 'react'
 
-
+const siteTitle = 'Jack Brummer.com'
 
 export default function Index() {
 
