@@ -28,10 +28,6 @@ const config = {
   headers: { Authorization: `Bearer ${process.env.STRAPI_API_KEY}` }
 };
 
-async function loading() {
-  let [loading, setLoading] = useEffect(true);
-
-}
 
 const BlogTags = (props) => {
   return (
@@ -74,10 +70,11 @@ function ArticleList(props) {
 
   let [posts, setPosts] = useState([]);
   let [loading, setLoading] = useState(true)
+
   useEffect(() => {
     if (props.data) {
       setPosts(props.data);
-      console.log(posts)
+      setLoading(false)
     }
 
     if (isEmpty(props.data)) {
