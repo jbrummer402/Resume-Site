@@ -21,15 +21,11 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { isEmpty } from "lodash";
 
-const blogURL =
-  "https://resume-site-brummer.herokuapp.com/admin/content-manager/collectionType/api::post.post";
-
 const config = {
   headers: { Authorization: `Bearer ${process.env.STRAPI_API_KEY}` },
 };
 
 const BlogTags = (props) => {
-  console.log(props.tags);
   return (
     <HStack spacing={2} marginTop={props.marginTop}>
       {props.tags.map((tag) => {
@@ -98,7 +94,7 @@ export default function ArticleList(props) {
                   <Link
                     textDecoration="none"
                     _hover={{ textDecoration: "none" }}
-                    href="/hell_on_wheels/5"
+                    href={`/hell_on_wheels/${post.id}`}
                   >
                     {post.attributes.Title}
                   </Link>
