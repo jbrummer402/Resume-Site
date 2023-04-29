@@ -84,65 +84,51 @@ export default function ArticleList(props) {
       <Heading align="center" fontSize={"5xl"} as="h1">
         Hell on Wheels
       </Heading>
+      {isEmpty(posts) ? (
+        <Heading align="left" as="h2" marginTop="5">
+          {loading ? "Loading..." : "No posts yet"}
+        </Heading>
+      ) : (
+        <>
+          <Heading>{loading ? "Loading..." : "All Posts"}</Heading>
+          {posts.map((post) => {
+            return (
+              <>
+                <Heading fontSize="xl" marginTop="2">
+                  <Link
+                    textDecoration="none"
+                    _hover={{ textDecoration: "none" }}
+                    href="/hell_on_wheels/5"
+                  >
+                    {post.attributes.Title}
+                  </Link>
+                </Heading>
 
-      {
-        // <Heading align="left" as="h2" marginTop="5">
-        //   {loading ? "Loading..." : {}}
-        // </Heading>
-        isEmpty(posts) ? (
-          <Heading align="left" as="h2" marginTop="5">
-            {loading ? "Loading..." : "No posts yet"}
-          </Heading>
-        ) : (
-          <>
-            <Heading>{loading ? "Loading..." : "All Posts"}</Heading>
-            {posts.map((post) => {
-              return (
-                <>
-                  <Heading fontSize="xl" marginTop="2">
-                    <Link
-                      textDecoration="none"
-                      _hover={{ textDecoration: "none" }}
-                    >
-                      {post.attributes.Title}
-                    </Link>
-                  </Heading>
+                <BlogTags
+                  tags={post.attributes.data.categories}
+                  marginTop="2"
+                />
+                {post.attributes.description ? (
+                  <Text as="p" fontSize="md" marginTop="2">
+                    {post.attributes.description}
+                  </Text>
+                ) : (
+                  <Text as="p" fontSize="md" marginTop="3"></Text>
+                )}
 
-                  <BlogTags
-                    tags={post.attributes.data.categories}
-                    marginTop="2"
-                  />
-                  {post.attributes.description ? (
-                    <Text as="p" fontSize="md" marginTop="2">
-                      {post.attributes.description}
-                    </Text>
-                  ) : (
-                    <Text as="p" fontSize="md" marginTop="3"></Text>
-                  )}
-
-                  <BlogAuthor
-                    name="Jack Brummer"
-                    date={
-                      post.attributes.PostDate
-                        ? new Date(post.attributes.PostDate)
-                        : ""
-                    }
-                  />
-                </>
-              );
-            })}
-          </>
-        )
-      }
-
-      {/* {
-        isEmpty(posts) ? {return (
-          
-        )} : (
-          <Heading align="left" as="h2" marginTop="5">
-            New posts
-          </Heading>)
-        } */}
+                <BlogAuthor
+                  name="Jack Brummer"
+                  date={
+                    post.attributes.PostDate
+                      ? new Date(post.attributes.PostDate)
+                      : ""
+                  }
+                />
+              </>
+            );
+          })}
+        </>
+      )}
 
       <Divider marginTop="5" />
 
