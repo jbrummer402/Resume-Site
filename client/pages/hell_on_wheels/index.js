@@ -164,40 +164,6 @@ export default function ArticleList(props) {
       </VStack>
     </Container>
   );
-
-  // if (isEmpty(posts)) {
-  //   return (
-
-  //   );
-  // } else {
-  //   return (
-  //     <Container maxW={"7xl"} p="12">
-  //       <Heading align="center" fontSize={"5xl"} as="h1">
-  //         Hell on Wheels
-  //       </Heading>
-
-  //       <Divider marginTop="5" />
-
-  //       <VStack paddingTop="40px" spacing="4" alignItems="flex-start">
-  //         <Heading as="h2">What I write about</Heading>
-  //         <Text as="p" fontSize={"md"}>
-  //           Welcome to my blog, where I share my thoughts and opinions on
-  //           various topics that intrigue me. As an avid media consumer, I enjoy
-  //           exploring and analyzing the latest movies, TV shows, and other forms
-  //           of entertainment. However, I am also deeply passionate about social
-  //           justice, particularly in regards to disability rights. Through my
-  //           writing, I hope to shed light on important issues and encourage
-  //           conversations around these topics. Additionally, as someone who is
-  //           fascinated by technology and its impact on society, I enjoy
-  //           exploring and sharing my insights on the latest advancements and
-  //           trends. Ultimately, this blog is a space for me to express my
-  //           perspectives and share my interests with others who may share
-  //           similar passions.{" "}
-  //         </Text>
-  //       </VStack>
-  //     </Container>
-  //   );
-  // }
 }
 
 export async function getStaticProps() {
