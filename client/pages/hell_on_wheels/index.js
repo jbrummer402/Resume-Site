@@ -23,22 +23,22 @@ import { isEmpty } from 'lodash';
 
 const blogURL = 'https://resume-site-brummer.herokuapp.com/admin/content-manager/collectionType/api::post.post'
 
-
 const config = {
   headers: { Authorization: `Bearer ${process.env.STRAPI_API_KEY}` }
 };
 
 
 const BlogTags = (props) => {
+  console.log(props.tags)
   return (
     <HStack spacing={2} marginTop={props.marginTop}>
-      {/* {props.tags.map((tag) => {
+      {props.tags.map((tag) => {
         return (
           <Tag size={'md'} variant="solid" colorScheme="orange" key={tag}>
             {tag}
           </Tag>
         );
-      })} */}
+      })}
     </HStack>
   );
 };
@@ -46,7 +46,7 @@ const BlogTags = (props) => {
 async function getPosts() {
   const { data } = await axios.get('https://resume-site-brummer.herokuapp.com/api/posts',
                       config)
-
+  
   return data
 }
 
@@ -76,11 +76,6 @@ function ArticleList(props) {
       setPosts(props.data);
       setLoading(false)
     }
-
-    if (isEmpty(props.data)) {
-      setLoading(true)
-    }
-
   })
 
   if (isEmpty(posts)) {
@@ -88,14 +83,14 @@ function ArticleList(props) {
       <Container maxW={'7xl'} p="12">
         <Heading align='center' fontSize={'5xl'} as="h1">Hell on Wheels</Heading>
         
-        <Heading align='left' as='h2' marginTop='5'>{loading ? "Loading..." : "New Postsasdc"}</Heading>
-        {/* <Text align='left' fontSize='2xl'>Enter the mailing list to stay up to date</Text> 
+        <Heading align='left' as='h2' marginTop='5'>{loading ? "Loading..." : "No Posts Found :("}</Heading>
+        <Text align='left' fontSize='2xl'>Enter the mailing list to stay up to date</Text> 
         
         <Divider marginTop="5" />
         
         <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
           <Heading as="h2">What I write about</Heading>        
-        </VStack> */}
+        </VStack>
       </Container>
     );
   } else {
@@ -104,17 +99,35 @@ function ArticleList(props) {
         <Heading align='center' fontSize={'5xl'} as="h1">Hell on Wheels</Heading>
         
         <Heading align='left' as='h2' marginTop='5'>New posts</Heading>
-        <Text align='left' fontSize='2xl'>Enter the mailing list to stay up to date</Text> 
         
         { posts.map((post) => {
             return (
-              <Heading as='h3' fontSize={'2xl'}>
-                {post.attributes.Title}
-              </Heading>
+              <>
+                <Heading fontSize="xl" marginTop="2">
+                
+                  <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
+                    {post.attributes.Title}  
+                  </Link>
+                
+                </Heading>
+                
+                <BlogTags tags={ post.attributes.data.categories } marginTop="2"/> 
+                  { 
+                    post.attributes.description ? 
+                      <Text as="p" fontSize="md" marginTop="2">
+                        {post.attributes.description}
+                      </Text> : <Text as="p" fontSize="md" marginTop="3">"asdc"</Text>
+                  }
+                
+                <BlogAuthor
+                  name="Jack Brummer"
+                  date={new Date('2021-04-06T19:01:27Z')}
+                />
+              </>
             )
           })
         }
-
+        
         <Divider marginTop="5" />
         
         <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
@@ -132,7 +145,6 @@ export default ArticleList;
 export async function getStaticProps() {
 
   const { data } = await getPosts()
-  
   return {
     props: { data },
     revalidate : 86400
