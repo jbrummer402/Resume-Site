@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Box,
   Heading,
@@ -14,27 +14,27 @@ import {
   useColorModeValue,
   Container,
   VStack,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 
-import axios  from 'axios'
+import axios from "axios";
 
-import { useState, useEffect } from 'react';
-import { isEmpty } from 'lodash';
+import { useState, useEffect } from "react";
+import { isEmpty } from "lodash";
 
-const blogURL = 'https://resume-site-brummer.herokuapp.com/admin/content-manager/collectionType/api::post.post'
+const blogURL =
+  "https://resume-site-brummer.herokuapp.com/admin/content-manager/collectionType/api::post.post";
 
 const config = {
-  headers: { Authorization: `Bearer ${process.env.STRAPI_API_KEY}` }
+  headers: { Authorization: `Bearer ${process.env.STRAPI_API_KEY}` },
 };
 
-
 const BlogTags = (props) => {
-  console.log(props.tags)
+  console.log(props.tags);
   return (
     <HStack spacing={2} marginTop={props.marginTop}>
       {props.tags.map((tag) => {
         return (
-          <Tag size={'md'} variant="solid" colorScheme="orange" key={tag}>
+          <Tag size={"md"} variant="solid" colorScheme="orange" key={tag}>
             {tag}
           </Tag>
         );
@@ -44,10 +44,12 @@ const BlogTags = (props) => {
 };
 
 async function getPosts() {
-  const { data } = await axios.get('https://resume-site-brummer.herokuapp.com/api/posts',
-                      config)
-  
-  return data
+  const { data } = await axios.get(
+    "https://resume-site-brummer.herokuapp.com/api/posts",
+    config
+  );
+
+  return data;
 }
 
 export const BlogAuthor = (props) => {
@@ -61,94 +63,148 @@ export const BlogAuthor = (props) => {
       />
       <Text fontWeight="medium">{props.name}</Text>
       <Text>—</Text>
-      <Text>{props.date.toLocaleDateString()}</Text>
+      <Text>{props.date ? props.date.toLocaleDateString() : ""}</Text>
     </HStack>
   );
 };
 
-function ArticleList(props) {
-
+export default function ArticleList(props) {
   let [posts, setPosts] = useState([]);
-  let [loading, setLoading] = useState(true)
+  let [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (props.data) {
       setPosts(props.data);
-      setLoading(false)
+      setLoading(false);
     }
-  })
+  });
 
-  if (isEmpty(posts)) {
-    return (
-      <Container maxW={'7xl'} p="12">
-        <Heading align='center' fontSize={'5xl'} as="h1">Hell on Wheels</Heading>
-        
-        <Heading align='left' as='h2' marginTop='5'>{loading ? "Loading..." : "No Posts Found :("}</Heading>
-        <Text align='left' fontSize='2xl'>Enter the mailing list to stay up to date</Text> 
-        
-        <Divider marginTop="5" />
-        
-        <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
-          <Heading as="h2">What I write about</Heading>        
-        </VStack>
-      </Container>
-    );
-  } else {
-    return (
-      <Container maxW={'7xl'} p="12">
-        <Heading align='center' fontSize={'5xl'} as="h1">Hell on Wheels</Heading>
-        
-        <Heading align='left' as='h2' marginTop='5'>New posts</Heading>
-        
-        { posts.map((post) => {
-            return (
-              <>
-                <Heading fontSize="xl" marginTop="2">
-                
-                  <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
-                    {post.attributes.Title}  
-                  </Link>
-                
-                </Heading>
-                
-                <BlogTags tags={ post.attributes.data.categories } marginTop="2"/> 
-                  { 
-                    post.attributes.description ? 
-                      <Text as="p" fontSize="md" marginTop="2">
-                        {post.attributes.description}
-                      </Text> : <Text as="p" fontSize="md" marginTop="3">"asdc"</Text>
-                  }
-                
-                <BlogAuthor
-                  name="Jack Brummer"
-                  date={new Date('2021-04-06T19:01:27Z')}
-                />
-              </>
-            )
-          })
-        }
-        
-        <Divider marginTop="5" />
-        
-        <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
-          <Heading as="h2">What I write about</Heading>        
-        </VStack>
-      </Container>
-    );
-  }
-    
-  }
-  
+  return (
+    <Container maxW={"7xl"} p="12">
+      <Heading align="center" fontSize={"5xl"} as="h1">
+        Hell on Wheels
+      </Heading>
 
-export default ArticleList;
+      {
+        // <Heading align="left" as="h2" marginTop="5">
+        //   {loading ? "Loading..." : {}}
+        // </Heading>
+        isEmpty(posts) ? (
+          <Heading align="left" as="h2" marginTop="5">
+            {loading ? "Loading..." : "No posts yet"}
+          </Heading>
+        ) : (
+          <>
+            <Heading>{loading ? "Loading..." : "All Posts"}</Heading>
+            {posts.map((post) => {
+              return (
+                <>
+                  <Heading fontSize="xl" marginTop="2">
+                    <Link
+                      textDecoration="none"
+                      _hover={{ textDecoration: "none" }}
+                    >
+                      {post.attributes.Title}
+                    </Link>
+                  </Heading>
 
-export async function getStaticProps() {
+                  <BlogTags
+                    tags={post.attributes.data.categories}
+                    marginTop="2"
+                  />
+                  {post.attributes.description ? (
+                    <Text as="p" fontSize="md" marginTop="2">
+                      {post.attributes.description}
+                    </Text>
+                  ) : (
+                    <Text as="p" fontSize="md" marginTop="3"></Text>
+                  )}
 
-  const { data } = await getPosts()
-  return {
-    props: { data },
-    revalidate : 86400
-  }
+                  <BlogAuthor
+                    name="Jack Brummer"
+                    date={
+                      post.attributes.PostDate
+                        ? new Date(post.attributes.PostDate)
+                        : ""
+                    }
+                  />
+                </>
+              );
+            })}
+          </>
+        )
+      }
 
+      {/* {
+        isEmpty(posts) ? {return (
+          
+        )} : (
+          <Heading align="left" as="h2" marginTop="5">
+            New posts
+          </Heading>)
+        } */}
+
+      <Divider marginTop="5" />
+
+      <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
+        <Heading as="h2">What I write about</Heading>
+        <Text as="p" fontSize={"md"}>
+          Welcome to my blog, where I share my thoughts and opinions on various
+          topics that intrigue me. As an avid media consumer, I enjoy exploring
+          and analyzing the latest movies, TV shows, and other forms of
+          entertainment. However, I am also deeply passionate about social
+          justice, particularly in regards to disability rights. Through my
+          writing, I hope to shed light on important issues and encourage
+          conversations around these topics. Additionally, as someone who is
+          fascinated by technology and its impact on society, I enjoy exploring
+          and sharing my insights on the latest advancements and trends.
+          Ultimately, this blog is a space for me to express my perspectives and
+          share my interests with others who may share similar passions.
+        </Text>
+      </VStack>
+    </Container>
+  );
+
+  // if (isEmpty(posts)) {
+  //   return (
+
+  //   );
+  // } else {
+  //   return (
+  //     <Container maxW={"7xl"} p="12">
+  //       <Heading align="center" fontSize={"5xl"} as="h1">
+  //         Hell on Wheels
+  //       </Heading>
+
+  //       <Divider marginTop="5" />
+
+  //       <VStack paddingTop="40px" spacing="4" alignItems="flex-start">
+  //         <Heading as="h2">What I write about</Heading>
+  //         <Text as="p" fontSize={"md"}>
+  //           Welcome to my blog, where I share my thoughts and opinions on
+  //           various topics that intrigue me. As an avid media consumer, I enjoy
+  //           exploring and analyzing the latest movies, TV shows, and other forms
+  //           of entertainment. However, I am also deeply passionate about social
+  //           justice, particularly in regards to disability rights. Through my
+  //           writing, I hope to shed light on important issues and encourage
+  //           conversations around these topics. Additionally, as someone who is
+  //           fascinated by technology and its impact on society, I enjoy
+  //           exploring and sharing my insights on the latest advancements and
+  //           trends. Ultimately, this blog is a space for me to express my
+  //           perspectives and share my interests with others who may share
+  //           similar passions.{" "}
+  //         </Text>
+  //       </VStack>
+  //     </Container>
+  //   );
+  // }
 }
 
+export async function getStaticProps() {
+  const { data } = await getPosts();
+  console.log(data);
+  return {
+    props: { data },
+    revalidate: 86400,
+  };
+}
