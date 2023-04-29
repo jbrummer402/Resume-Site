@@ -53,11 +53,12 @@ export default function WithSubnavigation() {
             aria-label={"Toggle Navigation"}
           />
         </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Link href="/">
-            <Image h="35px" src="\images\logos\Site_logo.png" />
-          </Link>
 
+        <Link href="/">
+          <Image h="3rem" src="\images\logos\IMG_0087.PNG" />
+        </Link>
+
+        <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
           </Flex>
@@ -262,13 +263,13 @@ const NAV_ITEMS = [
     label: "Freelance Services",
     children: [
       {
-        label: "Job Board",
+        label: "Services available",
         subLabel: "Find your dream design job",
         href: "#",
       },
       {
-        label: "Freelance Projects",
-        subLabel: "An exclusive list for contract work",
+        label: "Submit a request",
+        subLabel: "Send me what you need done",
         href: "#",
       },
     ],
@@ -279,6 +280,10 @@ const NAV_ITEMS = [
   },
   {
     label: "Resume",
+    href: "#",
+  },
+  {
+    label: "Comment",
     href: "#",
   },
 ];
