@@ -42,7 +42,7 @@ export default function LandingLayout() {
         direction={{ base: "row", md: "column" }}
       >
         <Stack>
-          <Heading lineHeight={1.1} fontWeight={600} fontSize={["6xl"]}>
+          <Heading lineHeight={1.1} fontWeight={600} fontSize={["5xl", "6xl"]}>
             <Text
               as={"span"}
               position={"relative"}
@@ -68,7 +68,7 @@ export default function LandingLayout() {
           <Text
             color={"gray.550"}
             fontSize={"xl"}
-            maxW={{ sm: "10em", md: "20em", lg: "50em" }}
+            maxW={{ sm: "10em", md: "20em", lg: "30em" }}
           >
             Here you'll find some of my favorite projects that I have worked on
             over the years. I made this site completely on my own using React
@@ -114,16 +114,17 @@ export default function LandingLayout() {
             />
           </Stack>
         </Stack>
-      </Stack>
-      <Blob
+        <Blob
         w={"80%"}
         h={"80%"}
         position={"absolute"}
         top={"0%"}
-        left={600}
+
         zIndex={-1}
         color={useColorModeValue("blue.200", "blue.800")}
       />
+      </Stack>
+      
     </Container>
   );
 }

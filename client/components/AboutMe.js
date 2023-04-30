@@ -19,7 +19,7 @@ export default function AboutMe(props) {
         <VStack align={'flex-start'} >
           <Heading lineHeight={1.1}
             fontWeight={600}
-            fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }} as={'span'}
+            fontSize={{ base: '2xl', sm: '3xl', lg: '5xl' }} as={'span'}
               position={'relative'}
               _after={{
                 content: "''",
@@ -33,7 +33,7 @@ export default function AboutMe(props) {
               }} >About Me </Heading>
           <Heading  fontSize={'2xl'}>Hi there! My name is Jack Brummer</Heading>
 
-            <Text id={"#foo"} color={'gray.550'} maxW={{base : '40vw', md : '45vw', lg: "50vw"}}>
+            <Text fontSize={'xl'} id={"#foo"} color={'gray.550'} maxW={{base : '40vw', md : '45vw', lg: "50vw"}}>
               I am heavily interested in nearly all things computer science. I
               began programming in my early teens and fell in love with the
               problem solving that comes with it, and all the things you are

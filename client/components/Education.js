@@ -17,15 +17,15 @@ export default function Education(props) {
         <Stack direction={{base : 'column', lg : 'row'}} fontSize={'xl'}>
           <HStack >
             <Image
-                  margin='4em'
-                  maxW={{base : "50vw", md : "100vw", lg: "300vw"}}
+                  
+                  maxW={{base : "40vw", md : "100vw", lg: "300vw"}}
                   quality={100}
                   src="/images/logos/download.jpeg" />
             
             <VStack align='left'>
               <Heading lineHeight={1.1}
                 fontWeight={600}
-                fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }} as={'span'}
+                fontSize={{ base: '2xl', sm: '3xl', lg: '5xl' }} as={'span'}
                   position={'relative'}
                   _after={{
                     content: "''",
@@ -37,7 +37,7 @@ export default function Education(props) {
                     bg: 'gray.500',
                     zIndex: -1,
                   }} >Education </Heading>
-              <Heading fontSize={'2xl'}>Here are some of the schools I went to and the things I've learned along the way</Heading>
+              <Heading fontSize={'2xl'}>Here are  the schools I went to and the things I've learned along the way</Heading>
                 
                 <UnorderedList spacing={1} paddingLeft={'3em'}>
                   <ListItem>Milton Avenue School</ListItem>
@@ -46,7 +46,7 @@ export default function Education(props) {
                   <ListItem>Stevens Insitute of Technology</ListItem>
                 </UnorderedList>
 
-                <Text marginLeft={"1rem"} color={'gray.550'} >
+                <Text marginLeft={"1rem"} color={'gray.550'} maxW={{ sm: "10em", md: "20em", lg: "30em" }} >
                   I began programming in Java and become heavily interested in the
                   object oriented programming paradigm. This then led me to try out
                   other object oriented languages like C++ and Python. When I
