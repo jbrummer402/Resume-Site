@@ -13,14 +13,14 @@ export default function Education(props) {
   let photo = '../public/images/logos/download.jepg';
   return (
     <>
-      <Container paddingTop={"2em"} maxW={'100%'} id={props.id}>
+      <Container px={{base : '1em', sm : '5em'}} paddingTop={"2em"} maxW={'100%'} id={props.id}>
         <Stack direction={{base : 'column', lg : 'row'}} fontSize={'xl'}>
           <HStack >
-            <Image
+            {/* <Image
                   
                   maxW={{base : "40vw", md : "100vw", lg: "300vw"}}
                   quality={100}
-                  src="/images/logos/download.jpeg" />
+                  src="/images/logos/download.jpeg" /> */}
             
             <VStack align='left'>
               <Heading lineHeight={1.1}

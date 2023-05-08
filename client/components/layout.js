@@ -33,7 +33,7 @@ export default function WithSubnavigation() {
         color={useColorModeValue("gray.600", "white")}
         minH={"90px"}
         py={{ base: 2 }}
-        px={{ base: 4 }}
+        px={{ base: 3 }}
         borderBottom={1}
         borderStyle={"solid"}
         borderColor={useColorModeValue("gray.100", "gray.800")}
@@ -55,7 +55,7 @@ export default function WithSubnavigation() {
         </Flex>
 
         <Link href="/">
-          <Image h="3rem" src="\images\logos\IMG_0087.PNG" />
+          <Image marginLeft={{base : '75px', sm : 'inherit'}} h="3rem" src="\images\logos\IMG_0087.PNG" />
         </Link>
 
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
@@ -70,7 +70,7 @@ export default function WithSubnavigation() {
           direction={"row"}
           spacing={6}
         >
-          <Button
+          {/* <Button
             as={"a"}
             fontSize={"sm"}
             fontWeight={400}
@@ -91,7 +91,7 @@ export default function WithSubnavigation() {
             }}
           >
             Sign Up
-          </Button>
+          </Button> */}
         </Stack>
       </Flex>
 
