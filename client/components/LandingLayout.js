@@ -14,11 +14,11 @@ import {
   Icon,
   IconButton,
   createIcon,
+  HStack,
   IconProps,
   useColorModeValue,
+  useMediaQuery,
 } from "@chakra-ui/react";
-
-import SimpleSidebar from "./Sidebar";
 
 import { HamburgerIcon } from "@chakra-ui/icons";
 
@@ -29,17 +29,17 @@ import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
 
 export default function LandingLayout() {
+  const [onPhone] = useMediaQuery("(max-width: 400px)");
+
   return (
-    <Container
-      maxW={"90%"}
-      bgRepeat="no-repeat"
-      bgPos={"right"}
-      bgImage={"/images/FrontPageBackground.svg"}
-    >
+    <Container maxW={"80%"}>
       <Stack
         spacing={{ base: 8, md: 10 }}
         py={{ base: 20, md: 28 }}
         direction={{ base: "row", md: "column" }}
+        backgroundImage={"/background.svg"}
+        backgroundRepeat={"no-repeat"}
+        backgroundPosition={"right"}
       >
         <Stack>
           <Heading lineHeight={1.1} fontWeight={600} fontSize={["5xl", "6xl"]}>
@@ -64,20 +64,23 @@ export default function LandingLayout() {
               my website!
             </Text>
           </Heading>
-
-          <Text
-            color={"gray.550"}
-            fontSize={"xl"}
-            maxW={{ sm: "10em", md: "20em", lg: "30em" }}
-          >
-            Here you'll find some of my favorite projects that I have worked on
-            over the years. I made this site completely on my own using React
-            and Next.js for the front end. I followed the next js tutorial here
-            as a reference and then added my own content. The source code can be
-            found on my github here. Take a look around the site, I hope you
-            enjoy it! This site may change in appearance or function as time
-            goes on as I learn new things
-          </Text>
+          <HStack maxW={{ md: "20em", lg: "35em" }}>
+            <Text
+              color={"gray.550"}
+              fontSize={"2xl"}
+              w={"100%"}
+              textShadow={"-1px 0px gray"}
+            >
+              Here you'll find some of my favorite projects that I have worked
+              on over the years. I made this site completely on my own using
+              React and Next.js for the front end. I followed the next js
+              tutorial here as a reference and then added my own content. The
+              source code can be found on my github here. Take a look around the
+              site, I hope you enjoy it! This site may change in appearance or
+              function as time goes on as I learn new things
+            </Text>
+            {/* <Image style={{ zIndex: -1 }} src="/background.svg"></Image> */}
+          </HStack>
 
           <Stack
             spacing={{ base: 2, sm: 4 }}
@@ -114,17 +117,15 @@ export default function LandingLayout() {
             />
           </Stack>
         </Stack>
-        <Blob
-        w={"80%"}
-        h={"80%"}
-        position={"absolute"}
-        top={"0%"}
-
-        zIndex={-1}
-        color={useColorModeValue("blue.200", "blue.800")}
-      />
+        {/* <Blob
+          w={"80%"}
+          h={"80%"}
+          position={"absolute"}
+          top={"0%"}
+          zIndex={-1}
+          color={useColorModeValue("blue.200", "blue.800")}
+        /> */}
       </Stack>
-      
     </Container>
   );
 }
