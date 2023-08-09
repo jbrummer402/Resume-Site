@@ -55,7 +55,11 @@ export default function WithSubnavigation() {
         </Flex>
 
         <Link href="/">
-          <Image marginLeft={{base : '75px', sm : 'inherit'}} h="3rem" src="\images\logos\IMG_0087.PNG" />
+          <Image
+            marginLeft={{ base: "75px", sm: "inherit" }}
+            h="3rem"
+            src="\images\logos\IMG_0087.PNG"
+          />
         </Link>
 
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
@@ -265,25 +269,22 @@ const NAV_ITEMS = [
       {
         label: "Services available",
         subLabel: "Find your dream design job",
-        href: "#",
+        href: "/FreelanceServices",
       },
       {
         label: "Submit a request",
         subLabel: "Send me what you need done",
-        href: "#",
+        href: "/FreelanceForm",
       },
     ],
+    href: "/FreelanceServices",
   },
   {
-    label: "Contact",
-    href: "#",
-  },
-  {
-    label: "Resume",
-    href: "#",
+    label: "Contact + Resume",
+    href: "https://linktr.ee/JackBrummer",
   },
   {
     label: "Comment",
-    href: "#",
+    href: "/Comment",
   },
 ];
