@@ -9,11 +9,11 @@ import AboutMe from "../components/AboutMe";
 import Interests from "../components/Interests";
 import Education from "../components/Education";
 import Research from "../components/Research";
-import LandingLayout from '../components/LandingLayout'
-import {HamburgerIcon} from '@chakra-ui/icons'
+import LandingLayout from "../components/LandingLayout";
+import { HamburgerIcon } from "@chakra-ui/icons";
 
-import { Heading, IconButton } from '@chakra-ui/react'
-import { Stack, HStack, VStack, Container, Text } from '@chakra-ui/react'
+import { Heading, IconButton } from "@chakra-ui/react";
+import { Stack, HStack, VStack, Container, Text } from "@chakra-ui/react";
 import {
   Menu,
   MenuButton,
@@ -23,14 +23,13 @@ import {
   MenuGroup,
   MenuOptionGroup,
   MenuDivider,
-} from '@chakra-ui/react'
+} from "@chakra-ui/react";
 
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect } from "react";
 
-const siteTitle = 'Jack Brummer.com'
+const siteTitle = "Jack Brummer.com";
 
 export default function Index() {
-
   const handleScroll = (e) => {
     // first prevent the default behavior
     e.preventDefault();
@@ -38,63 +37,53 @@ export default function Index() {
     const href = e.currentTarget.href;
     let targetId = href.replace(/.*\#/, "");
     let elem = document.getElementById(targetId);
-    console.log(elem)
+    console.log(elem);
     window.scrollTo({
       top: elem?.getBoundingClientRect().top,
       behavior: "smooth",
     });
   };
 
-  
-
   return (
     <>
-        <Head>
-          <title>{siteTitle}</title>
-        </Head>
-        <header>
-          <title>Home</title>
-        </header>
-        <Menu>
-            <MenuButton
-                as={IconButton}
-                aria-label='Options'
-                icon={<HamburgerIcon />}
-                variant='outline'
-                />
-              <MenuList>
-                <Link href="#about" className="btn" >
-                  <a onClick={handleScroll}>
-                  <MenuItem>
-                      About Me
-                  </MenuItem>
-                  </a>
-                            
-                </Link>
-                <Link href="#education" className="btn" >
-                  <a onClick={handleScroll}>
-                  <MenuItem>
-                    Education
-                  </MenuItem>
-                  </a>
-                            
-                </Link>
-                <Link href="#resume" className="btn" >
-                  <a onClick={handleScroll}>
-                  <MenuItem>
-                    Resume
-                  </MenuItem>
-                  </a>
-                </Link>
-              </MenuList>
-        </Menu>
+      <Head>
+        <title>{siteTitle}</title>
+      </Head>
+      <header>
+        <title>Home</title>
+      </header>
+      <Menu>
+        <MenuButton
+          as={IconButton}
+          aria-label="Options"
+          icon={<HamburgerIcon />}
+          variant="outline"
+        />
+        <MenuList>
+          <Link href="#about" className="btn">
+            <a onClick={handleScroll}>
+              <MenuItem>About Me</MenuItem>
+            </a>
+          </Link>
+          <Link href="#education" className="btn">
+            <a onClick={handleScroll}>
+              <MenuItem>Education</MenuItem>
+            </a>
+          </Link>
+          <Link href="#resume" className="btn">
+            <a onClick={handleScroll}>
+              <MenuItem>Resume</MenuItem>
+            </a>
+          </Link>
+        </MenuList>
+      </Menu>
 
-        <Stack spacing={"50vh"} direction='column'>
-          <LandingLayout />
-          <AboutMe paddingLeft={'7em'} id= {"about"} />
-          <Education id={"education"}/>
-          <Interests id={"resume"}/>
-        </Stack>
+      <Stack spacing={"50vh"} direction="column">
+        <LandingLayout />
+        <AboutMe paddingLeft={"7em"} id={"about"} />
+        <Education paddingLeft={"19em"} id={"education"} />
+        <Interests id={"resume"} />
+      </Stack>
     </>
   );
 }
