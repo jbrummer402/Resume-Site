@@ -13,15 +13,13 @@ import styles from "../components/layout.module.css";
 
 import { Container, Heading, Text } from "@chakra-ui/react";
 
-import { useEffect } from "react";
+import { useRef, useEffect } from "react";
 
 export default function AboutMe(props) {
   return (
     <Container
       paddingLeft={"6em"}
-      paddingTop={"2em"}
       maxW={"100%"}
-      id={props.id}
       backgroundImage={"/background_2.svg"}
       backgroundRepeat={"no-repeat"}
       backgroundPosition={"top"}
