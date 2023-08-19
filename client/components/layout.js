@@ -31,17 +31,15 @@ export default function WithSubnavigation() {
       <Flex
         bg={useColorModeValue("white", "gray.800")}
         color={useColorModeValue("gray.600", "white")}
-        minH={"90px"}
-        py={{ base: 2 }}
+        h={"5rem"}
         px={{ base: 3 }}
-        borderBottom={1}
+        borderBottom={2}
         borderStyle={"solid"}
         borderColor={useColorModeValue("gray.100", "gray.800")}
         align={"center"}
       >
         <Flex
           flex={{ base: 1, md: "auto" }}
-          ml={{ base: -2 }}
           display={{ base: "flex", md: "none" }}
         >
           <IconButton
@@ -56,47 +54,17 @@ export default function WithSubnavigation() {
 
         <Link href="/">
           <Image
-            marginLeft={{ base: "75px", sm: "inherit" }}
+            ml={{ base: "75px", sm: "inherit" }}
             h="3rem"
             src="\images\logos\IMG_0087.PNG"
           />
         </Link>
 
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Flex display={{ base: "none", md: "flex" }} ml={10}>
+          <Flex display={{ base: "none", md: "flex" }}>
             <DesktopNav />
           </Flex>
         </Flex>
-
-        <Stack
-          flex={{ base: 1, md: 0 }}
-          justify={"flex-end"}
-          direction={"row"}
-          spacing={6}
-        >
-          {/* <Button
-            as={"a"}
-            fontSize={"sm"}
-            fontWeight={400}
-            variant={"link"}
-            href={"#"}
-          >
-            Sign In
-          </Button>
-          <Button
-            display={{ base: "none", md: "inline-flex" }}
-            fontSize={"sm"}
-            fontWeight={600}
-            color={"white"}
-            bg={"pink.400"}
-            href={"#"}
-            _hover={{
-              bg: "pink.300",
-            }}
-          >
-            Sign Up
-          </Button> */}
-        </Stack>
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
@@ -246,12 +214,15 @@ const MobileNavItem = ({ label, children, href }) => {
           borderColor={useColorModeValue("gray.200", "gray.700")}
           align={"start"}
         >
-          {children &&
+          {children ? (
             children.map((child) => (
               <Link key={child.label} py={2} href={child.href}>
                 {child.label}
               </Link>
-            ))}
+            ))
+          ) : (
+            <></>
+          )}
         </Stack>
       </Collapse>
     </Stack>

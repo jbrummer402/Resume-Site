@@ -31,9 +31,9 @@ import Layout from "./layout";
 
 import Link from "next/link";
 
-import { useRef, useState, useEffect } from "react";
+import ScrollMenu from "../components/scrollMenu";
 
-const useMountEffect = (fun) => useEffect(fun, []);
+import { useRef, useState, useEffect } from "react";
 
 export default function LandingLayout() {
   const aboutRef = useRef(null);
@@ -41,19 +41,15 @@ export default function LandingLayout() {
 
   const [menuStyle, setMenuStyle] = useState("burger");
 
-  const scrollAbout = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log(Object.entries(e));
-    aboutRef.current.scroll({
-      behavior: "smooth",
-      block: "center",
-    });
-  };
+  const menuItems = [
+    {
+      items: ["About me", "Education"],
+    },
+  ];
 
   return (
     <>
-      <Menu>
+      {/* <Menu>
         <MenuButton
           my={"10rem"}
           as={IconButton}
@@ -62,27 +58,27 @@ export default function LandingLayout() {
           variant="outline"
         />
         <MenuList>
-          <MenuItem
-            onClick={(e) => {
-              scrollAbout(e);
-            }}
-          >
-            About Me
+          <MenuItem>
+            <Link href="#about-me"> About Me</Link>
           </MenuItem>
-          <MenuItem>Education</MenuItem>
+          <MenuItem>
+            <Link href="#education">Education</Link>
+          </MenuItem>
           <MenuItem>Resume</MenuItem>
         </MenuList>
-      </Menu>
-      <Container maxW={"80%"}>
+      </Menu> */}
+
+      <Container maxW={"100%"}>
         <Stack
+          ml={"1rem"}
           spacing={{ base: 8, md: 10 }}
-          py={{ base: 20, md: 30 }}
           direction={{ base: "row", md: "column" }}
           backgroundImage={"/background.svg"}
           backgroundRepeat={"no-repeat"}
           backgroundPosition={"right"}
+          style={{ backgroundPositionY: "2em" }}
         >
-          <Stack>
+          <Stack my={{ base: "10rem" }}>
             <Heading
               lineHeight={1.1}
               fontWeight={600}
@@ -109,11 +105,11 @@ export default function LandingLayout() {
                 my website!
               </Text>
             </Heading>
-            <HStack maxW={{ md: "20em", lg: "35em" }}>
+            <HStack maxW={"100%"}>
               <Text
                 color={"gray.550"}
                 fontSize={"2xl"}
-                w={"100%"}
+                maxW={"50%"}
                 textShadow={"-1px 0px gray"}
               >
                 Here you'll find some of my favorite projects that I have worked
@@ -163,11 +159,9 @@ export default function LandingLayout() {
             </Stack>
           </Stack>
         </Stack>
-        <Stack mt={500} spacing={500}>
-          <div ref={aboutRef}>
-            <AboutMe paddingLeft={"7em"} />
-          </div>
-
+        <Stack maxW={"80%"} marginTop={"20rem"}>
+          <AboutMe id="about-me" maxW="inherit" />
+          <ScrollMenu scrollMenu={menuItems} />
           <Education paddingLeft={"19em"} />
           <Interests />
         </Stack>

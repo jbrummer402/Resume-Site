@@ -18,8 +18,8 @@ import { useRef, useEffect } from "react";
 export default function AboutMe(props) {
   return (
     <Container
-      paddingLeft={"6em"}
-      maxW={"100%"}
+      id={props.id}
+      maxW={props.maxW}
       backgroundImage={"/background_2.svg"}
       backgroundRepeat={"no-repeat"}
       backgroundPosition={"top"}
@@ -51,7 +51,6 @@ export default function AboutMe(props) {
             fontSize={"xl"}
             id={"#foo"}
             color={"gray.550"}
-            maxW={{ base: "40vw", md: "45vw", lg: "50vw" }}
             fontWeight={"630"}
           >
             I am heavily interested in nearly all things computer science. I
@@ -63,7 +62,6 @@ export default function AboutMe(props) {
             fontSize={"xl"}
             id={"#foo"}
             color={"gray.550"}
-            maxW={{ base: "40vw", md: "45vw", lg: "50vw" }}
             fontWeight={"630"}
           >
             I have experience in various different languages and practices,
@@ -80,11 +78,11 @@ export default function AboutMe(props) {
         </VStack>
 
         <Image
-          paddingLeft={"3em"}
-          maxW={{ base: "30vw", md: "50vw", lg: "35vw" }}
-          style={{ maxHeight: "auto" }}
+          padding={"5rem"}
+          maxW={"50%"}
           quality={100}
           src="/images/Jack_Brummer (1).jpg"
+          style={{ aspectRatio: "9/12" }}
         />
       </Stack>
     </Container>

@@ -13,6 +13,7 @@
     "@chakra-ui/react": "^2.5.2",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@types/node": "^20.5.0",
     "@vercel/analytics": "^1.0.1",
     "axios": "^0.24.0",
     "babel-polyfill": "^6.26.0",
@@ -31,7 +32,8 @@
     "react-uuid": "^1.0.2",
     "reactstrap": "^8.10.1",
     "remark": "^14.0.2",
-    "remark-html": "^15.0.2"
+    "remark-html": "^15.0.2",
+    "typescript": "^5.1.6"
   },
   "devDependencies": {
     "cryptiles": "^4.1.3",

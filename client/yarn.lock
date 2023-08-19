@@ -1088,6 +1088,11 @@
   "resolved" "https://registry.npmjs.org/@types/ms/-/ms-0.7.31.tgz"
   "version" "0.7.31"
 
+"@types/node@^20.5.0":
+  "integrity" "sha512-Mgq7eCtoTjT89FqNoTzzXg2XvCi5VMhRV6+I2aYanc6kQCBImeNaAYRs/DyoVqk1YEUJK5gN9VO7HRIdz4Wo3Q=="
+  "resolved" "https://registry.npmjs.org/@types/node/-/node-20.5.0.tgz"
+  "version" "20.5.0"
+
 "@types/parse-json@^4.0.0":
   "integrity" "sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA=="
   "resolved" "https://registry.npmjs.org/@types/parse-json/-/parse-json-4.0.0.tgz"
@@ -3067,6 +3072,11 @@
   "integrity" "sha512-pzP0PWoZUhsECYjABgCGQlRGL1n7tOHsgwYv3oIiEpJwGhFTuty/YNeduxQYzXXa3Ge5BdT6sHYIQYpl4uJ+5Q=="
   "resolved" "https://registry.npmjs.org/typed-styles/-/typed-styles-0.0.7.tgz"
   "version" "0.0.7"
+
+"typescript@^5.1.6":
+  "integrity" "sha512-zaWCozRZ6DLEWAWFrVDz1H6FVXzUSfTy5FUMWsQlU8Ym5JP9eO4xkTIROFCQvhQf61z6O/G6ugw3SgAnvvm+HA=="
+  "resolved" "https://registry.npmjs.org/typescript/-/typescript-5.1.6.tgz"
+  "version" "5.1.6"
 
 "uncontrollable@^7.2.1":
   "integrity" "sha512-svtcfoTADIB0nT9nltgjujTi7BzVmwjZClOmskKu/E8FW9BXzg9os8OLr4f8Dlnk0rYWJIWr4wv9eKUXiQvQwQ=="
