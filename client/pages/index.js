@@ -4,12 +4,11 @@ import Image from "next/image";
 import styles from "../components/layout.module.css";
 import Layout from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
-import { getSortedPostsData } from "../lib/posts";
 import AboutMe from "../components/AboutMe";
 import Interests from "../components/Interests";
 import Education from "../components/Education";
 import Research from "../components/Research";
-import LandingLayout from "../components/LandingLayout";
+import LandingLayout from "../components/LandingLayout.tsx";
 import { HamburgerIcon } from "@chakra-ui/icons";
 
 import { Heading, IconButton } from "@chakra-ui/react";
@@ -40,11 +39,11 @@ export default function Index() {
   );
 }
 
-export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
-  return {
-    props: {
-      allPostsData,
-    },
-  };
-}
+// export async function getStaticProps() {
+//   const allPostsData = getSortedPostsData();
+//   return {
+//     props: {
+//       allPostsData,
+//     },
+//   };
+// }

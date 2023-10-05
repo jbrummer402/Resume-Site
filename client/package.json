@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.17",
-    "@chakra-ui/react": "^2.5.2",
+    "@chakra-ui/react": "^2.8.1",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@types/node": "^20.5.0",
@@ -33,7 +33,7 @@
     "reactstrap": "^8.10.1",
     "remark": "^14.0.2",
     "remark-html": "^15.0.2",
-    "typescript": "^5.1.6"
+    "typescript": "^5.2.2"
   },
   "devDependencies": {
     "cryptiles": "^4.1.3",
