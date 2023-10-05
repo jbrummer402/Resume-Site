@@ -32,54 +32,34 @@ import Layout from "./layout";
 import Link from "next/link";
 
 import ScrollMenu from "../components/scrollMenu";
+import { MenuItems } from "../components/scrollMenu";
 
 import { useRef, useState, useEffect } from "react";
 
-export default function LandingLayout() {
+export default function LandingLayout(props: any) {
   const aboutRef = useRef(null);
+
   const [isVisible, setIsVisible] = useState(false);
 
   const [menuStyle, setMenuStyle] = useState("burger");
 
-  const [renderBackground] = useMediaQuery("(min-width: 1490px)");
-
-  const menuItems = [
-    {
-      items: ["About me", "Education"],
-    },
-  ];
-
+  const menuItems: MenuItems = {
+    menuList: ["About me", "Education", "Interests"],
+  };
   return (
     <>
-      {/* <Menu>
-        <MenuButton
-          my={"10rem"}
-          as={IconButton}
-          aria-label="Options"
-          icon={<HamburgerIcon />}
-          variant="outline"
-        />
-        <MenuList>
-          <MenuItem>
-            <Link href="#about-me"> About Me</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link href="#education">Education</Link>
-          </MenuItem>
-          <MenuItem>Resume</MenuItem>
-        </MenuList>
-      </Menu> */}
-
+      <ScrollMenu {...props} menuList={menuItems} />
       <Container maxW={"100%"}>
         <Stack
+          ml={"1rem"}
           spacing={{ base: 8, md: 10 }}
           direction={{ base: "row", md: "column" }}
-          borderBottom={"2px"}
-          borderStyle={"solid"}
-          borderLength={"50%"}
-          borderColor={useColorModeValue("gray.200", "gray.700")}
+          backgroundImage={"/background.svg"}
+          backgroundRepeat={"no-repeat"}
+          backgroundPosition={"right"}
+          style={{ backgroundPositionY: "2em" }}
         >
-          <Stack my={{ base: "12rem" }} mx={"7rem"}>
+          <Stack my={{ base: "10rem" }}>
             <Heading
               lineHeight={1.1}
               fontWeight={600}
@@ -106,11 +86,11 @@ export default function LandingLayout() {
                 my website!
               </Text>
             </Heading>
-            <HStack spacing={"30vw"}>
+            <HStack maxW={"100%"}>
               <Text
                 color={"gray.550"}
                 fontSize={"2xl"}
-                maxW={{ base: "100%", md: "70%", lg: "50%" }}
+                maxW={"50%"}
                 textShadow={"-1px 0px gray"}
               >
                 Here you'll find some of my favorite projects that I have worked
@@ -121,16 +101,6 @@ export default function LandingLayout() {
                 the site, I hope you enjoy it! This site may change in
                 appearance or function as time goes on as I learn new things
               </Text>
-              {renderBackground ? (
-                <Image
-                  position={"absolute"}
-                  src="/background.svg "
-                  boxSize={"900px"}
-                  zIndex={-1}
-                />
-              ) : (
-                <></>
-              )}
               {/* <Image style={{ zIndex: -1 }} src="/background.svg"></Image> */}
             </HStack>
 
@@ -144,6 +114,7 @@ export default function LandingLayout() {
                 passHref={true}
               >
                 <Image
+                  {...props}
                   layout="intrinsic"
                   quality={100}
                   src="/images/logos/5282542_linkedin_network_social network_linkedin logo_icon.png"
@@ -151,18 +122,21 @@ export default function LandingLayout() {
               </Link>
 
               <Image
+                {...props}
                 layout="intrinsic"
                 quality={100}
                 src="/images/logos/5282544_camera_instagram_social media_social network_instagram logo_icon.png"
               />
 
               <Image
+                {...props}
                 layout="intrinsic"
                 quality={100}
                 src="/images/logos/317712_code repository_github_repository_resource_icon.png"
               />
 
               <Image
+                {...props}
                 layout="intrinsic"
                 quality={100}
                 src="/images/logos/4691519_twitch_icon.png"
@@ -170,9 +144,8 @@ export default function LandingLayout() {
             </Stack>
           </Stack>
         </Stack>
-        <Stack maxW={"90%"} marginTop={"20rem"}>
+        <Stack maxW={"80%"} marginTop={"20rem"}>
           <AboutMe id="about-me" maxW="inherit" />
-          <ScrollMenu scrollMenu={menuItems} />
           <Education paddingLeft={"19em"} />
           <Interests />
         </Stack>
