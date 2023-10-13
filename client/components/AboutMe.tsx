@@ -15,11 +15,11 @@ import { Container, Heading, Text } from "@chakra-ui/react";
 
 import { useRef, useEffect } from "react";
 
-export default function AboutMe(props) {
+export default function AboutMe(props: any) {
   return (
     <Container
       id={props.id}
-      maxW={props.maxW}
+      maxW={"90%"}
       backgroundImage={"/background_2.svg"}
       backgroundRepeat={"no-repeat"}
       backgroundPosition={"top"}
@@ -79,7 +79,7 @@ export default function AboutMe(props) {
 
         <Image
           padding={"5rem"}
-          maxW={"50%"}
+          maxW={["50%", "40%"]}
           quality={100}
           src="/images/Jack_Brummer (1).jpg"
           style={{ aspectRatio: "9/12" }}
