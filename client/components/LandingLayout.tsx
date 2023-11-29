@@ -48,8 +48,8 @@ export default function LandingLayout(props: any) {
   };
   return (
     <>
-      <ScrollMenu {...props} menuList={menuItems} />
-      <Container maxW={"100%"}>
+      <ScrollMenu menuList={menuItems} />
+      <Container maxW={"90%"}>
         <Stack
           ml={"1rem"}
           spacing={{ base: 8, md: 10 }}
@@ -57,6 +57,7 @@ export default function LandingLayout(props: any) {
           backgroundImage={"/background.svg"}
           backgroundRepeat={"no-repeat"}
           backgroundPosition={"right"}
+          backgroundSize={"70%"}
           style={{ backgroundPositionY: "2em" }}
         >
           <Stack my={{ base: "10rem" }}>
@@ -86,7 +87,7 @@ export default function LandingLayout(props: any) {
                 my website!
               </Text>
             </Heading>
-            <HStack maxW={"100%"}>
+            <HStack>
               <Text
                 color={"gray.550"}
                 fontSize={"2xl"}
@@ -144,7 +145,7 @@ export default function LandingLayout(props: any) {
             </Stack>
           </Stack>
         </Stack>
-        <Stack maxW={"80%"} marginTop={"20rem"}>
+        <Stack maxW={"100%"} marginTop={"20rem"}>
           <AboutMe id="about-me" maxW="inherit" />
           <Education paddingLeft={"19em"} />
           <Interests />
