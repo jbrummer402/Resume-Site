@@ -254,8 +254,8 @@ const NAV_ITEMS = [
     label: "Contact + Resume",
     href: "https://linktr.ee/JackBrummer",
   },
-  {
-    label: "Comment",
-    href: "/Comment",
-  },
+  // {
+  //   label: "Comment",
+  //   href: "/Comment",
+  // },
 ];
