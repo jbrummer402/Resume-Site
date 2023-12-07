@@ -33,14 +33,7 @@ const ScrollMenu = (props) => {
   console.log(props);
   return (
     <Menu>
-      <MenuButton
-        mt="8rem"
-        position="relative"
-        as={IconButton}
-        aria-label="Options"
-        icon={<HamburgerIcon />}
-        variant="outline"
-      />
+      
       <MenuList>
         {props.menuList.menuList.map((elem: string, idx) => {
           console.log(elem);

@@ -21,6 +21,10 @@ import {
   Input,
   Select,
   Textarea,
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
 } from "@chakra-ui/react";
 
 export default function FreelanceServices() {
@@ -39,6 +43,19 @@ export default function FreelanceServices() {
         I offer a wide variety of services, ranging from Tutoring, graphic
         design, video editing, and software development!
       </Text>
+      <Text fontSize={"2xl"}>
+        If you have any need for a project, please fill out this form!
+      </Text>
+      <FormControl>
+        <FormLabel>Name</FormLabel>
+        <Input type='email' />
+        <FormLabel>Type of Project</FormLabel>
+        <Select placeholder='Select option'>
+          <option value='option1'>Video Editing</option>
+          <option value='option2'>Software Development</option>
+          <option value='option3'>Tutoring</option>
+        </Select>
+      </FormControl>
     </Container>
   );
 }
