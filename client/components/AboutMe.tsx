@@ -80,7 +80,7 @@ export default function AboutMe(props: any) {
         <Image
           padding={"5rem"}
           maxW={["50%", "40%"]}
-          quality={100}
+          
           src="/images/Jack_Brummer (1).jpg"
           style={{ aspectRatio: "9/12" }}
         />

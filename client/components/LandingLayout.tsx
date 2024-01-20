@@ -19,7 +19,7 @@ import {
   useColorModeValue,
   useMediaQuery,
 } from "@chakra-ui/react";
-import AboutMe from "../components/AboutMe.tsx";
+import AboutMe from "../components/AboutMe";
 import Interests from "../components/Interests";
 import Education from "../components/Education";
 import Research from "../components/Research";
