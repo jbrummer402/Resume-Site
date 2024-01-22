@@ -20,7 +20,7 @@
     "blob": "^0.1.0",
     "bootstrap": "^5.2.3",
     "date-fns": "^2.29.3",
-    "formik": "^2.4.3",
+    "formik": "^2.4.5",
     "framer-motion": "^10.6.0",
     "front-matter": "^4.0.2",
     "gray-matter": "^4.0.3",
