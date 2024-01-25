@@ -239,7 +239,6 @@ const NAV_ITEMS = [
     children: [
       {
         label: "Services available",
-        subLabel: "Find your dream design job",
         href: "/FreelanceServices",
       },
       {

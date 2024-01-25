@@ -238,14 +238,14 @@ const NAV_ITEMS = [
     label: "Freelance Services",
     children: [
       {
-        label: "Services available",
-        subLabel: "Find your dream design job",
+        label: "Submit a job request",
+        subLabel: "Fill out this form if you need a job done!",
         href: "/FreelanceServices",
       },
       {
-        label: "Submit a request",
-        subLabel: "Send me what you need done",
-        href: "/FreelanceForm",
+        label: "View my work", 
+        subLabel: "Check out some of the projects I've worked on",
+        href: "/PersonalProjects",
       },
     ],
     href: "/FreelanceServices",
