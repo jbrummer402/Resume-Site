@@ -40,12 +40,18 @@ const BlogTags = (props) => {
 };
 
 async function getPosts() {
-  const { data } = await axios.get(
-    "https://resume-site-brummer.herokuapp.com/api/posts",
-    config
-  );
 
-  return data;
+  try {
+    
+    const { data } = await axios.get(
+      "https://resume-site-brummer.herokuapp.com/api/posts",
+      config
+    );
+
+    return data;
+  } catch (error) {
+    console.log(error);  
+  }
 }
 
 export const BlogAuthor = (props) => {
@@ -72,21 +78,24 @@ export default function ArticleList(props) {
     if (props.data) {
       setPosts(props.data);
       setLoading(false);
+    } else {
+      setLoading(false);
     }
   });
 
   return (
     <Container maxW={"7xl"} p="12">
-      <Heading align="center" fontSize={"5xl"} as="h1">
+      <Heading align="center" fontSize={"5xl"} as="h1" mt="2rem">
         Hell on Wheels
       </Heading>
       {isEmpty(posts) ? (
         <Heading align="left" as="h2" marginTop="5">
-          {loading ? "Loading..." : "No posts yet"}
+          {loading ? "Loading..." : "Server error"}
         </Heading>
       ) : (
         <>
           <Heading>{loading ? "Loading..." : "All Posts"}</Heading>
+
           {posts.map((post) => {
             return (
               <>
@@ -149,10 +158,17 @@ export default function ArticleList(props) {
 }
 
 export async function getStaticProps() {
-  const { data } = await getPosts();
-  console.log(data);
-  return {
-    props: { data },
-    revalidate: 86400,
-  };
+
+  try {
+    const { data } = await getPosts();
+    console.log(data);
+    return {
+      props: { data },
+      revalidate: 86400,
+    };
+  } catch (error) {
+    return {
+      props: {},
+    }
+  }
 }

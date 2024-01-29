@@ -147,7 +147,6 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
           transition={"all .3s ease"}
           transform={"translateX(-10px)"}
           opacity={0}
-          _groupHover={{ opacity: "100%", transform: "translateX(0)" }}
           justify={"flex-end"}
           align={"center"}
           flex={1}

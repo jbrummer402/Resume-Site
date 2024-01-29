@@ -93,12 +93,7 @@ export default function Index(props) {
                 >
                   Here you'll find some of my favorite projects that I have worked
                   on over the years. I made this site completely on my own using
-                  React and Next.js for the front end. I followed the next js
-                  tutorial here as a reference and then added my own content. The
-                  source code can be found on my github here. Take a look around
-                  the site, I hope you enjoy it! This site may change in
-                  appearance or function as time goes on as I learn new things
-                </Text>
+                  React and Next.js for the front end.                </Text>
                 {/* <Image style={{ zIndex: -1 }} src="/background.svg"></Image> */}
               </HStack>
 
