@@ -42,7 +42,6 @@ const BlogTags = (props) => {
 async function getPosts() {
 
   try {
-    
     const { data } = await axios.get(
       "https://resume-site-brummer.herokuapp.com/api/posts",
       config

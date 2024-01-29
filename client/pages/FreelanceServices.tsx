@@ -43,12 +43,11 @@ export default function FreelanceServices() {
   
   }
 
-  console.log(process.env.REACT_APP_SITE_KEY);
   return (
     <Container maxW={"80%"}>
       <Heading
         lineHeight={1.1}
-        py={{ base: 20, md: 28 }}
+        pt={{ base: 20, md: 28 }}
         fontWeight={600}
         fontSize={["5xl", "6xl"]}
       >
@@ -60,48 +59,8 @@ export default function FreelanceServices() {
         design, video editing, and software development!
       </Text>
       <Text fontSize={"2xl"}>
-        If you have any need for a project, please fill out this form!
+        If you have any projects you need done or general consultation, please go to my freelance profile links!
       </Text>
-
-
-      <Formik
-        initialValues={{category : " ", description : " "}} 
-      >
-
-          <Form>
-            <Field as='select' name='category'>
-              {({ field, form }) => (
-                <FormControl isInvalid={form.errors.name && form.touched.name}>
-                  <Select {...field} placeholder='Select'>
-                    <option>Tutoring</option>
-                    <option>Video Editing</option>
-                    <option>Software Development</option>
-                    <option>Machine Learning</option>
-                  </Select>
-                </FormControl>
-              )}
-            </Field>
-            <Field name='description' required>
-              {({ field, form }) => (
-                <FormControl isInvalid={form.errors.name && form.touched.name}>
-                  <FormLabel>Job Description</FormLabel>
-                  <Textarea {...field} placeholder='Please be as descriptive as you can :)' />
-                </FormControl>
-              )}
-            </Field>
-            <Button
-              mt={4}
-              colorScheme='teal'
-              type='submit'
-            >
-              Submit
-            </Button>
-
-          </Form>
-
-      </Formik>
-
-
     </Container>
 
   );
