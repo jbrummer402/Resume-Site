@@ -10,28 +10,37 @@ use shuttle_actix_web::ShuttleActixWeb;
 use shuttle_runtime::{CustomError};
 use sqlx::{Executor, FromRow, PgPool};
 use sqlx::*;
-// #[get("/posts")]
-// async fn get_all_posts() -> Vec::<Result<Json>> {
-//     let postsVec = Vec<Result<Json>>;
-//     
-//
-//
-//     return postsVec;
-// }
+use brummer_resume_backend::user;
 
-// #[post("/new_post")]
-// async fn new_post::<T>(data: Json<T>) -> HttpResponse {
-//
-// }
+#[derive(Clone)]
+struct AppState {
+    pool: PgPool,
+}
 
-#[get("/users")]
-async fn get_all_users() -> HttpResponse {
+
+#[post("")]
+async fn create_new_user(path: web::Json<user::User>, state: web::Data<AppState>) -> Result<Json<user::User>> {
     
-    let query = query!(
-                    "SELECT * from USERS"
-                );
+    let result = sqlx::query_as("INSERT INTO users(first_name) VALUES ($1)")             
+                    .bind(&path.0)
+                    .fetch_one(&state.pool)
+                    .await
+                    .map_err(|e| error::ErrorBadRequest(e.to_string()))?;
 
-    HttpResponse::Ok().into()
+    Ok(Json(result))
+
+}
+#[get("/users")]
+async fn get_all_users(path: web::Path<i32>, state: web::Data<AppState>) -> Result<Json<user::User>> {
+    
+    let result = sqlx::query_as("SELECT * from users")             
+                    .bind(*path)
+                    .fetch_one(&state.pool)
+                    .await
+                    .map_err(|e| error::ErrorBadRequest(e.to_string()))?;
+
+    Ok(Json(result))
+
 }
 
 #[get("/")]
@@ -46,9 +55,14 @@ async fn actix_web(
     pool.execute(include_str!("../schema.sql"))
         .await
         .map_err(CustomError::new)?;
+    let state = web::Data::new(AppState { pool });
     let config = move |cfg: &mut ServiceConfig| {
-        cfg.service(hello_world)
-        .service(get_all_users);
+        cfg.service(
+            web::scope("/users")
+                .wrap(Logger::default())
+                .service(create_new_user)
+                .app_data(state),
+        );
     };
     Ok(config.into())
 }
