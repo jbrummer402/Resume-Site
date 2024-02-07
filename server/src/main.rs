@@ -11,18 +11,27 @@ use shuttle_runtime::{CustomError};
 use sqlx::{Executor, FromRow, PgPool};
 use sqlx::*;
 use brummer_resume_backend::user;
+use brummer_resume_backend::post;
+use shuttle_aws_rds::Postgres;
 
 #[derive(Clone)]
 struct AppState {
     pool: PgPool,
 }
 
+// #[post("/new_post")]
+// async fn create_new_post() -> Result<Json<post::Post>> {
+//    let result = sqlx::query_as("INSERT INTO posts(content)") 
+//
+//     Ok(Json(result)) 
+// }
 
-#[post("")]
-async fn create_new_user(path: web::Json<user::User>, state: web::Data<AppState>) -> Result<Json<user::User>> {
+#[post("/user")]
+async fn create_new_user(state: web::Data<AppState>) -> Result<Json<user::User>> {
     
-    let result = sqlx::query_as("INSERT INTO users(first_name) VALUES ($1)")             
-                    .bind(&path.0)
+    let result = sqlx::query_as(
+
+    "INSERT INTO users(first_name) VALUES('bob') RETURNING first_name") 
                     .fetch_one(&state.pool)
                     .await
                     .map_err(|e| error::ErrorBadRequest(e.to_string()))?;
@@ -43,24 +52,26 @@ async fn get_all_users(path: web::Path<i32>, state: web::Data<AppState>) -> Resu
 
 }
 
-#[get("/")]
+#[get("/hello")]
 async fn hello_world() -> &'static str {
     "Hello World!"
 }
 
 #[shuttle_runtime::main]
-async fn actix_web(
- #[shuttle_shared_db::Postgres] pool: PgPool
+async fn main(
+#[shuttle_shared_db::Postgres] pool: PgPool,
 ) -> ShuttleActixWeb<impl FnOnce(&mut ServiceConfig) + Send + Clone + 'static> {
     pool.execute(include_str!("../schema.sql"))
         .await
         .map_err(CustomError::new)?;
     let state = web::Data::new(AppState { pool });
+
     let config = move |cfg: &mut ServiceConfig| {
-        cfg.service(
-            web::scope("/users")
+        // set up your service here, e.g.:
+        cfg.service(web::scope("/app")
                 .wrap(Logger::default())
                 .service(create_new_user)
+                .service(hello_world)
                 .app_data(state),
         );
     };
