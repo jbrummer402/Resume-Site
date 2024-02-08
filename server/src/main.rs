@@ -27,11 +27,11 @@ struct AppState {
 // }
 
 #[post("/user")]
-async fn create_new_user(state: web::Data<AppState>) -> Result<Json<user::User>> {
-    
+async fn create_new_user(path: web::Json<user::User>, state: web::Data<AppState>) -> Result<Json<user::User>> {
     let result = sqlx::query_as(
 
-    "INSERT INTO users(first_name) VALUES('bob') RETURNING first_name") 
+    "INSERT INTO users VALUES($1) RETURNING first_name") 
+                    .bind(&path.first_name)
                     .fetch_one(&state.pool)
                     .await
                     .map_err(|e| error::ErrorBadRequest(e.to_string()))?;
@@ -40,11 +40,10 @@ async fn create_new_user(state: web::Data<AppState>) -> Result<Json<user::User>>
 
 }
 #[get("/users")]
-async fn get_all_users(path: web::Path<i32>, state: web::Data<AppState>) -> Result<Json<user::User>> {
+async fn get_all_users(state: web::Data<AppState>) -> Result<Json<Vec<user::User>>> {
     
-    let result = sqlx::query_as("SELECT * from users")             
-                    .bind(*path)
-                    .fetch_one(&state.pool)
+    let result = sqlx::query_as("SELECT * from users")
+                    .fetch_all(&state.pool)
                     .await
                     .map_err(|e| error::ErrorBadRequest(e.to_string()))?;
 
@@ -71,6 +70,7 @@ async fn main(
         cfg.service(web::scope("/app")
                 .wrap(Logger::default())
                 .service(create_new_user)
+                .service(get_all_users)
                 .service(hello_world)
                 .app_data(state),
         );
