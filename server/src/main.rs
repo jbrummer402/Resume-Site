@@ -18,12 +18,23 @@ struct AppState {
     pool: PgPool,
 }
 
+#[get("/all_posts")]
+async fn get_all_posts(state: web::Data<AppState>) -> Result<Json<Vec<post::Post>>> {
+    let query_res = sqlx::query_as(
+                    "SELECT * FROM posts"
+                    )
+                    .fetch_all(&state.pool)
+                    .await
+                    .map_err(|e| error::ErrorBadRequest(e.to_string()))?;
+    Ok(Json(query_res))
+}
+
 #[post("/new_post")]
 async fn create_new_post(path: web::Json<post::Post>, state: web::Data<AppState>) -> Result<Json<post::Post>> {
 
     let query_res = sqlx::query_as(
     "
-    INSERT INTO posts (content, tags, title) VALUES($1, $2, $3) RETURNING *
+        INSERT INTO posts (content, tags, title) VALUES($1, $2, $3) RETURNING *
     ")
         .bind(&path.content)
         .bind(&path.tags)
@@ -39,14 +50,14 @@ async fn create_new_post(path: web::Json<post::Post>, state: web::Data<AppState>
 async fn create_new_user(path: web::Json<user::User>, state: web::Data<AppState>) -> Result<Json<user::User>> {
     let result = sqlx::query_as(
 
-    "INSERT INTO users (first_name, email, last_name, password) VALUES($1, $2, $3, $4) RETURNING *") 
-                    .bind(&path.first_name)
-                    .bind(&path.email)
-                    .bind(&path.last_name)
-                    .bind(&path.password)
-                    .fetch_one(&state.pool)
-                    .await
-                    .map_err(|e| error::ErrorBadRequest(e.to_string()))?;
+        "INSERT INTO users (first_name, last_name, email, password) VALUES($1, $2, $3, $4) RETURNING *") 
+        .bind(&path.first_name)
+        .bind(&path.last_name)
+        .bind(&path.email)
+        .bind(&path.password)
+        .fetch_one(&state.pool)
+        .await
+        .map_err(|e| error::ErrorBadRequest(e.to_string()))?;
 
     Ok(Json(result))
 
@@ -84,6 +95,7 @@ async fn main(
                 .service(create_new_user)
                 .service(get_all_users)
                 .service(create_new_post)
+                .service(get_all_posts)
                 .app_data(state),
         );
     };
