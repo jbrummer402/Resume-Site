@@ -43,10 +43,7 @@ async function getPosts() {
 
   try {
     const { data } = await axios.get(
-      "https://resume-site-brummer.herokuapp.com/api/posts",
-      config
-    );
-
+"http://127.0.0.1:8000/app/all_posts");
     return data;
   } catch (error) {
     console.log(error);  
@@ -75,6 +72,7 @@ export default function ArticleList(props) {
 
   useEffect(() => {
     if (props.data) {
+      console.log(props.data)
       setPosts(props.data);
       setLoading(false);
     } else {
@@ -89,7 +87,7 @@ export default function ArticleList(props) {
       </Heading>
       {isEmpty(posts) ? (
         <Heading align="left" as="h2" marginTop="5">
-          {loading ? "Loading..." : "Server error"}
+          {loading ? "Loading...": "Server error"}
         </Heading>
       ) : (
         <>
@@ -104,17 +102,17 @@ export default function ArticleList(props) {
                     _hover={{ textDecoration: "none" }}
                     href={`/hell_on_wheels/${post.id}`}
                   >
-                    {post.attributes.Title}
+                    {post.title}
                   </Link>
                 </Heading>
 
                 <BlogTags
-                  tags={post.attributes.data.categories}
+                  tags={post.tags}
                   marginTop="2"
                 />
-                {post.attributes.description ? (
+                {post.content ? (
                   <Text as="p" fontSize="md" marginTop="2">
-                    {post.attributes.description}
+                    {post.content}
                   </Text>
                 ) : (
                   <Text as="p" fontSize="md" marginTop="3"></Text>
@@ -123,7 +121,7 @@ export default function ArticleList(props) {
                 <BlogAuthor
                   name="Jack Brummer"
                   date={
-                    post.attributes.PostDate
+                    post.PostDate
                       ? new Date(post.attributes.PostDate)
                       : ""
                   }
@@ -159,12 +157,21 @@ export default function ArticleList(props) {
 export async function getStaticProps() {
 
   try {
-    const { data } = await getPosts();
+    const  data  = await getPosts();
     console.log(data);
-    return {
-      props: { data },
-      revalidate: 86400,
-    };
+    if (data) {
+
+      return {
+        props: { data },
+        revalidate: 86400,
+      };
+    }
+    else {
+      return {
+        props: { },
+        revalidate: 86400,
+      }
+    }
   } catch (error) {
     return {
       props: {},
