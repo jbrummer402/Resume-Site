@@ -12,26 +12,38 @@ use sqlx::{Executor, FromRow, PgPool};
 use sqlx::*;
 use brummer_resume_backend::user;
 use brummer_resume_backend::post;
-use shuttle_aws_rds::Postgres;
 
 #[derive(Clone)]
 struct AppState {
     pool: PgPool,
 }
 
-// #[post("/new_post")]
-// async fn create_new_post() -> Result<Json<post::Post>> {
-//    let result = sqlx::query_as("INSERT INTO posts(content)") 
-//
-//     Ok(Json(result)) 
-// }
+#[post("/new_post")]
+async fn create_new_post(path: web::Json<post::Post>, state: web::Data<AppState>) -> Result<Json<post::Post>> {
+
+    let query_res = sqlx::query_as(
+    "
+    INSERT INTO posts (content, tags, title) VALUES($1, $2, $3) RETURNING *
+    ")
+        .bind(&path.content)
+        .bind(&path.tags)
+        .bind(&path.title)
+        .fetch_one(&state.pool)
+        .await
+        .map_err(|e| error::ErrorBadRequest(e.to_string()))?;
+
+    Ok(Json(query_res))
+}
 
 #[post("/user")]
 async fn create_new_user(path: web::Json<user::User>, state: web::Data<AppState>) -> Result<Json<user::User>> {
     let result = sqlx::query_as(
 
-    "INSERT INTO users VALUES($1) RETURNING first_name") 
+    "INSERT INTO users (first_name, email, last_name, password) VALUES($1, $2, $3, $4) RETURNING *") 
                     .bind(&path.first_name)
+                    .bind(&path.email)
+                    .bind(&path.last_name)
+                    .bind(&path.password)
                     .fetch_one(&state.pool)
                     .await
                     .map_err(|e| error::ErrorBadRequest(e.to_string()))?;
@@ -71,7 +83,7 @@ async fn main(
                 .wrap(Logger::default())
                 .service(create_new_user)
                 .service(get_all_users)
-                .service(hello_world)
+                .service(create_new_post)
                 .app_data(state),
         );
     };
