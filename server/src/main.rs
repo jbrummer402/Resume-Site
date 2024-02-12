@@ -32,13 +32,14 @@ async fn get_all_posts(state: web::Data<AppState>) -> Result<Json<Vec<post::Post
 #[post("/new_post")]
 async fn create_new_post(path: web::Json<post::Post>, state: web::Data<AppState>) -> Result<Json<post::Post>> {
 
+    print!("{:?}", &path.content);
     let query_res = sqlx::query_as(
-    "
-        INSERT INTO posts (content, tags, title) VALUES($1, $2, $3) RETURNING *
-    ")
+    r#"
+        INSERT INTO posts(content, tags, title) VALUES ($1, $2, $3) RETURNING *;
+    "#)
         .bind(&path.content)
-        .bind(&path.tags)
-        .bind(&path.title)
+    .bind(&path.tags)
+    .bind(&path.title)
         .fetch_one(&state.pool)
         .await
         .map_err(|e| error::ErrorBadRequest(e.to_string()))?;
@@ -50,7 +51,7 @@ async fn create_new_post(path: web::Json<post::Post>, state: web::Data<AppState>
 async fn create_new_user(path: web::Json<user::User>, state: web::Data<AppState>) -> Result<Json<user::User>> {
     let result = sqlx::query_as(
 
-        "INSERT INTO users (first_name, last_name, email, password) VALUES($1, $2, $3, $4) RETURNING *") 
+        "INSERT INTO users(first_name, last_name, email, password) VALUES($1, $2, $3, $4) RETURNING *") 
         .bind(&path.first_name)
         .bind(&path.last_name)
         .bind(&path.email)
@@ -74,10 +75,6 @@ async fn get_all_users(state: web::Data<AppState>) -> Result<Json<Vec<user::User
 
 }
 
-#[get("/hello")]
-async fn hello_world() -> &'static str {
-    "Hello World!"
-}
 
 #[shuttle_runtime::main]
 async fn main(

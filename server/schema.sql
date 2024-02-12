@@ -14,5 +14,5 @@ CREATE TABLE IF NOT EXISTS "posts" (
   id SERIAL UNIQUE PRIMARY KEY,
   content TEXT,
   tags VARCHAR(100)[],
-  title TEXT 
+  title TEXT
 );
