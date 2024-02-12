@@ -21,9 +21,6 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { isEmpty } from "lodash";
 
-const config = {
-  headers: { Authorization: `Bearer ${process.env.STRAPI_API_KEY}` },
-};
 
 const BlogTags = (props) => {
   return (
@@ -43,7 +40,8 @@ async function getPosts() {
 
   try {
     const { data } = await axios.get(
-"http://127.0.0.1:8000/app/all_posts");
+`${process.env.DB_URL}`);
+
     return data;
   } catch (error) {
     console.log(error);  
