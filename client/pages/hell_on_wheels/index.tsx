@@ -22,6 +22,8 @@ import {
   GetStaticPaths,
 } from 'next';
 
+import BlogAuthor from '../../components/containers/BlogAuthor.tsx';
+
 import { useState, useEffect } from "react";
 import { isEmpty } from "lodash";
 
@@ -89,21 +91,6 @@ export const getStaticProps = (async () =>  {
   }
 }) satisfies GetStaticProps
 
-export const BlogAuthor = (props) => {
-  return (
-    <HStack marginTop="2" spacing="2" display="flex" alignItems="center">
-      <Image
-        borderRadius="full"
-        boxSize="40px"
-        src="/images/IMG_4380.png"
-        alt={`Avatar of ${props.name}`}
-      />
-      <Text fontWeight="medium">{props.name}</Text>
-      <Text>—</Text>
-      <Text>{props.date ? props.date.toLocaleDateString() : ""}</Text>
-    </HStack>
-  );
-};
 
 export default function ArticleList(props) {
   let [posts, setPosts] = useState([]);
@@ -128,47 +115,48 @@ export default function ArticleList(props) {
           {loading ? "Loading...": "No posts yet"}
         </Heading>
       ) : (
-        <>
-          <Heading>{loading ? "Loading..." : "All Posts"}</Heading>
+          <>
+            <Heading>{loading ? "Loading..." : "All Posts"}</Heading>
+            <HStack>
+              {posts.map((post) => {
+                return (
+                  <Container>
+                    <Heading fontSize="xl" marginTop="2">
+                      <Link
+                        textDecoration="none"
+                        _hover={{ textDecoration: "none" }}
+                        href={`/hell_on_wheels/${post.id}`}
+                      >
+                        {post.title}
+                      </Link>
+                    </Heading>
 
-          {posts.map((post) => {
-            return (
-              <>
-                <Heading fontSize="xl" marginTop="2">
-                  <Link
-                    textDecoration="none"
-                    _hover={{ textDecoration: "none" }}
-                    href={`/hell_on_wheels/${post.id}`}
-                  >
-                    {post.title}
-                  </Link>
-                </Heading>
+                    <BlogTags
+                      tags={post.tags}
+                      marginTop="2"
+                    />
+                    {post.description ? (
+                      <Text as="p" fontSize="md" marginTop="2">
+                        {post.description}
+                      </Text>
+                    ) : (
+                        <Text as="p" fontSize="md" marginTop="3"></Text>
+                      )}
 
-                <BlogTags
-                  tags={post.tags}
-                  marginTop="2"
-                />
-                {post.content ? (
-                  <Text as="p" fontSize="md" marginTop="2">
-                    {post.content}
-                  </Text>
-                ) : (
-                  <Text as="p" fontSize="md" marginTop="3"></Text>
-                )}
-
-                <BlogAuthor
-                  name="Jack Brummer"
-                  date={
-                    post.PostDate
-                      ? new Date(post.attributes.PostDate)
-                      : ""
-                  }
-                />
-              </>
-            );
-          })}
-        </>
-      )}
+                    <BlogAuthor
+                      name="Jack Brummer"
+                      date={
+                        post.date
+                          ? new Date(post.date)
+                          : ""
+                      }
+                    />
+                  </Container>
+                );
+              })}
+            </HStack>
+          </>
+        )}
 
       <Divider marginTop="5" />
 
