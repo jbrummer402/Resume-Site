@@ -9,7 +9,7 @@ use serde::{Deserialize, Serialize};
 use shuttle_actix_web::ShuttleActixWeb;
 use shuttle_runtime::{CustomError};
 use sqlx::{Executor, FromRow, PgPool};
-use sqlx::*;
+use sqlx::{types::uuid::Uuid};
 use brummer_resume_backend::user;
 use brummer_resume_backend::post;
 
@@ -18,14 +18,25 @@ struct AppState {
     pool: PgPool,
 }
 
+#[get("/posts/{id}")]
+async fn get_post_by_id(id: web::Path<String>, state: web::Data<AppState>) -> Result<Json<post::Post>>  {
+    let query_res = sqlx::query_as(
+                   "SELECT * FROM posts WHERE id=uuid($1)")
+                    .bind(&id.into_inner())
+                    .fetch_one(&state.pool)
+                    .await
+                    .map_err(|e| error::ErrorBadRequest(e.to_string()))?;
+    Ok(Json(query_res))
+}
+
 #[get("/all_posts")]
 async fn get_all_posts(state: web::Data<AppState>) -> Result<Json<Vec<post::Post>>> {
     let query_res = sqlx::query_as(
-                    "SELECT * FROM posts"
-                    )
-                    .fetch_all(&state.pool)
-                    .await
-                    .map_err(|e| error::ErrorBadRequest(e.to_string()))?;
+        "SELECT * FROM posts"
+    )
+        .fetch_all(&state.pool)
+        .await
+        .map_err(|e| error::ErrorBadRequest(e.to_string()))?;
     Ok(Json(query_res))
 }
 
@@ -34,13 +45,13 @@ async fn create_new_post(path: web::Json<post::Post>, state: web::Data<AppState>
 
     print!("{:?}", &path.content);
     let query_res = sqlx::query_as(
-    r#"
+        r#"
         INSERT INTO posts(content, tags, description, title) VALUES ($1, $2, $3,$4) RETURNING *;
     "#)
         .bind(&path.content)
-    .bind(&path.tags)
-    .bind(&path.description)
-    .bind(&path.title)
+        .bind(&path.tags)
+        .bind(&path.description)
+        .bind(&path.title)
         .fetch_one(&state.pool)
         .await
         .map_err(|e| error::ErrorBadRequest(e.to_string()))?;
@@ -66,11 +77,11 @@ async fn create_new_user(path: web::Json<user::User>, state: web::Data<AppState>
 }
 #[get("/users")]
 async fn get_all_users(state: web::Data<AppState>) -> Result<Json<Vec<user::User>>> {
-    
+
     let result = sqlx::query_as("SELECT * from users")
-                    .fetch_all(&state.pool)
-                    .await
-                    .map_err(|e| error::ErrorBadRequest(e.to_string()))?;
+        .fetch_all(&state.pool)
+        .await
+        .map_err(|e| error::ErrorBadRequest(e.to_string()))?;
 
     Ok(Json(result))
 
@@ -79,7 +90,7 @@ async fn get_all_users(state: web::Data<AppState>) -> Result<Json<Vec<user::User
 
 #[shuttle_runtime::main]
 async fn main(
-#[shuttle_shared_db::Postgres] pool: PgPool,
+    #[shuttle_shared_db::Postgres] pool: PgPool,
 ) -> ShuttleActixWeb<impl FnOnce(&mut ServiceConfig) + Send + Clone + 'static> {
     pool.execute(include_str!("../schema.sql"))
         .await
@@ -89,12 +100,13 @@ async fn main(
     let config = move |cfg: &mut ServiceConfig| {
         // set up your service here, e.g.:
         cfg.service(web::scope("/app")
-                .wrap(Logger::default())
-                .service(create_new_user)
-                .service(get_all_users)
-                .service(create_new_post)
-                .service(get_all_posts)
-                .app_data(state),
+            .wrap(Logger::default())
+            .service(create_new_user)
+            .service(get_all_users)
+            .service(create_new_post)
+            .service(get_all_posts)
+            .service(get_post_by_id)
+            .app_data(state),
         );
     };
     Ok(config.into())

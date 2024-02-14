@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS "users";
 
 CREATE TABLE IF NOT EXISTS "users" (
-  id SERIAL UNIQUE PRIMARY KEY,
+  id UUID NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),
   first_name VARCHAR(200) NOT NULL,
   last_name VARCHAR(200),
   email VARCHAR(200) NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS "users" (
 DROP TABLE IF EXISTS "posts";
 
 CREATE TABLE IF NOT EXISTS "posts" (
-  id SERIAL UNIQUE PRIMARY KEY,
+  id UUID NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),
   content TEXT,
   description TEXT,
   tags VARCHAR(100)[],
