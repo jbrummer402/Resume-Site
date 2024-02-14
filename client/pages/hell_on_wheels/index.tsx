@@ -16,11 +16,16 @@ import {
   VStack,
 } from "@chakra-ui/react";
 
-import axios from "axios";
+import {
+  InferGetStaticPropsType,
+  GetStaticProps,
+  GetStaticPaths,
+} from 'next';
 
 import { useState, useEffect } from "react";
 import { isEmpty } from "lodash";
 
+import axios from 'axios';
 
 const BlogTags = (props) => {
   return (
@@ -37,16 +42,52 @@ const BlogTags = (props) => {
 };
 
 async function getPosts() {
-
   try {
     const { data } = await axios.get(
-`${process.env.DB_URL}`);
+`http://${process.env.LOCAL_URL}/all_posts`);
 
     return data;
   } catch (error) {
+    let data = {}
     console.log(error);  
   }
 }
+
+// export const getStaticPaths = (async () => {
+//   return {
+//     paths : [
+//       {
+//       },
+//     ],
+//     fallback: true,
+//     
+//   }
+//
+// }) satisfies GetStaticPaths
+
+export const getStaticProps = (async () =>  {
+  try {
+    const data = await getPosts();
+
+    if (data) {
+      return {
+        props: { data },
+        revalidate: 86400,
+      }
+    } 
+    else {
+      return {
+        props: { data: [] },
+        revalidate: 86400,
+      }
+    }
+
+  } catch (error) {
+    return {
+      props: { data },
+    }
+  }
+}) satisfies GetStaticProps
 
 export const BlogAuthor = (props) => {
   return (
@@ -70,7 +111,6 @@ export default function ArticleList(props) {
 
   useEffect(() => {
     if (props.data) {
-      console.log(props.data)
       setPosts(props.data);
       setLoading(false);
     } else {
@@ -85,7 +125,7 @@ export default function ArticleList(props) {
       </Heading>
       {isEmpty(posts) ? (
         <Heading align="left" as="h2" marginTop="5">
-          {loading ? "Loading...": "Server error"}
+          {loading ? "Loading...": "No posts yet"}
         </Heading>
       ) : (
         <>
@@ -150,29 +190,4 @@ export default function ArticleList(props) {
       </VStack>
     </Container>
   );
-}
-
-export async function getStaticProps() {
-
-  try {
-    const  data  = await getPosts();
-    console.log(data);
-    if (data) {
-
-      return {
-        props: { data },
-        revalidate: 86400,
-      };
-    }
-    else {
-      return {
-        props: { },
-        revalidate: 86400,
-      }
-    }
-  } catch (error) {
-    return {
-      props: {},
-    }
-  }
 }
