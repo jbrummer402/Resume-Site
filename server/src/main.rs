@@ -35,10 +35,11 @@ async fn create_new_post(path: web::Json<post::Post>, state: web::Data<AppState>
     print!("{:?}", &path.content);
     let query_res = sqlx::query_as(
     r#"
-        INSERT INTO posts(content, tags, title) VALUES ($1, $2, $3) RETURNING *;
+        INSERT INTO posts(content, tags, description, title) VALUES ($1, $2, $3,$4) RETURNING *;
     "#)
         .bind(&path.content)
     .bind(&path.tags)
+    .bind(&path.description)
     .bind(&path.title)
         .fetch_one(&state.pool)
         .await

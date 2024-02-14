@@ -7,5 +7,6 @@ use serde::{Deserialize, Serialize};
 pub struct Post {
     pub content: String,
     pub tags: Vec<String>,
+    pub description: String,
     pub title: String,
 }
