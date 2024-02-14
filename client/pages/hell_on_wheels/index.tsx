@@ -55,17 +55,6 @@ async function getPosts() {
   }
 }
 
-// export const getStaticPaths = (async () => {
-//   return {
-//     paths : [
-//       {
-//       },
-//     ],
-//     fallback: true,
-//     
-//   }
-//
-// }) satisfies GetStaticPaths
 
 export const getStaticProps = (async () =>  {
   try {
@@ -89,8 +78,7 @@ export const getStaticProps = (async () =>  {
       props: { data },
     }
   }
-}) satisfies GetStaticProps
-
+});
 
 export default function ArticleList(props) {
   let [posts, setPosts] = useState([]);

@@ -18,18 +18,54 @@ import {
   VStack,
 } from "@chakra-ui/react";
 
-const config = {
-  headers: { Authorization: `Bearer ${process.env.STRAPI_API_KEY}` },
-};
-
 async function getPosts(id) {
   const { data } = await axios.get(
-    `https://resume-site-brummer.herokuapp.com/api/posts/${id}`,
-    config
+    `http://${process.env.LOCAL_URL}/${params.id}`,
   );
 
   return data;
 }
+
+export const getStaticPaths = (async () => {
+  const res = await getPosts();
+  const posts = await res.json();
+
+  const paths = posts.map((post) => {
+    params: { id: post.id }
+  }));
+
+  return {
+    paths, 
+    fallback: false,
+    
+  }
+
+}) satisfies GetStaticPaths
+
+export const getStaticProps = (async () =>  {
+  try {
+    const data = await getPosts();
+    console.log(data);
+    if (data) {
+      return {
+        props: { data },
+        revalidate: 86400,
+      }
+    } 
+    else {
+      return {
+        props: { data: [] },
+        revalidate: 86400,
+      }
+    }
+
+  } catch (error) {
+    return {
+      props: { data },
+    }
+  }
+});
+
 
 export default function Post({ data, pageProps, children }) {
   return (
@@ -52,12 +88,12 @@ export default function Post({ data, pageProps, children }) {
   );
 }
 
-export async function getServerSideProps(context) {
-  console.log("getting server side");
-
-  const { data } = await getPosts(context.params.id);
-  console.log(data);
-  return {
-    props: { data },
-  };
-}
+// export async function getServerSideProps(context) {
+//   console.log("getting server side");
+//
+//   const { data } = await getPosts(context.params.id);
+//   console.log(data);
+//   return {
+//     props: { data },
+//   };
+// }
