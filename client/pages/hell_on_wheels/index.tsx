@@ -22,7 +22,8 @@ import {
   GetStaticPaths,
 } from 'next';
 
-import BlogAuthor from '../../components/containers/BlogAuthor.tsx';
+import BlogAuthor from '../../components/containers/BlogAuthor';
+import { getPosts } from '../../lib/api/data';
 
 import { useState, useEffect } from "react";
 import { isEmpty } from "lodash";
@@ -43,19 +44,6 @@ const BlogTags = (props) => {
   );
 };
 
-async function getPosts() {
-  try {
-    const { data } = await axios.get(
-`http://${process.env.LOCAL_URL}/all_posts`);
-
-    return data;
-  } catch (error) {
-    let data = {}
-    console.log(error);  
-  }
-}
-
-
 export const getStaticProps = (async () =>  {
   try {
     const data = await getPosts();
@@ -74,9 +62,9 @@ export const getStaticProps = (async () =>  {
     }
 
   } catch (error) {
-    return {
-      props: { data },
-    }
+    console.log(error);
+    
+    
   }
 });
 
@@ -95,11 +83,11 @@ export default function ArticleList(props) {
 
   return (
     <Container maxW={"7xl"} p="12">
-      <Heading align="center" fontSize={"5xl"} as="h1" mt="2rem">
+      <Heading fontSize={"5xl"} as="h1" mt="2rem">
         Hell on Wheels
       </Heading>
       {isEmpty(posts) ? (
-        <Heading align="left" as="h2" marginTop="5">
+        <Heading as="h2" marginTop="5">
           {loading ? "Loading...": "No posts yet"}
         </Heading>
       ) : (

@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Analytics } from "@vercel/analytics/react";
 import { useRouter } from "next/router";
-import Layout from "../components/Nav_Components/layout.tsx";
+import Layout from "../components/Nav_Components/layout";
 
 import App, { AppContext, AppInitialProps, AppProps } from "next/app";
 
@@ -22,10 +22,3 @@ export default function ResumeApp({ Component, pageProps }: AppProps) {
   );
 }
 
-ResumeApp.getInitialProps = async (
-  context: AppContext
-): Promise<AppInitialProps> => {
-  const ctx = await App.getInitialProps(context);
-
-  return { ...ctx };
-};

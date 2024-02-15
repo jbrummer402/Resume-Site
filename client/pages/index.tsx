@@ -2,7 +2,6 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "../components/layout.module.css";
-import Layout from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
 
 import { Heading, IconButton } from "@chakra-ui/react";
@@ -21,14 +20,12 @@ import {
 import AboutMe from "../components/AboutMe";
 import Interests from "../components/Interests";
 import Education from "../components/Education";
-import Research from "../components/Research";
 
 import { HamburgerIcon, ArrowUpIcon } from "@chakra-ui/icons";
 
 
 
 import ScrollMenu from "../components/scrollMenu";
-import { MenuItems } from "../components/scrollMenu";
 import { MenuItems } from "../components/scrollMenu";
 
 import { useRef, useEffect } from "react";
