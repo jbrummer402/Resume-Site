@@ -27,12 +27,11 @@ export default function Post({ data, post, children }) {
         Hell on Wheels
       </Heading>
       <Heading as="h2" fontSize="3xl" marginTop="2">
-
-      {post.title}
+      {post ? post.title : ""}
       </Heading>
 
       <Text fontSize="md" marginTop="1">
-        {post.content}
+        {post ? post.content : ""}
       </Text>
 
       <Text as="p" fontSize="lg" marginTop="3">
@@ -44,7 +43,8 @@ export default function Post({ data, post, children }) {
 export const getStaticPaths = (async () => {
   const posts = await getPosts();
   let paths = [];
-  if (posts) {
+  console.log(posts)
+  if (posts.length > 0 ) {
 
     paths = posts.map((post) => ({
       params: { id : post.id }
@@ -53,7 +53,7 @@ export const getStaticPaths = (async () => {
   
   return {
     paths,
-    fallback: false
+    fallback: 'blocking'
   }
 
 }); 

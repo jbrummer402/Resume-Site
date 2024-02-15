@@ -7,7 +7,7 @@ export async function getPosts() {
 
     return data;
   } catch (error) {
-	let data = {}
+	let data = [];
     	return data;  
   }
 }
