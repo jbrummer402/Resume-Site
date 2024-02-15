@@ -43,10 +43,13 @@ export default function Post({ data, post, children }) {
 
 export const getStaticPaths = (async () => {
   const posts = await getPosts();
-  
-  const paths = posts.map((post) => ({
-    params: { id : post.id }
-  }))
+  let paths = [];
+  if (posts) {
+
+    paths = posts.map((post) => ({
+      params: { id : post.id }
+    }))
+  }
   
   return {
     paths,
