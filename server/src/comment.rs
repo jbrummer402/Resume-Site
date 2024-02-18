@@ -2,14 +2,11 @@ use sqlx::Type;
 use sqlx::{Executor, FromRow, PgPool};
 use serde::{Deserialize, Serialize};
 use sqlx::{types::Uuid, types::Json};
+use chrono::{DateTime, FixedOffset, Local, Utc};
 
 #[derive(sqlx::Type)]
 #[derive(Serialize, Deserialize, FromRow)]
-pub struct Post {
-    pub id: Option<Uuid>,
+pub struct Comment {
     pub content: String,
-    pub date: String,
-    pub tags: Vec<String>,
-    pub description: String,
-    pub title: String,
+    pub userId: Uuid,
 }
