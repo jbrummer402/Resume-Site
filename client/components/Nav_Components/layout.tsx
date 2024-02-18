@@ -12,6 +12,9 @@ import {
   Popover,
   PopoverTrigger,
   PopoverContent,
+  Heading,
+  ButtonGroup,
+  Spacer,
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
@@ -60,13 +63,9 @@ export default function WithSubnavigation() {
           />
         </Link>
 
-        <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Flex display={{ base: "none", md: "flex" }}>
-            <DesktopNav />
-          </Flex>
-        </Flex>
       </Flex>
 
+        <DesktopNav />
       <Collapse in={isOpen} animateOpacity>
       </Collapse>
     </Box>
@@ -79,45 +78,16 @@ const DesktopNav = () => {
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
 
   return (
-    <Stack direction={"row"} spacing={10} px={"2rem"}>
-      {NAV_ITEMS.map((navItem) => (
-        <Box key={navItem.label}>
-          <Popover trigger={"hover"} placement={"bottom-start"}>
-            <PopoverTrigger>
-              <Link
-                p={2}
-                href={navItem.href ?? "#"}
-                fontSize={"md"}
-                color={linkColor}
-                _hover={{
-                  textDecoration: "none",
-                  color: linkHoverColor,
-                }}
-              >
-                {navItem.label}
-              </Link>
-            </PopoverTrigger>
-
-            {navItem.children && (
-              <PopoverContent
-                border={0}
-                boxShadow={"xl"}
-                bg={popoverContentBgColor}
-                p={2}
-                rounded={"xl"}
-                minW={"sm"}
-              >
-                <Stack>
-                  {navItem.children.map((child) => (
-                    <DesktopSubNav key={child.label} {...child} />
-                  ))}
-                </Stack>
-              </PopoverContent>
-            )}
-          </Popover>
-        </Box>
-      ))}
-    </Stack>
+<Flex minWidth='max-content' alignItems='center' gap='2'>
+  <Box p='2'>
+    <Heading size='md'>Chakra App</Heading>
+  </Box>
+  <Spacer />
+  <ButtonGroup gap='2'>
+    <Button colorScheme='teal'>Sign Up</Button>
+    <Button colorScheme='teal'>Log in</Button>
+  </ButtonGroup>
+</Flex>
   );
 };
 
