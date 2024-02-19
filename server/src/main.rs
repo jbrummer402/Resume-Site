@@ -12,32 +12,11 @@ use sqlx::{Executor, FromRow, PgPool};
 use sqlx::{types::uuid::Uuid};
 use brummer_resume_backend::user;
 use brummer_resume_backend::post;
-use brummer_resume_backend::repo;
-use awc::Client;
 
 #[derive(Clone)]
 struct AppState {
     pool: PgPool,
-    client: Client
 }
-
-#[get("/repos")]
-async fn get_all_repos(state: web::Data<AppState>) -> Result<HttpResponse> {
-    let client = Client::default();
-    let mut res = client
-        .get("https://api.github.com/users/jbrummer402/repos")
-        .insert_header(("User-Agent", "awc/3.0"))
-        .insert_header(("Authorization", "Bearer: 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"))
-        .send()
-        .await;
-    let payload = res.expect("error").body()
-        .await
-        .unwrap();
-
-    Ok(HttpResponse::Ok()
-    .body(payload))
-}
-
 
 #[get("/posts/{id}")]
 async fn get_post_by_id(id: web::Path<String>, state: web::Data<AppState>) -> Result<Json<post::Post>>  {
@@ -112,13 +91,11 @@ async fn get_all_users(state: web::Data<AppState>) -> Result<Json<Vec<user::User
 #[shuttle_runtime::main]
 async fn main(
     #[shuttle_shared_db::Postgres] pool: PgPool,
-    client: Client
 ) -> ShuttleActixWeb<impl FnOnce(&mut ServiceConfig) + Send + Clone + 'static> {
     pool.execute(include_str!("../schema.sql"))
         .await
         .map_err(CustomError::new)?;
-    let client = Client::default();
-    let state = web::Data::new(AppState { pool, client });
+    let state = web::Data::new(AppState { pool });
 
     let config = move |cfg: &mut ServiceConfig| {
         // set up your service here, e.g.:
@@ -129,7 +106,6 @@ async fn main(
             .service(create_new_post)
             .service(get_all_posts)
             .service(get_post_by_id)
-            .service(get_all_repos)
             .app_data(state),
         );
     };
