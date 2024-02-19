@@ -1,5 +1,28 @@
 import axios from "axios";
 
+export async function getRepos() {
+    try {
+	const { data } = await axios.get(`https://${process.env.DB_URL}/repos`);
+
+	return data;
+    } catch (e) {
+    	console.log(e);
+    }
+}
+
+export async function getRepoId(id) {
+
+  try {
+      const { data } = await axios.get(`https://${process.env.DB_URL}/repos/${id}`);
+
+      return data;
+  } catch (e) {
+    console.log(e);
+    
+  }
+
+}
+
 export async function getPosts() {
   try {
     const { data } = await axios.get(
