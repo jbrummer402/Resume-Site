@@ -26,7 +26,7 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 
-import { NavItem, NavChild } from '../../types/nav_item.ts';
+import { NavItem, NavChild } from "../../types/nav_item.ts";
 
 export const DesktopNav = () => {
   const linkColor = useColorModeValue("gray.600", "gray.200");
@@ -34,64 +34,55 @@ export const DesktopNav = () => {
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
 
   return (
-    <Flex minWidth="max-content" alignItems='center' gap='2'>
-      <Box p='2'>
-        <Link href="/">
-          <Image
-            ml={{ base: "75px", sm: "inherit" }}
-            h="3rem"
-            src="\images\logos\IMG_0087.PNG"
-          />
-        </Link>
-      </Box>
-      {NAV_ITEMS.map((navItem) => (
-        <Box key={navItem.label}>
-          <Popover trigger={"hover"} placement={"bottom-start"}>
-            <PopoverTrigger>
-              <Link
-                p={2}
-                href={navItem.href ?? "#"}
-                fontSize={"md"}
-                color={linkColor}
-                _hover={{
-                  textDecoration: "none",
-                  color: linkHoverColor,
-                }}
-              >
-                {navItem.label}
-              </Link>
-            </PopoverTrigger>
+    <>
+      {
+        NAV_ITEMS.map((navItem) => (
+          <Box key={navItem.label}>
+            <Popover trigger={"hover"} placement={"bottom-start"}>
+              <PopoverTrigger>
+                <Link
+                  p={2}
+                  href={navItem.href ?? "#"}
+                  fontSize={"md"}
+                  color={linkColor}
+                  _hover={{
+                    textDecoration: "none",
+                    color: linkHoverColor,
+                  }}
+                >
+                  {navItem.label}
+                </Link>
+              </PopoverTrigger>
 
-            {navItem.children && (
-              <PopoverContent
-                border={0}
-                boxShadow={"xl"}
-                bg={popoverContentBgColor}
-                p={2}
-                rounded={"xl"}
-                minW={"sm"}
-              >
-                <Stack>
-                  {navItem.children.map((child) => (
-                    <DesktopSubNav {...child} />
-                  ))}
-                </Stack>
-              </PopoverContent>
-            )}
-          </Popover>
-        </Box>
-
-      ))}
-      <Spacer />
-      <ButtonGroup gap='2'>
-        <Button colorScheme='blue'>Sign Up</Button>
-        <Button variant='outline'>Log in</Button>
+              {navItem.children && (
+                <PopoverContent
+                  border={0}
+                  boxShadow={"xl"}
+                  bg={popoverContentBgColor}
+                  p={2}
+                  rounded={"xl"}
+                  minW={"sm"}
+                >
+                  <Stack>
+                    {navItem.children.map((child) => (
+                      <DesktopSubNav {...child} />
+                    ))}
+                  </Stack>
+                </PopoverContent>
+              )}
+            </Popover>
+          </Box>
+        ))
+      }
+      <ButtonGroup mr="auto" gap="2">
+        <Button colorScheme="blue" mr="auto">Sign Up</Button>
+        <Button variant="outline">Log in</Button>
       </ButtonGroup>
-    </Flex>
+    </>
   );
 };
 
-function DesktopSubNav<NavChild>(child: NavChild){
+function DesktopSubNav<NavChild>(child: NavChild) {
   return (
     <Link
       href={child.href}
@@ -125,7 +116,7 @@ function DesktopSubNav<NavChild>(child: NavChild){
       </Stack>
     </Link>
   );
-};
+}
 
 const NAV_ITEMS: NavItem[] = [
   {
@@ -135,13 +126,13 @@ const NAV_ITEMS: NavItem[] = [
   {
     label: "Freelance Services",
     children: [
-      { 
+      {
         label: "Submit a job request",
         sublabel: "Fill out this form if you need a job done!",
         href: "/freelanceservices",
       },
       {
-        label: "View my work", 
+        label: "View my work",
         sublabel: "Check out some of the projects I've worked on",
         href: "/personal_projects",
       },
@@ -159,26 +150,26 @@ const NAV_ITEMS: NavItem[] = [
 //     label: "Blog",
 //     href: "/hell_on_wheels",
 //   },
-  // {
-  //   label: "Freelance Services",
-  //   children: [
-  //     {
-  //       label: "submit a job request",
-  //       sublabel: "fill out this form if you need a job done!",
-  //       href: "/freelanceservices",
-  //     },
-  //     {
-  //       label: "view my work", 
-  //       sublabel: "check out some of the projects i've worked on",
-  //       href: "/personalprojects",
-  //     },
-  //   ],
-  //   href: "/freelanceservices",
-  // },
-  // {
-  //   label: "Contact + Resume",
-  //   href: "https://linktr.ee/jackbrummer",
-  // },
+// {
+//   label: "Freelance Services",
+//   children: [
+//     {
+//       label: "submit a job request",
+//       sublabel: "fill out this form if you need a job done!",
+//       href: "/freelanceservices",
+//     },
+//     {
+//       label: "view my work",
+//       sublabel: "check out some of the projects i've worked on",
+//       href: "/personalprojects",
+//     },
+//   ],
+//   href: "/freelanceservices",
+// },
+// {
+//   label: "Contact + Resume",
+//   href: "https://linktr.ee/jackbrummer",
+// },
 //   // {
 //   //   label: "comment",
 //   //   href: "/comment",
