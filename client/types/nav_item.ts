@@ -1,12 +1,8 @@
 
-export type NavChild = {
-	href: string;
-	label: string;
-	sublabel: string;
-}
 
-export type NavItem = {
+export interface NavItem = {
 	label: string;
+	sublabel: string | null;
 	href: string;
-	children: NavChild[]; 
+	children: NavItem[] | null; 
 }

@@ -68,16 +68,10 @@ export function WithSubnavigation() {
             <Image h="3rem" src="\images\logos\IMG_0087.PNG" />
           </Link>
         </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Box p={{ md: "2" }} display={{ base: "none", md: "flex" }}>
-            <Link href="/">
-              <Image h="3rem" src="\images\logos\IMG_0087.PNG" />
-            </Link>
-          </Box>
-          <Flex display={{ base: "none", md: "flex" }}>
-            <DesktopNav />
-          </Flex>
-        </Flex>
+        <Box display={{base: "none", md: "inherit"}}>
+
+            <DesktopNav p={3}/>
+        </Box>
       </Box>
       <Collapse in={isOpen} animateOpacity></Collapse>
     </Box>

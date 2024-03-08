@@ -26,18 +26,21 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 
-import { NavItem, NavChild } from "../../types/nav_item.ts";
+import { NavItem } from "../../types/nav_item.ts";
+import { DesktopSubNav } from '../Nav_Components/DesktopSubNav';
 
-export const DesktopNav = () => {
+export const DesktopNav = (props) => {
   const linkColor = useColorModeValue("gray.600", "gray.200");
   const linkHoverColor = useColorModeValue("gray.800", "white");
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
 
   return (
-    <>
-      {
-        NAV_ITEMS.map((navItem) => (
-          <Box key={navItem.label}>
+    <Flex alignItems={"center"} {...props}>
+      <Link mr="auto" href="/">
+        <Image h="3rem" src="\images\logos\IMG_0087.PNG" />
+      </Link>
+      {NAV_ITEMS.map((navItem) => (
+          <Box  key={navItem.label}>
             <Popover trigger={"hover"} placement={"bottom-start"}>
               <PopoverTrigger>
                 <Link
@@ -65,7 +68,7 @@ export const DesktopNav = () => {
                 >
                   <Stack>
                     {navItem.children.map((child) => (
-                      <DesktopSubNav {...child} />
+                      <DesktopSubNav {...child}/>
                     ))}
                   </Stack>
                 </PopoverContent>
@@ -74,49 +77,14 @@ export const DesktopNav = () => {
           </Box>
         ))
       }
-      <ButtonGroup mr="auto" gap="2">
+      <Spacer />
+      <ButtonGroup >
         <Button colorScheme="blue" mr="auto">Sign Up</Button>
         <Button variant="outline">Log in</Button>
       </ButtonGroup>
-    </>
+    </Flex>
   );
 };
-
-function DesktopSubNav<NavChild>(child: NavChild) {
-  return (
-    <Link
-      href={child.href}
-      role={"group"}
-      display={"block"}
-      p={2}
-      rounded={"md"}
-      _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
-    >
-      <Stack direction={"row"} align={"center"}>
-        <Box>
-          <Text
-            transition={"all .3s ease"}
-            _groupHover={{ color: "pink.400" }}
-            fontWeight={500}
-          >
-            {child.label}
-          </Text>
-          <Text fontSize={"sm"}>{child.sublabel}</Text>
-        </Box>
-        <Flex
-          transition={"all .3s ease"}
-          transform={"translateX(-10px)"}
-          opacity={0}
-          justify={"flex-end"}
-          align={"center"}
-          flex={1}
-        >
-          <Icon color={"pink.400"} w={5} h={5} as={ChevronRightIcon} />
-        </Flex>
-      </Stack>
-    </Link>
-  );
-}
 
 const NAV_ITEMS: NavItem[] = [
   {
