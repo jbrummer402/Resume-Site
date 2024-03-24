@@ -1,13 +1,17 @@
 import {
   Container,
+  Box,
+  Heading
 } from '@chakra-ui/react';
 
 export default function ProjectBox(props) {
 
   return (
-    <Container>
+     <Box boxShadow="outline"> 
+      <Heading>
       {props.title}
-    </Container>
+      </Heading>
+     </Box>
   );
 
 

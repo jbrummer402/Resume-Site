@@ -43,7 +43,7 @@ export default function Index(props) {
         <title>{siteTitle}</title>
       </Head>
         <ScrollMenu menuList={menuItems} />
-        <Container maxW={"90%"}>
+        <Container maxW={"90%"}> 
           <Stack
             ml={"1rem"}
             spacing={{ base: 8, md: 10 }}
@@ -52,6 +52,7 @@ export default function Index(props) {
             backgroundRepeat={"no-repeat"}
             backgroundPosition={"right"}
             backgroundSize={"70%"}
+          maxH={"100vh"}
             style={{ backgroundPositionY: "2em" }}
           >
             <Stack my={{ base: "10rem" }}>
