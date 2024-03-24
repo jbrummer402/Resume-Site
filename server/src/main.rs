@@ -2,6 +2,7 @@ use actix_web::middleware::Logger;
 use actix_web::{
     error, get, post,
     web::{self, Json, ServiceConfig},
+    http::StatusCode,
     Result,
 };
 use actix_web::{http::header::ContentType, HttpResponse};
@@ -12,12 +13,37 @@ use sqlx::{Executor, FromRow, PgPool};
 use sqlx::{types::uuid::Uuid};
 use brummer_resume_backend::user;
 use brummer_resume_backend::post;
+use brummer_resume_backend::comment;
 
 #[derive(Clone)]
 struct AppState {
     pool: PgPool,
 }
 
+#[post("/posts/{id}/submit_comment")]
+async fn add_comment_to_post(state: web::Data<AppState>) -> Result<(Json(StatusCode))>{
+    let comment_res = sqlx::query_as(
+                        "SELECT * FROM posts WHERE id=uuid($1)"
+                    ).bind(&id.into_inner())
+                    .fetch_all(&state.pool)
+                    .await
+                    .map_err(|e| error::ErrorBadRequest(e.to_string()))?;
+
+    Ok(Json(StatusCode::OK))
+}
+
+#[get("/posts/{id}/comments")]
+async fn get_comments_from_post(id: web::Path<String>, state: web::Data<AppState>) -> Result<Json<comment::Comment>> {
+
+    let comment_res = sqlx::query_as(
+                        "SELECT * FROM posts WHERE id=uuid($1)"
+                    ).bind(&id.into_inner())
+                    .fetch_all(&state.pool)
+                    .await
+                    .map_err(|e| error::ErrorBadRequest(e.to_string()))?;
+
+    Ok(Json(comment_res))
+}
 #[get("/posts/{id}")]
 async fn get_post_by_id(id: web::Path<String>, state: web::Data<AppState>) -> Result<Json<post::Post>>  {
     let query_res = sqlx::query_as(
@@ -106,6 +132,7 @@ async fn main(
             .service(create_new_post)
             .service(get_all_posts)
             .service(get_post_by_id)
+            .service(get_comments_from_post)
             .app_data(state),
         );
     };

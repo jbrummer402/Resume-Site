@@ -9,4 +9,5 @@ use chrono::{DateTime, FixedOffset, Local, Utc};
 pub struct Comment {
     pub content: String,
     pub userId: Uuid,
+    pub likes: i64,
 }

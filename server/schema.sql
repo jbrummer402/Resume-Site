@@ -17,3 +17,12 @@ CREATE TABLE IF NOT EXISTS "posts" (
   tags VARCHAR(100)[],
   title TEXT
 );
+
+DROP TABLE IF EXISTS "comments";
+
+CREATE TABLE IF NOT EXISTS "comments" (
+  userId UUID NOT NULL PRIMARY KEY,
+  content TEXT,
+  likes INT,
+  postId UUID NOT NULL
+);
