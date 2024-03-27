@@ -1,3 +1,11 @@
+DROP TYPE IF EXISTS "comment";
+
+CREATE TYPE comment AS (
+  content TEXT,
+  userId UUID,
+  likes INTEGER
+);
+
 DROP TABLE IF EXISTS "users";
 
 CREATE TABLE IF NOT EXISTS "users" (
@@ -15,14 +23,8 @@ CREATE TABLE IF NOT EXISTS "posts" (
   content TEXT,
   description TEXT,
   tags VARCHAR(100)[],
-  title TEXT
+  title TEXT,
+  comments comment[]
 );
 
-DROP TABLE IF EXISTS "comments";
 
-CREATE TABLE IF NOT EXISTS "comments" (
-  userId UUID NOT NULL PRIMARY KEY,
-  content TEXT,
-  likes INT,
-  postId UUID NOT NULL
-);

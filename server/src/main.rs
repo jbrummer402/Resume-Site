@@ -1,6 +1,7 @@
 use actix_web::middleware::Logger;
 use actix_web::{
     error, get, post,
+    client,
     web::{self, Json, ServiceConfig},
     http::StatusCode,
     Result,
@@ -20,23 +21,29 @@ struct AppState {
     pool: PgPool,
 }
 
-#[post("/posts/{id}/submit_comment")]
-async fn add_comment_to_post(state: web::Data<AppState>) -> Result<(Json(StatusCode))>{
-    let comment_res = sqlx::query_as(
-                        "SELECT * FROM posts WHERE id=uuid($1)"
-                    ).bind(&id.into_inner())
-                    .fetch_all(&state.pool)
-                    .await
-                    .map_err(|e| error::ErrorBadRequest(e.to_string()))?;
+#[get("/repos")]
+async fn get_all_repos(state: web::Data<AppState>) -> Result<Json<Vec::<Repo>>>{
 
-    Ok(Json(StatusCode::OK))
+}
+
+
+#[post("/posts/{id}/submit_comment")]
+async fn add_comment_to_post(id: web::Path<String>, state: web::Data<AppState>) -> Result<StatusCode>{
+    // let comment_res = sqlx::query_as(
+    //                     "SELECT * FROM posts WHERE id=uuid($1)"
+    //                 ).bind(&id.into_inner())
+    //                 .fetch_all(&state.pool)
+    //                 .await
+    //                 .map_err(|e| error::ErrorBadRequest(e.to_string()))?;
+    //
+    Ok(StatusCode::OK)
 }
 
 #[get("/posts/{id}/comments")]
-async fn get_comments_from_post(id: web::Path<String>, state: web::Data<AppState>) -> Result<Json<comment::Comment>> {
+async fn get_comments_from_post(id: web::Path<String>, state: web::Data<AppState>) -> Result<Json<Vec::<comment::Comment>>> {
 
     let comment_res = sqlx::query_as(
-                        "SELECT * FROM posts WHERE id=uuid($1)"
+                        "SELECT comments FROM posts WHERE id=uuid($1)"
                     ).bind(&id.into_inner())
                     .fetch_all(&state.pool)
                     .await
@@ -132,7 +139,6 @@ async fn main(
             .service(create_new_post)
             .service(get_all_posts)
             .service(get_post_by_id)
-            .service(get_comments_from_post)
             .app_data(state),
         );
     };
