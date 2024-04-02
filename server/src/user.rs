@@ -1,6 +1,6 @@
 use serde::{Serialize, Deserialize};
-use sqlx::{Executor, FromRow, PgPool};
-use sqlx::Type;
+use sqlx::{FromRow};
+
 
 #[derive(sqlx::Type)]
 #[derive(Serialize, Deserialize, FromRow)]

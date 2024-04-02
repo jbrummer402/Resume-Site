@@ -1,6 +1,6 @@
-DROP TYPE IF EXISTS "comment";
+DROP TYPE IF EXISTS "comment" cascade;
 
-CREATE TYPE comment AS (
+CREATE TYPE "comment" AS (
   content TEXT,
   userId UUID,
   likes INTEGER

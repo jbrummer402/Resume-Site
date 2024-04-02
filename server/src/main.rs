@@ -1,12 +1,12 @@
 use actix_web::middleware::Logger;
 use actix_web::{
     error, get, post,
-    client,
     web::{self, Json, ServiceConfig},
     http::StatusCode,
     Result,
+    Responder,
 };
-use actix_web::{http::header::ContentType, HttpResponse};
+use std::sync::Mutex;
 use serde::{Deserialize, Serialize};
 use shuttle_actix_web::ShuttleActixWeb;
 use shuttle_runtime::{CustomError};
@@ -15,29 +15,54 @@ use sqlx::{types::uuid::Uuid};
 use brummer_resume_backend::user;
 use brummer_resume_backend::post;
 use brummer_resume_backend::comment;
+use brummer_resume_backend::repo;
+use serde_json::Value;
+use reqwest::{header, Error};
+use awc;
 
 #[derive(Clone)]
 struct AppState {
     pool: PgPool,
 }
-
 #[get("/repos")]
-async fn get_all_repos(state: web::Data<AppState>) -> Result<Json<Vec::<Repo>>>{
+async fn get_request() -> impl Responder {
+    let client = reqwest::Client::new();
 
+    let res = client.get("https://api.github.com/users/jbrummer402/repos")
+        .header(header::USER_AGENT, "Bearer your_access_token_here")
+        .send()
+        .await
+        .expect("Failed to send request")
+        .text()
+        .await
+        .expect("Failed to read response text");
+
+    Json(res.clone())
 }
+// static CRATES: &str = "https://api.github.com/users/jbrummer402/repos";
+//
+// #[get("/crates")]
+// async fn get_all_repos(data: web::Data<AppState>) -> HttpResponse {
+//     let client = &data.client;
+//
+//     let result = client.get("https://api.github.com/users/jbrummer402/repos");
+//
+//     result
+//
+// }
+//
 
-
-#[post("/posts/{id}/submit_comment")]
-async fn add_comment_to_post(id: web::Path<String>, state: web::Data<AppState>) -> Result<StatusCode>{
-    // let comment_res = sqlx::query_as(
-    //                     "SELECT * FROM posts WHERE id=uuid($1)"
-    //                 ).bind(&id.into_inner())
-    //                 .fetch_all(&state.pool)
-    //                 .await
-    //                 .map_err(|e| error::ErrorBadRequest(e.to_string()))?;
-    //
-    Ok(StatusCode::OK)
-}
+// #[post("/posts/{id}/submit_comment")]
+// async fn add_comment_to_post(id: web::Path<String>, state: web::Data<AppState>) -> Result<StatusCode>{
+//     // let comment_res = sqlx::query_as(
+//     //                     "SELECT * FROM posts WHERE id=uuid($1)"
+//     //                 ).bind(&id.into_inner())
+//     //                 .fetch_all(&state.pool)
+//     //                 .await
+//     //                 .map_err(|e| error::ErrorBadRequest(e.to_string()))?;
+//     //
+//     Ok(StatusCode::OK)
+// }
 
 #[get("/posts/{id}/comments")]
 async fn get_comments_from_post(id: web::Path<String>, state: web::Data<AppState>) -> Result<Json<Vec::<comment::Comment>>> {
@@ -128,6 +153,8 @@ async fn main(
     pool.execute(include_str!("../schema.sql"))
         .await
         .map_err(CustomError::new)?;
+
+
     let state = web::Data::new(AppState { pool });
 
     let config = move |cfg: &mut ServiceConfig| {
@@ -139,6 +166,7 @@ async fn main(
             .service(create_new_post)
             .service(get_all_posts)
             .service(get_post_by_id)
+            .service(get_request)
             .app_data(state),
         );
     };
