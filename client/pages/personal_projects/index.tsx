@@ -24,7 +24,8 @@ export const getStaticProp = (async () => {
   try {
     const data = await getRepos();
   } catch (e) {
-    
+    console.error("Error getting repos);
+     
   }
 
 })
