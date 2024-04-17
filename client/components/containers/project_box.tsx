@@ -28,7 +28,7 @@ export default function ProjectBox(props) {
 
   <Stack>
     <CardBody>
-      <Heading size='md'>The perfect latte</Heading>
+      <Heading size='md'>{props.title}</Heading>
 
       <Text py='2'>
        
