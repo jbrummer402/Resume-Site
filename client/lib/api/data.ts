@@ -25,7 +25,7 @@ export async function getRepoId(id) {
 
 export async function getPosts() {
   try {
-    const { data } = await axios.get(
+    const { data } = await fetch (
 `https://${process.env.DB_URL}/all_posts`);
 
     return data;
