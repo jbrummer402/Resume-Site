@@ -1,4 +1,3 @@
-'use client';
 import React from "react";
 import {
   Box,
@@ -45,60 +44,26 @@ const BlogTags = (props) => {
   );
 };
 
-async function getBlogPosts(params:type) {
+async function getBlogPosts() {
  const res = await getPosts(); 
- console.log(res)
+ return res
 }
 
-// export const getStaticProps = (async () =>  {
-//   try {
-//     const data = await getPosts();
-//
-//     if (data) {
-//       return {
-//         props: { data },
-//         revalidate: 86400,
-//       }
-//     } 
-//     else {
-//       return {
-//         props: { data: [] },
-//         revalidate: 86400,
-//       }
-//     }
-//
-//   } catch (error) {
-//     console.log(error);
-//     
-//     
-//   }
-// });
+export default async function ArticleList(props) {
 
-export default function ArticleList(props) {
-  let [posts, setPosts] = useState([]);
-  let [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if (props.data) {
-      setPosts(props.data);
-      setLoading(false);
-    } else {
-      setLoading(false);
-    }
-  });
-
+  let posts = await getBlogPosts();
+  console.log(posts)
   return (
     <Container maxW={"7xl"} p="12">
       <Heading fontSize={"5xl"} as="h1" mt="2rem">
         Hell on Wheels
       </Heading>
-      {isEmpty(posts) ? (
+        {isEmpty(posts) ? (
         <Heading as="h2" marginTop="5">
-          {loading ? "Loading...": "No posts yet"}
+          No posts yet
         </Heading>
       ) : (
           <>
-            <Heading>{loading ? "Loading..." : "All Posts"}</Heading>
             <HStack>
               {posts.map((post) => {
                 return (

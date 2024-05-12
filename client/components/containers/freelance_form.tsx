@@ -1,3 +1,8 @@
+'use client';
+
+import { useState } from "react";
+
+
 import {
   Box,
   Button,
@@ -15,6 +20,7 @@ import {
   Tooltip,
   useClipboard,
   useColorModeValue,
+  Select,
   VStack,
 } from '@chakra-ui/react';
 import React from 'react';
@@ -33,9 +39,16 @@ const confetti = {
   },
 };
 
-const freelance_items = ['Software Development', 'Machine Learning', 'Video Editing'];
+const freelance_items = ['Software Development', 'Machine Learning', 'Video Editing', 'Tutoring'];
 
 export function FreelanceForm() {
+
+  let [jobType, setJobType] = useState('');
+
+  function handleForm() {
+
+  }
+
   return (
     <Flex
       justify="left"
@@ -144,9 +157,14 @@ export function FreelanceForm() {
                   </FormControl>
 
                   <FormControl isRequired>
-                    <>
-
-                    </>
+                    <FormLabel>Type of job</FormLabel>
+                    <Select placeholder="Select option">
+                     {freelance_items.map((item) => {
+                        return (
+                           <option>{item}</option>
+                        )
+                       })} 
+                    </Select>
                   </FormControl>
                   <FormControl isRequired>
                     <FormLabel>Job Description</FormLabel>

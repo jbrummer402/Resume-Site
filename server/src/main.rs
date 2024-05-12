@@ -25,6 +25,7 @@ use awc;
 struct AppState {
     pool: PgPool,
 }
+
 #[get("/repos")]
 async fn get_request() -> impl Responder {
     let client = reqwest::Client::new();
@@ -91,12 +92,14 @@ async fn get_post_by_id(id: web::Path<String>, state: web::Data<AppState>) -> Re
 
 #[get("/all_posts")]
 async fn get_all_posts(state: web::Data<AppState>) -> Result<Json<Vec<post::Post>>> {
-    let query_res = sqlx::query_as(
+    println!("getting all posts");
+    let query_res: Vec<post::Post> = sqlx::query_as(
         "SELECT * FROM posts"
     )
         .fetch_all(&state.pool)
         .await
         .map_err(|e| error::ErrorBadRequest(e.to_string()))?;
+    
     Ok(Json(query_res))
 }
 

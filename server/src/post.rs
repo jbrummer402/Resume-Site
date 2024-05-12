@@ -8,7 +8,6 @@ use sqlx::{types::Uuid};
 pub struct Post {
     pub id: Option<Uuid>,
     pub content: String,
-    pub date: String,
     pub tags: Vec<String>,
     pub description: String,
     pub title: String,

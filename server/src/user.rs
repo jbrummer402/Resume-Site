@@ -1,7 +1,6 @@
 use serde::{Serialize, Deserialize};
 use sqlx::{FromRow};
 
-
 #[derive(sqlx::Type)]
 #[derive(Serialize, Deserialize, FromRow)]
 pub struct User {

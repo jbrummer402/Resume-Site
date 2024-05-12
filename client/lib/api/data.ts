@@ -24,14 +24,15 @@ export async function getRepoId(id) {
 }
 
 export async function getPosts() {
+    console.log(`the url is ${process.env.DB_URL}`)
   try {
-    const { data } = await fetch (
-`https://${process.env.DB_URL}/all_posts`);
+    let data = await fetch (
+`http://${process.env.DB_URL}/all_posts`,{ cache: 'no-store' });
 
-    return data;
+    
+    return data.json();
   } catch (error) {
-	let data = [];
-    	return data;  
+    console.log(error)
   }
 }
 
