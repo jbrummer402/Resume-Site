@@ -16,6 +16,8 @@ import {
   VStack,
 } from "@chakra-ui/react";
 
+import BlogPost from "./components/BlogContainer";
+
 import { InferGetStaticPropsType, GetStaticProps, GetStaticPaths } from "next";
 
 import { getPosts } from "../../../lib/api/data";
@@ -35,13 +37,13 @@ export async function generateStaticParams() {
     tags: post.tags,
   }));
 
-  console.log(paths);
   return paths;
 }
 
 async function getBlogData({ slug }: { slug: string }) {
   const posts = await getPosts();
   const post = posts.find((post) => post.id === slug);
+  console.log(post.tags);
   return post;
 }
 
@@ -59,7 +61,7 @@ const BlogTags = (props) => {
   );
 };
 
-export default async function Layout({
+export default async function BlogPageLayout({
   children,
   params,
 }: {
@@ -67,12 +69,5 @@ export default async function Layout({
   params: any;
 }) {
   const post = await getBlogData({ slug: params.id });
-  return (
-    <VStack spacing={4} align="start">
-      <Heading as="h1">{post.title}</Heading>
-      {/* <Image src={params.imageUrl} alt={params.title} />
-      <Text>{params.content}</Text>
-      <BlogTags tags={params.tags} marginTop={6} /> */}
-    </VStack>
-  );
+  return <section>{children}</section>;
 }

@@ -61,7 +61,6 @@ async function getBlogPosts() {
 
 export default async function ArticleList(props) {
   let posts = await getBlogPosts();
-  console.log(posts);
   return (
     <Container maxW={"7xl"} p="12">
       <Heading fontSize={"5xl"} as="h1" mt="2rem">

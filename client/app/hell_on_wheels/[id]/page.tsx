@@ -1,7 +1,8 @@
 import React from "react";
 
 import { getPosts, getPostId } from "../../../lib/api/data";
-import { Container } from "@chakra-ui/react";
+import { Container, Heading, Text, HStack, Tag } from "@chakra-ui/react";
+import { HeadersAdapter } from "next/dist/server/web/spec-extension/adapters/headers";
 interface BlogPostProps {
   // Add any necessary props for your blog post here
 }
@@ -21,6 +22,19 @@ export async function generateStaticParams() {
   return paths;
 }
 
+const BlogTags = (props) => {
+  return (
+    <HStack spacing={2} marginTop={props.marginTop}>
+      {props.tags?.map((tag) => {
+        return (
+          <Tag size={"md"} variant="solid" colorScheme="orange" key={tag}>
+            {tag}
+          </Tag>
+        );
+      })}
+    </HStack>
+  );
+};
 export default async function BlogPostPage({
   params,
 }: {
@@ -29,7 +43,9 @@ export default async function BlogPostPage({
   const post = await getPostId(params.id);
   return (
     <Container mt={"10rem"}>
-      <h1>test</h1>
+      <Heading>{post.title}</Heading>
+      <BlogTags tags={post.tags} />
+      <Text>{post.content}</Text>
     </Container>
   );
 }

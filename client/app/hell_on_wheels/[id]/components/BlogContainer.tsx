@@ -16,7 +16,7 @@ const BlogPost: React.FC<BlogPostProps> = ({
   imageUrl,
 }) => {
   return (
-    <Box p={4} borderWidth="1px" borderRadius="md" shadow="md">
+    <Box mt={"10rem"} p={4} borderWidth="1px" borderRadius="md" shadow="md">
       <Heading as="h2" size="lg" mb={2}>
         {title}
       </Heading>
