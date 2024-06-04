@@ -14,7 +14,10 @@ import {
   useColorModeValue,
   Container,
   VStack,
+  Center
 } from "@chakra-ui/react";
+
+import BlogTags from "../../components/BlogComponents/BlogTags.tsx";
 
 import { InferGetStaticPropsType, GetStaticProps, GetStaticPaths } from "next";
 
@@ -40,19 +43,6 @@ export async function generateStaticParams() {
   console.log(paths);
   return paths;
 }
-const BlogTags = (props) => {
-  return (
-    <HStack spacing={2} marginTop={props.marginTop}>
-      {props.tags?.map((tag) => {
-        return (
-          <Tag size={"md"} variant="solid" colorScheme="orange" key={tag}>
-            {tag}
-          </Tag>
-        );
-      })}
-    </HStack>
-  );
-};
 
 async function getBlogPosts() {
   const res = await getPosts();
@@ -63,8 +53,8 @@ export default async function ArticleList(props) {
   let posts = await getBlogPosts();
   console.log(posts);
   return (
-    <Container maxW={"7xl"} p="12">
-      <Heading fontSize={"5xl"} as="h1" mt="2rem">
+    <Container maxW={"100%"} centerContent p="12">
+      <Heading fontSize={"5xl"} as="h1" mt="3rem">
         Hell on Wheels
       </Heading>
       {isEmpty(posts) ? (
@@ -112,17 +102,10 @@ export default async function ArticleList(props) {
       <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
         <Heading as="h2">What I write about</Heading>
         <Text as="p" fontSize={"md"}>
-          Welcome to my blog, where I share my thoughts and opinions on various
-          topics that intrigue me. As an avid media consumer, I enjoy exploring
-          and analyzing the latest movies, TV shows, and other forms of
-          entertainment. However, I am also deeply passionate about social
-          justice, particularly in regards to disability rights. Through my
-          writing, I hope to shed light on important issues and encourage
-          conversations around these topics. Additionally, as someone who is
-          fascinated by technology and its impact on society, I enjoy exploring
-          and sharing my insights on the latest advancements and trends.
-          Ultimately, this blog is a space for me to express my perspectives and
-          share my interests with others who may share similar passions.
+          Hello! You have just stumbled upon my blog. In here I plan to write about various topics ranging from technology, art, philosophy, and disability advocacy.
+          Think of this almost as a means for me to journal out my thoughts and share them with 
+          readers like you.
+          Enjoy the ride! Even I am not fully sure what will end up on here.
         </Text>
       </VStack>
     </Container>

@@ -68,11 +68,8 @@ export default async function Layout({
 }) {
   const post = await getBlogData({ slug: params.id });
   return (
-    <VStack spacing={4} align="start">
-      <Heading as="h1">{post.title}</Heading>
-      {/* <Image src={params.imageUrl} alt={params.title} />
-      <Text>{params.content}</Text>
-      <BlogTags tags={params.tags} marginTop={6} /> */}
-    </VStack>
+    <section>
+      {children}
+    </section>
   );
 }

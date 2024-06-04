@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body style={{display : "inline-block"}}>
         <ChakraProvider>
           <NavBar />
           <Analytics />
