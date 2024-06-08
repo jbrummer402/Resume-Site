@@ -106,7 +106,17 @@ async fn get_all_posts(state: web::Data<AppState>) -> Result<Json<Vec<post::Post
 #[post("/new_post")]
 async fn create_new_post(path: web::Json<post::Post>, state: web::Data<AppState>) -> Result<Json<post::Post>> {
 
-    print!("{:?}", &path.content);
+    let req_json = &path;
+    let mut new_title: &str = ""; 
+
+    if (!req_json.title.is_empty()) {
+        let title = req_json.title.split_whitespace();
+
+        for word in title {
+            new_title += &(word[0..1].to_uppercase() + &word[1..]);
+        }
+    }
+
     let query_res = sqlx::query_as(
         r#"
         INSERT INTO posts(content, tags, description, title) VALUES ($1, $2, $3,$4) RETURNING *;
@@ -114,7 +124,7 @@ async fn create_new_post(path: web::Json<post::Post>, state: web::Data<AppState>
         .bind(&path.content)
         .bind(&path.tags)
         .bind(&path.description)
-        .bind(&path.title)
+        .bind(new_title)
         .fetch_one(&state.pool)
         .await
         .map_err(|e| error::ErrorBadRequest(e.to_string()))?;
