@@ -107,13 +107,13 @@ async fn get_all_posts(state: web::Data<AppState>) -> Result<Json<Vec<post::Post
 async fn create_new_post(path: web::Json<post::Post>, state: web::Data<AppState>) -> Result<Json<post::Post>> {
 
     let req_json = &path;
-    let mut new_title: &str = ""; 
+    let mut new_title: String = "".to_owned(); 
 
-    if (!req_json.title.is_empty()) {
+    if !req_json.title.is_empty() {
         let title = req_json.title.split_whitespace();
 
         for word in title {
-            new_title += &(word[0..1].to_uppercase() + &word[1..]);
+            new_title.push_str(&(word[0..1].to_uppercase() + &word[1..] + " "));
         }
     }
 

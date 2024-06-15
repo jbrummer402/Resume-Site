@@ -8,6 +8,7 @@ use sqlx::{types::Uuid};
 #[sqlx(type_name = "comment")]
 #[derive(Serialize, Deserialize, FromRow)]
 pub struct Comment {
+    postId: Uuid,
     pub content: String,
     pub userId: Uuid,
     pub likes: i64,
