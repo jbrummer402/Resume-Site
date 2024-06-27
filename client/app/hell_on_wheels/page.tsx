@@ -40,7 +40,6 @@ export async function generateStaticParams() {
     tags: post.tags,
   }));
 
-  console.log(paths);
   return paths;
 }
 
