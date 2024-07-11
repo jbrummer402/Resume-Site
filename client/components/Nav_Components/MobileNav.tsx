@@ -27,13 +27,14 @@ import {
 } from "@chakra-ui/icons";
 
 
-const MobileNav = () => {
+export default MobileNav = () => {
   return (
     <Stack
       bg={useColorModeValue("white", "gray.800")}
       p={4}
       display={{ md: "none" }}
     >
+      <Text /> e
     </Stack>
   );
 };

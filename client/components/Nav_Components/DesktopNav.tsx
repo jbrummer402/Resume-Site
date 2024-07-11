@@ -14,6 +14,7 @@ import {
   PopoverContent,
   Heading,
   ButtonGroup,
+  HStack,
   Spacer,
   useColorModeValue,
   useBreakpointValue,
@@ -29,6 +30,7 @@ import {
 import { NavItem } from "../../types/nav_item.ts";
 import { DesktopSubNav } from '../Nav_Components/DesktopSubNav';
 
+
 export const DesktopNav = (props) => {
   const linkColor = useColorModeValue("gray.600", "gray.200");
   const linkHoverColor = useColorModeValue("gray.800", "white");
@@ -37,10 +39,11 @@ export const DesktopNav = (props) => {
   return (
     <Flex alignItems={"center"} {...props}>
       <Link mr="auto" href="/">
-        <Image h="3rem" src="\images\logos\IMG_0087.PNG" />
+        <Image h="3rem" src="\images\logos\Final Iteration.PNG" />
       </Link>
+      <HStack ml={"1.5rem"}>
       {NAV_ITEMS.map((navItem) => (
-          <Box  key={navItem.label}>
+          <Box key={navItem.label} >
             <Popover trigger={"hover"} placement={"bottom-start"}>
               <PopoverTrigger>
                 <Link
@@ -77,6 +80,7 @@ export const DesktopNav = (props) => {
           </Box>
         ))
       }
+      </HStack>
       <Spacer />
       <ButtonGroup >
         <Button colorScheme="blue" mr="auto">Sign Up</Button>
@@ -108,7 +112,7 @@ const NAV_ITEMS: NavItem[] = [
     href: "/FreelanceServices",
   },
   {
-    label: "Contact + Resume",
+    label: "Links",
     href: "https://linktr.ee/jackbrummer",
   },
 ];
