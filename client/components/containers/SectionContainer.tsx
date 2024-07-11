@@ -1,3 +1,4 @@
+'use client';
 import { Container, Heading, Text, Stack, VStack, UnorderedList, ListItem, Image } from "@chakra-ui/react";
 import { useRef, useEffect } from "react";
 import { motion, useScroll, useInView, useAnimation } from 'framer-motion';
@@ -13,7 +14,6 @@ export default function SectionContainer({...props}: ContainerItemProps ) {
   console.log(props);
   return (
     <div 
-     as={motion.div}
       style={{
         transform: isInView ? "none" : "translateX(-200px)",
         opacity: isInView ? 1 : 0,
@@ -25,7 +25,7 @@ export default function SectionContainer({...props}: ContainerItemProps ) {
       maxW={"90%"}
         mt={"10rem"}
         mb={"10rem"}
-      backgroundImage={props.background_image_path}
+      backgroundImage={props.background_image_path ? props.background_image_path.toString() : ""}
       backgroundRepeat={"no-repeat"}
       backgroundPosition={"right"}
     >

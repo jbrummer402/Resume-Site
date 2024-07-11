@@ -27,7 +27,7 @@ import {
 } from "@chakra-ui/icons";
 
 
-export default MobileNav = () => {
+export default function MobileNav (){
   return (
     <Stack
       bg={useColorModeValue("white", "gray.800")}

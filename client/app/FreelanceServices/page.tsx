@@ -28,7 +28,7 @@ import {
   FormHelperText,
 } from "@chakra-ui/react";
 
-import  { FreelanceForm }  from "../../components/containers/freelance_form.tsx";
+import  { FreelanceForm }  from "../../components/containers/freelance_form";
 
 import { Field, Form, Formik } from 'formik';
 

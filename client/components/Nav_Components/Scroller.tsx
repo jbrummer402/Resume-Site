@@ -6,9 +6,9 @@ import Link from "next/link";
 export default function Scroller (props) {
 
   return(
-    <AbsoluteCenter mt="25rem" position="fixed"mt="35rem" axis="horizontal">
+    <AbsoluteCenter position="fixed"mt="90vh" axis="horizontal">
         <Link href={props.section} >
-          <ChevronDownIcon /> 
+          <ChevronDownIcon boxSize={10}/> 
         </Link>
     </AbsoluteCenter>
   )

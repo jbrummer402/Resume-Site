@@ -1,4 +1,4 @@
-import { ContainerItemProps } from "../../types/types.ts";
+import { ContainerItemProps } from "../../types/types";
 
 const full_name = "Jack Brummer";
 const programming_languages = ["Java", "C++", "Javascript", "Typescript",

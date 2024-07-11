@@ -1,4 +1,3 @@
-'use client';
 
 import Head from "next/head";
 import Link from "next/link";
@@ -19,17 +18,15 @@ import {
   MenuDivider,
 } from "@chakra-ui/react";
 
-import { Transition } from "../components/Transitions/Transition";
-
 import { HamburgerIcon, ArrowUpIcon, ChevronDownIcon } from "@chakra-ui/icons";
 
 import { motion, useScroll } from 'framer-motion';
 
-import ScrollMenu from "../components/scrollMenu";
 import SectionContainer from '../components/containers/SectionContainer';
 import Scroller from '../components/Nav_Components/Scroller';
 
 import { useRef, useEffect } from "react";
+import { cookies } from 'next/headers';
 
 const siteTitle = "Jack Brummer.com";
 const full_name = "Jack Brummer"
@@ -38,11 +35,17 @@ import { about_me, education, interests_and_hobbies } from '../components/sectio
 
 const sections = [about_me, education, interests_and_hobbies];
 
-const menuItems: MenuItems = {
-  menuList: ["About me", "Education", "Interests"],
-};
+async function getCookieData() {
+  const cookieData = cookies().getAll()
+  return new Promise((resolve) =>
+    setTimeout(() => {
+      resolve(cookieData)
+    }, 1000)
+  )
+}
 
-export default function Index(props) {
+export default async function Index(props) {
+  const cookieData = await getCookieData();
   return (
     <>
       <Scroller section="#about-me"/>
@@ -70,7 +73,6 @@ export default function Index(props) {
                 fontWeight={600}
                 fontSize={["5xl", "6xl"]}
               >
-
                 <Text
                   as={"span"}
                   position={"relative"}

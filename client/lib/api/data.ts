@@ -25,9 +25,7 @@ export async function getRepoId(id) {
 export async function getPosts() {
   console.log(`the url is ${process.env.LOCAL_URL}`);
   try {
-    let data = await fetch(`http://${process.env.LOCAL_URL}/all_posts`, {
-      cache: "no-store",
-    });
+    let data = await fetch(`http://${process.env.LOCAL_URL}/all_posts`);
 
     return data.json();
   } catch (error) {
@@ -37,9 +35,8 @@ export async function getPosts() {
 
 export async function getPostId(id) {
   try {
-    let data = await fetch(`http://${process.env.LOCAL_URL}/posts/${id}`, {
-      cache: "no-store",
-    });
+    let data = await fetch(`http://${process.env.LOCAL_URL}/posts/${id}`
+    );
 
     console.log(data);
     return data.json();

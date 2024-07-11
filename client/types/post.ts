@@ -1,11 +1,12 @@
 type Comment = {
 	content: string;
-	userPosted: user;
 } 
 
 export type Post = {
+  id: string;
 	title: string;
 	tags: string[];
 	content: string;
 	comments: Comment[];
+  date: string;
 }

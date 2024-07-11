@@ -28,7 +28,7 @@ import {
 } from "@chakra-ui/icons";
 
 import { DesktopNav } from "../Nav_Components/DesktopNav";
-import { MobileNav } from "../Nav_Components/MobileNav.tsx"
+import MobileNav from "../Nav_Components/MobileNav"
 
 export function WithSubNavigation() {
   const { isOpen, onToggle } = useDisclosure();

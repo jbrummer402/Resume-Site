@@ -1,7 +1,6 @@
 
 type Comment = {
 	content: string;
-	userPosted: user;
 } 
 
 export type NavItem = {

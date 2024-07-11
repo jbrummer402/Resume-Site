@@ -17,7 +17,7 @@ import {
   Center
 } from "@chakra-ui/react";
 
-import BlogTags from "../../components/BlogComponents/BlogTags.tsx";
+import BlogTags from "../../components/BlogComponents/BlogTags";
 
 import { InferGetStaticPropsType, GetStaticProps, GetStaticPaths } from "next";
 

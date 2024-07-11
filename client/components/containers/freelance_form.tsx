@@ -1,8 +1,6 @@
 'use client';
 
 import { useState } from "react";
-
-
 import {
   Box,
   Button,
@@ -184,7 +182,7 @@ export function FreelanceForm() {
                     _hover={{
                       bg: 'blue.500',
                     }}
-                    isFullWidth>
+                    >
                     Send Message
                   </Button>
                 </VStack>

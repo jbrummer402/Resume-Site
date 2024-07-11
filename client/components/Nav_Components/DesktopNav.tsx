@@ -27,7 +27,7 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 
-import { NavItem } from "../../types/nav_item.ts";
+import { NavItem } from "../../types/nav_item";
 import { DesktopSubNav } from '../Nav_Components/DesktopSubNav';
 
 
