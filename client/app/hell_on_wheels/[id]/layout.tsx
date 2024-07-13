@@ -23,21 +23,6 @@ import { isEmpty } from "lodash";
 
 import axios from "axios";
 
-export async function generateStaticParams() {
-  const res = await getPosts();
-  const posts = res; // Add type annotation for 'posts'
-
-  const paths = posts.map((post) => ({
-    // Add type annotation for 'post'
-    id: post.id,
-    title: post.title,
-    content: post.content,
-    tags: post.tags,
-  }));
-
-  console.log(paths);
-  return paths;
-}
 
 async function getBlogData({ slug }: { slug: string }) {
   const posts = await getPosts();
