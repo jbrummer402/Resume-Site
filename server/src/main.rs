@@ -165,22 +165,18 @@ async fn get_all_users(state: web::Data<AppState>) -> Result<Json<Vec<user::User
 async fn main(
     #[shuttle_shared_db::Postgres] pool: PgPool,
 ) -> ShuttleActixWeb<impl FnOnce(&mut ServiceConfig) + Send + Clone + 'static> {
-    pool.execute(include_str!("../schema.sql"))
+    sqlx::migrate!()
+        .run(&pool)
         .await
-        .map_err(CustomError::new)?;
+        .expect("Failed to run migrations");
 
 
     let state = web::Data::new(AppState { pool });
 
     let config = move |cfg: &mut ServiceConfig| {
         // set up your service here, e.g.:
-    let cors = Cors::default()
-        .allow_any_origin()
-        .allow_any_method()
-    .allow_any_header();
         cfg.service(web::scope("/app")
             .wrap(Logger::default())
-            .wrap(cors)
             .service(create_new_user)
             .service(get_all_users)
             .service(create_new_post)
