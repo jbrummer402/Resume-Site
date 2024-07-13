@@ -8,7 +8,6 @@ CREATE TYPE "comment" AS (
   likes INTEGER
 );
 
-DROP TABLE IF EXISTS "users";
 
 CREATE TABLE IF NOT EXISTS "users" (
   id UUID NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -18,7 +17,6 @@ CREATE TABLE IF NOT EXISTS "users" (
   password VARCHAR(200) NOT NULL
 );
 
-DROP TABLE IF EXISTS "posts";
 
 CREATE TABLE IF NOT EXISTS "posts" (
   id UUID NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),

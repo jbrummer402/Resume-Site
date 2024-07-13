@@ -2,24 +2,23 @@ use actix_web::middleware::Logger;
 use actix_web::{
     error, get, post,
     web::{self, Json, ServiceConfig},
-    http::StatusCode,
     Result,
     Responder,
 };
-use std::sync::Mutex;
-use serde::{Deserialize, Serialize};
+
+
 use shuttle_actix_web::ShuttleActixWeb;
 use shuttle_runtime::{CustomError};
-use sqlx::{Executor, FromRow, PgPool};
-use sqlx::{types::uuid::Uuid};
+use sqlx::{PgPool};
+
 use brummer_resume_backend::user;
 use brummer_resume_backend::post;
 use brummer_resume_backend::comment;
-use brummer_resume_backend::repo;
-use serde_json::Value;
+
+
 use actix_cors::Cors;
-use reqwest::{header, Error};
-use awc;
+use reqwest::{header};
+
 
 #[derive(Clone)]
 struct AppState {
@@ -168,15 +167,20 @@ async fn main(
     sqlx::migrate!()
         .run(&pool)
         .await
-        .expect("Failed to run migrations");
+        .map_err(CustomError::new)?;
 
 
     let state = web::Data::new(AppState { pool });
 
     let config = move |cfg: &mut ServiceConfig| {
         // set up your service here, e.g.:
+    let cors = Cors::default()
+        .allow_any_origin()
+        .allow_any_method()
+    .allow_any_header();
         cfg.service(web::scope("/app")
             .wrap(Logger::default())
+            .wrap(cors)
             .service(create_new_user)
             .service(get_all_users)
             .service(create_new_post)
