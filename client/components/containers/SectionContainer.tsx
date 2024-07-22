@@ -14,6 +14,7 @@ export default function SectionContainer({...props}: ContainerItemProps ) {
   console.log(props);
   return (
     <div 
+      key={props.id}
       style={{
         transform: isInView ? "none" : "translateX(-200px)",
         opacity: isInView ? 1 : 0,
@@ -69,7 +70,7 @@ export default function SectionContainer({...props}: ContainerItemProps ) {
             <UnorderedList spacing={1} paddingLeft={"3em"}>
               {props.listItems && props.listItems.length > 0 ? 
                   props.listItems.map((item) => {
-                   return <ListItem>{item}</ListItem> 
+                   return <ListItem key={item}>{item}</ListItem> 
                   })
                 : ""}
             </UnorderedList>

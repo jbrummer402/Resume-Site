@@ -30,6 +30,7 @@ import { NavItem } from "../../types/nav_item";
 export const DesktopSubNav: React.FC<NavItem> = ({label, sublabel, href, children}) => {
   return (
     <Link
+      key={href}
       href={href}
       role={"group"}
       display={"block"}

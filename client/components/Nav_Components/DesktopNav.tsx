@@ -2,34 +2,18 @@ import {
   Image,
   Box,
   Flex,
-  Text,
-  IconButton,
-  Button,
   Stack,
-  Collapse,
-  Icon,
   Link,
   Popover,
   PopoverTrigger,
   PopoverContent,
-  Heading,
-  ButtonGroup,
   HStack,
   Spacer,
   useColorModeValue,
-  useBreakpointValue,
-  useDisclosure,
 } from "@chakra-ui/react";
-import {
-  HamburgerIcon,
-  CloseIcon,
-  ChevronDownIcon,
-  ChevronRightIcon,
-} from "@chakra-ui/icons";
 
 import { NavItem } from "../../types/nav_item";
-import { DesktopSubNav } from '../Nav_Components/DesktopSubNav';
-
+import { DesktopSubNav } from "../Nav_Components/DesktopSubNav";
 
 export const DesktopNav = (props) => {
   const linkColor = useColorModeValue("gray.600", "gray.200");
@@ -42,8 +26,8 @@ export const DesktopNav = (props) => {
         <Image h="3rem" src="\images\logos\Final Iteration.PNG" />
       </Link>
       <HStack ml={"1.5rem"}>
-      {NAV_ITEMS.map((navItem) => (
-          <Box key={navItem.label} >
+        {NAV_ITEMS.map((navItem) => (
+          <Box key={navItem.sublabel}>
             <Popover trigger={"hover"} placement={"bottom-start"}>
               <PopoverTrigger>
                 <Link
@@ -71,21 +55,16 @@ export const DesktopNav = (props) => {
                 >
                   <Stack>
                     {navItem.children.map((child) => (
-                      <DesktopSubNav {...child}/>
+                      <DesktopSubNav key={navItem.href} {...child} />
                     ))}
                   </Stack>
                 </PopoverContent>
               )}
             </Popover>
           </Box>
-        ))
-      }
+        ))}
       </HStack>
       <Spacer />
-      <ButtonGroup >
-        <Button colorScheme="blue" mr="auto">Sign Up</Button>
-        <Button variant="outline">Log in</Button>
-      </ButtonGroup>
     </Flex>
   );
 };

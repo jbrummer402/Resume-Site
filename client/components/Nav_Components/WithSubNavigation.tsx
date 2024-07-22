@@ -2,33 +2,16 @@ import {
   Image,
   Box,
   Flex,
-  Text,
   IconButton,
-  Button,
-  Stack,
   Collapse,
-  Icon,
   Link,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  Heading,
-  ButtonGroup,
-  Spacer,
   useColorModeValue,
-  useBreakpointValue,
   useDisclosure,
-  Center,
 } from "@chakra-ui/react";
-import {
-  HamburgerIcon,
-  CloseIcon,
-  ChevronDownIcon,
-  ChevronRightIcon,
-} from "@chakra-ui/icons";
+import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 
 import { DesktopNav } from "../Nav_Components/DesktopNav";
-import MobileNav from "../Nav_Components/MobileNav"
+import MobileNav from "../Nav_Components/MobileNav";
 
 export function WithSubNavigation() {
   const { isOpen, onToggle } = useDisclosure();
@@ -42,21 +25,11 @@ export function WithSubNavigation() {
         borderStyle={"solid"}
         borderColor={useColorModeValue("gray.100", "gray.800")}
       >
-
-        <Flex
-          display={{ base: "flex", md: "none" }}
-          justify="center"
-          p={"2"}
-      >
+        <Flex display={{ base: "flex", md: "none" }} justify="center" p={"2"}>
           <IconButton
             onClick={onToggle}
             icon={
-              isOpen ? (
-                <CloseIcon w={3} h={3} />
-                
-              ) : (
-                <HamburgerIcon w={5} h={5} />
-              )
+              isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
             }
             variant={"ghost"}
             aria-label={"Toggle Navigation"}
@@ -66,13 +39,11 @@ export function WithSubNavigation() {
             <Image h="3rem" src="\images\logos\Final Iteration.PNG" />
           </Link>
         </Flex>
-        <Box display={{base: "none", md: "inherit"}}>
-
-            <DesktopNav p={3}/>
+        <Box display={{ base: "none", md: "inherit" }}>
+          <DesktopNav p={3} />
         </Box>
       </Box>
       <Collapse in={isOpen} animateOpacity></Collapse>
     </Box>
   );
 }
-

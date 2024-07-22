@@ -112,7 +112,7 @@ export default async function Index(props) {
 
           <Stack maxW={"100%"} mt={"25rem"} spacing={5}>
             {sections.map((item) => {
-              return (<SectionContainer {...item} />)
+              return (<SectionContainer key={item.title} {...item} />)
             })}
           </Stack>
         </Stack>

@@ -1,33 +1,16 @@
 import {
-  Image,
-  Box,
   Flex,
   Text,
-  IconButton,
-  Button,
   Stack,
   Collapse,
   Icon,
   Link,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  Heading,
-  ButtonGroup,
-  Spacer,
   useColorModeValue,
-  useBreakpointValue,
   useDisclosure,
 } from "@chakra-ui/react";
-import {
-  HamburgerIcon,
-  CloseIcon,
-  ChevronDownIcon,
-  ChevronRightIcon,
-} from "@chakra-ui/icons";
+import { ChevronDownIcon } from "@chakra-ui/icons";
 
-
-export default function MobileNav (){
+export default function MobileNav() {
   return (
     <Stack
       bg={useColorModeValue("white", "gray.800")}
@@ -37,7 +20,7 @@ export default function MobileNav (){
       <Text /> e
     </Stack>
   );
-};
+}
 
 const MobileNavItem = ({ label, children, href }) => {
   const { isOpen, onToggle } = useDisclosure();
