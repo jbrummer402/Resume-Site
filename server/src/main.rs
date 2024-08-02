@@ -1,3 +1,5 @@
+use actix_web::dev::Response;
+use actix_web::http::header::ContentType;
 use actix_web::middleware::Logger;
 use actix_web::{
     error, get, post,
@@ -7,9 +9,12 @@ use actix_web::{
 };
 
 
+use awc::http::StatusCode;
 use shuttle_actix_web::ShuttleActixWeb;
 use shuttle_runtime::{CustomError};
 use sqlx::{PgPool};
+use actix_web::{HttpRequest, HttpResponse};
+use serde_json::Value;
 
 use brummer_resume_backend::user;
 use brummer_resume_backend::post;
@@ -17,42 +22,40 @@ use brummer_resume_backend::comment;
 
 
 use actix_cors::Cors;
-use reqwest::{header};
-
+use reqwest::{header, Client, RequestBuilder};
+use qstring::QString;
+use mime;
 
 #[derive(Clone)]
 struct AppState {
+    client: reqwest::Client,
     pool: PgPool,
+    spotify_token_endpoint: &'static str,
+    now_playing_endpoint: &'static str,
+    redirect_url: &'static str,
 }
 
-#[get("/repos")]
-async fn get_request() -> impl Responder {
-    let client = reqwest::Client::new();
-
-    let res = client.get("https://api.github.com/users/jbrummer402/repos")
-        .header(header::USER_AGENT, "Bearer your_access_token_here")
-        .send()
-        .await
-        .expect("Failed to send request")
-        .text()
-        .await
-        .expect("Failed to read response text");
-
+async fn get_request(data: web::Data<AppState>) -> HttpResponse {
+    println!("get request");
+    let client = &data.client;
+    let res = async {
+        client
+            .get("https://api.github.com/users/jbrummer402/repos")
+            .header("User-Agent", "request")
+            .send()
+            .await?
+            .error_for_status()?
+            .json::<Value>()
+            .await
+    }.await;
     println!("{:?}", res);
-    Json(res.clone())
+
+    match res {
+        Ok(v) => HttpResponse::Ok().content_type("application/json").body(v.to_string()),
+        Err(e) => HttpResponse::InternalServerError().body(e.to_string()),
+    }
 }
-// static CRATES: &str = "https://api.github.com/users/jbrummer402/repos";
-//
-// #[get("/crates")]
-// async fn get_all_repos(data: web::Data<AppState>) -> HttpResponse {
-//     let client = &data.client;
-//
-//     let result = client.get("https://api.github.com/users/jbrummer402/repos");
-//
-//     result
-//
-// }
-//
+
 
 // #[post("/posts/{id}/submit_comment")]
 // async fn add_comment_to_post(id: web::Path<String>, state: web::Data<AppState>) -> Result<StatusCode>{
@@ -159,10 +162,24 @@ async fn get_all_users(state: web::Data<AppState>) -> Result<Json<Vec<user::User
 
 }
 
+// #[get("/spotify")]
+// async fn authorize(state: web::Data<AppState>, req: HttpRequest) -> Result<impl ResponseBuilder, actix_web::Error> {
+
+//     let query_string = req:: 
+
+//     let mut res: Response<_> = Response::build(StatusCode::OK)
+//     .content_type(mime::APPLICATION_JSON)
+//     .insert_header(header)
+//     .body("body");
+
+
+//     Ok(res)
+// }
 
 #[shuttle_runtime::main]
 async fn main(
-    #[shuttle_shared_db::Postgres] pool: PgPool,
+    #[shuttle_shared_db::Postgres
+    ] pool: sqlx::PgPool,
 ) -> ShuttleActixWeb<impl FnOnce(&mut ServiceConfig) + Send + Clone + 'static> {
     sqlx::migrate!()
         .run(&pool)
@@ -170,7 +187,11 @@ async fn main(
         .map_err(CustomError::new)?;
 
 
-    let state = web::Data::new(AppState { pool });
+    let state = web::Data::new(AppState { pool: pool, 
+        client: reqwest::Client::new(),
+        spotify_token_endpoint: "https://accounts.spotify.com/api/token?grant_type=client_credentials",
+        now_playing_endpoint: "https://api.spotify.com/v1/me/player/currently-playing",
+    redirect_url: "https://www.jackbrummer.com"});
 
     let config = move |cfg: &mut ServiceConfig| {
         // set up your service here, e.g.:
@@ -186,8 +207,9 @@ async fn main(
             .service(create_new_post)
             .service(get_all_posts)
             .service(get_post_by_id)
-            .service(get_request)
-            .app_data(state),
+            // .service(authorize)
+            .app_data(state)
+            .route("/repos", web::get().to(get_request)),
         );
     };
     Ok(config.into())

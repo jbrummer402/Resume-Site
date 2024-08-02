@@ -1,16 +1,10 @@
-"use client";
 import Head from "next/head";
 import Link from "next/link";
 import { Container, Heading, Text } from "@chakra-ui/react";
 
 import { FreelanceForm } from "../../components/containers/freelance_form";
 
-import { useState, useRef } from "react";
-
 export default function FreelanceServices() {
-  const recaptcha = useRef();
-  const [captchaVerified, setCaptchaVerified] = useState(false);
-
   const handleSubmit = (e) => {
     let formData = e.target.value;
     console.log(formData);

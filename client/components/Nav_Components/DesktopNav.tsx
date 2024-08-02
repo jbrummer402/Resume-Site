@@ -10,6 +10,8 @@ import {
   HStack,
   Spacer,
   useColorModeValue,
+  Switch,
+  useColorMode,
 } from "@chakra-ui/react";
 
 import { NavItem } from "../../types/nav_item";
@@ -20,10 +22,12 @@ export const DesktopNav = (props) => {
   const linkHoverColor = useColorModeValue("gray.800", "white");
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
 
+  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <Flex alignItems={"center"} {...props}>
       <Link mr="auto" href="/">
-        <Image h="3rem" src="\images\logos\Final Iteration.PNG" />
+        <Image rounded="md" h="3rem" src="\images\logos\Final Iteration.PNG" />
       </Link>
       <HStack ml={"1.5rem"}>
         {NAV_ITEMS.map((navItem) => (
@@ -65,6 +69,7 @@ export const DesktopNav = (props) => {
         ))}
       </HStack>
       <Spacer />
+      <Switch size="md" onChange={toggleColorMode} />
     </Flex>
   );
 };
@@ -85,7 +90,7 @@ const NAV_ITEMS: NavItem[] = [
       {
         label: "View my work",
         sublabel: "Check out some of the projects I've worked on",
-        href: "/personal_projects",
+        href: "/view_my_work",
       },
     ],
     href: "/FreelanceServices",

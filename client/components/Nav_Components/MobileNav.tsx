@@ -5,11 +5,11 @@ import {
   Collapse,
   Icon,
   Link,
+  Box,
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-
 export default function MobileNav() {
   return (
     <Stack
@@ -17,22 +17,24 @@ export default function MobileNav() {
       p={4}
       display={{ md: "none" }}
     >
-      <Text /> e
+      {NAV_ITEMS.map((navItem) => (
+        <MobileNavItem key={navItem.label} {...navItem} />
+      ))}
     </Stack>
   );
 }
 
-const MobileNavItem = ({ label, children, href }) => {
+const MobileNavItem = ({ label, children, href }: NavItem) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
     <Stack spacing={4} onClick={children && onToggle}>
-      <Flex
+      <Box
         py={2}
-        as={Link}
+        as="a"
         href={href ?? "#"}
-        justify={"space-between"}
-        align={"center"}
+        justifyContent="space-between"
+        alignItems="center"
         _hover={{
           textDecoration: "none",
         }}
@@ -52,7 +54,7 @@ const MobileNavItem = ({ label, children, href }) => {
             h={6}
           />
         )}
-      </Flex>
+      </Box>
 
       <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
         <Stack
@@ -63,17 +65,62 @@ const MobileNavItem = ({ label, children, href }) => {
           borderColor={useColorModeValue("gray.200", "gray.700")}
           align={"start"}
         >
-          {children ? (
+          {children &&
             children.map((child) => (
-              <Link key={child.label} py={2} href={child.href}>
+              <Box as="a" key={child.label} py={2} href={child.href}>
                 {child.label}
-              </Link>
-            ))
-          ) : (
-            <></>
-          )}
+              </Box>
+            ))}
         </Stack>
       </Collapse>
     </Stack>
   );
 };
+
+interface NavItem {
+  label: string;
+  subLabel?: string;
+  children?: Array<NavItem>;
+  href?: string;
+}
+
+const NAV_ITEMS: Array<NavItem> = [
+  {
+    label: "Inspiration",
+    children: [
+      {
+        label: "Explore Design Work",
+        subLabel: "Trending Design to inspire you",
+        href: "#",
+      },
+      {
+        label: "New & Noteworthy",
+        subLabel: "Up-and-coming Designers",
+        href: "#",
+      },
+    ],
+  },
+  {
+    label: "Find Work",
+    children: [
+      {
+        label: "Job Board",
+        subLabel: "Find your dream design job",
+        href: "#",
+      },
+      {
+        label: "Freelance Projects",
+        subLabel: "An exclusive list for contract work",
+        href: "#",
+      },
+    ],
+  },
+  {
+    label: "Learn Design",
+    href: "#",
+  },
+  {
+    label: "Hire Designers",
+    href: "#",
+  },
+];

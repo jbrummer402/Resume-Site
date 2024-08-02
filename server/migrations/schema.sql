@@ -1,5 +1,6 @@
 
 
+
 DROP TYPE IF EXISTS "comment" cascade;
 
 CREATE TYPE "comment" AS (
