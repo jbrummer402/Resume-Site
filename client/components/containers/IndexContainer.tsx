@@ -40,57 +40,15 @@ const sections = [index, about_me, education, interests_and_hobbies];
 
 export default function IndexContainer(props) {
   return (
-    <>
-      <AnimatePresence>
-        <StartingAnimation isVisible={true} />
-        <Container maxW={"100%"}>
-          <Head>
-            <title>{siteTitle}</title>
-          </Head>
-          <Stack>
-            <VStack align={"start"}>
-              <Stack ml={"5rem"} h={"70vh"}>
-                <Heading
-                  lineHeight={1.1}
-                  fontWeight={600}
-                  mt={"100vh"}
-                  fontSize={["5xl", "6xl"]}
-                >
-                  Welcome to my website
-                </Heading>
-                <HStack alignItems={"start"}>
-                  <VStack alignItems={"start"}>
-                    <Text
-                      color={"gray.550"}
-                      fontSize={"2xl"}
-                      maxW={"50%"}
-                      textShadow={"-1px 0px gray"}
-                    >
-                      Here you'll find some of my favorite projects that I have
-                      worked on over the years. I made this site completely on
-                      my own using React and Next.js for the front end.
-                    </Text>
-                    <IndexLinkContainer />
-                    {/* <SvgAnimate /> */}
-                    {/* <SpotifyNowPlaying /> */}
-                  </VStack>
-                  <TwitchBox />
-                </HStack>
-              </Stack>
-            </VStack>
-
-            <Stack maxW={"100%"} mt={"25rem"} id={"#index"} spacing={5}>
-              {sections.map((item) => {
-                return (
-                  <>
-                    <SectionContainer key={item.title} {...item} />
-                  </>
-                );
-              })}
-            </Stack>
-          </Stack>
-        </Container>
-      </AnimatePresence>
-    </>
+    <AnimatePresence>
+      <StartingAnimation isVisible={true} />
+      <Container maxW={"100%"}>
+        <Stack maxW={"100%"} mt={"25rem"} id={"#index"} spacing={5}>
+          {sections.map((item) => {
+            return <SectionContainer key={item.title} {...item} />;
+          })}
+        </Stack>
+      </Container>
+    </AnimatePresence>
   );
 }

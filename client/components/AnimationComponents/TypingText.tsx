@@ -71,6 +71,7 @@ export const TypingText = ({ texts, animationVariant }: AnimationProps) => {
           <>
             {item.text.split("").map((char) => (
               <motion.span
+                key={char}
                 style={{ fontSize: item.fontSize }}
                 variants={animationVariant}
               >
