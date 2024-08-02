@@ -18,43 +18,33 @@ import IndexLinkContainer from "./IndexLinkContainers";
 import TwitchBox from "../Embeds/TwitchEmbed";
 import { ContainerItemProps } from "../../types/types";
 
-const IndexSectionContainer = (siteTitle) => {
+const IndexSectionContainer = ({ ...props }: ContainerItemProps) => {
   return (
-    <>
-      <Head>
-        <title>{siteTitle}</title>
-      </Head>
-      <VStack align={"start"}>
-        <Stack>
-          <Heading
-            lineHeight={1.1}
-            fontWeight={600}
-            mt={"100vh"}
-            fontSize={["5xl", "6xl"]}
-          >
-            Welcome to my website
-          </Heading>
-          <HStack alignItems={"start"}>
-            <VStack alignItems={"start"}>
-              <Text
-                color={"gray.550"}
-                fontSize={"2xl"}
-                maxW={"50%"}
-                textShadow={"-1px 0px gray"}
-              >
-                Here you'll find some of my favorite projects that I have worked
-                on over the years. I made this site completely on my own using
-                React and Next.js for the front end.
-              </Text>
-              <IndexLinkContainer />
-              {/* <SvgAnimate /> */}
-              {/* <SpotifyNowPlaying /> */}
-            </VStack>
-            <TwitchBox />
-          </HStack>
-        </Stack>
-      </VStack>
-    </>
+    <VStack align={"start"} mt={"50vh"}>
+      <Stack {...props} p={"10rem"}>
+        <Heading lineHeight={1.1} fontWeight={600} fontSize={["5xl", "6xl"]}>
+          Welcome to my website
+        </Heading>
+        <HStack alignItems={"start"}>
+          <VStack alignItems={"start"}>
+            <Text
+              color={"gray.550"}
+              fontSize={"2xl"}
+              maxW={"50%"}
+              textShadow={"-1px 0px gray"}
+            >
+              Here you'll find some of my favorite projects that I have worked
+              on over the years. I made this site completely on my own using
+              React and Next.js for the front end.
+            </Text>
+            <IndexLinkContainer />
+            {/* <SvgAnimate /> */}
+            {/* <SpotifyNowPlaying /> */}
+          </VStack>
+          <TwitchBox />
+        </HStack>
+      </Stack>
+    </VStack>
   );
 };
 
@@ -62,9 +52,8 @@ export default function SectionContainer({ ...props }: ContainerItemProps) {
   const ref = useRef(null);
   const isInView = useInView(ref);
 
-  console.log(props);
-  return props.id === "index" ? (
-    <IndexSectionContainer siteTitle={"Jack Brummer.com"} />
+  return props.id === "index-container" ? (
+    <IndexSectionContainer {...props} />
   ) : (
     <div
       key={props.id}
@@ -73,7 +62,6 @@ export default function SectionContainer({ ...props }: ContainerItemProps) {
         opacity: isInView ? 1 : 0,
         transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
       }}
-      id={props.id}
       ref={ref}
     >
       <Container

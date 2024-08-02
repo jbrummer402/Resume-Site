@@ -42,13 +42,16 @@ export default function IndexContainer(props) {
   return (
     <AnimatePresence>
       <StartingAnimation isVisible={true} />
-      <Container maxW={"100%"}>
-        <Stack maxW={"100%"} mt={"25rem"} id={"#index"} spacing={5}>
-          {sections.map((item) => {
-            return <SectionContainer key={item.title} {...item} />;
-          })}
-        </Stack>
-      </Container>
+      <Scroller section="#index-container" />
+      <Stack maxW={"100%"} spacing={5}>
+        {sections.map((item) => {
+          return (
+            <>
+              <SectionContainer key={item.title} {...item} />
+            </>
+          );
+        })}
+      </Stack>
     </AnimatePresence>
   );
 }

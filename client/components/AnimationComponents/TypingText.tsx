@@ -54,12 +54,7 @@ const CursorBlink = () => {
 export const TypingText = ({ texts, animationVariant }: AnimationProps) => {
   let [displayArrow, setDisplayArrow] = useState(false);
   return (
-    <Container
-      mt={"15rem"}
-      maxW={"80vw"}
-      display={"flex"}
-      alignContent={"flex-start"}
-    >
+    <Container mt="50vh" maxW={"80vw"}>
       <motion.span
         className="inline-block"
         initial="hidden"

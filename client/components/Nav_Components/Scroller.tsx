@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Scroller(props) {
   return (
-    <AbsoluteCenter position="absolute" axis="horizontal" {...props}>
+    <AbsoluteCenter axis="horizontal">
       <Link href={props.section}>
         <ChevronDownIcon boxSize={10} />
       </Link>
