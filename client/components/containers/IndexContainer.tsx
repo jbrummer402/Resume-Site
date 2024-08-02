@@ -17,6 +17,7 @@ const full_name = "Jack Brummer";
 import { StartingAnimation } from "../../app/layout";
 
 import {
+  index,
   about_me,
   education,
   interests_and_hobbies,
@@ -24,7 +25,7 @@ import {
 import TwitchBox from "../Embeds/TwitchEmbed";
 import { useEffect, useState } from "react";
 
-const sections = [about_me, education, interests_and_hobbies];
+const sections = [index, about_me, education, interests_and_hobbies];
 
 // const textAnimation = {
 //   hidden: {
@@ -42,55 +43,54 @@ export default function IndexContainer(props) {
     <>
       <AnimatePresence>
         <StartingAnimation isVisible={true} />
-      </AnimatePresence>
-      <Container maxW={"100%"}>
-        <Head>
-          <title>{siteTitle}</title>
-        </Head>
-        <Stack id="#index">
-          <VStack align={"start"} mt={"100vh"}>
-            <Stack ml={"5rem"} h={"70vh"}>
-              <Heading
-                mt={"10rem"}
-                lineHeight={1.1}
-                fontWeight={600}
-                fontSize={["5xl", "6xl"]}
-              >
-                Welcome to my website
-              </Heading>
-              <HStack alignItems={"start"}>
-                <VStack alignItems={"start"}>
-                  <Text
-                    color={"gray.550"}
-                    fontSize={"2xl"}
-                    maxW={"50%"}
-                    textShadow={"-1px 0px gray"}
-                  >
-                    Here you'll find some of my favorite projects that I have
-                    worked on over the years. I made this site completely on my
-                    own using React and Next.js for the front end.
-                  </Text>
-                  <IndexLinkContainer />
-                  {/* <SvgAnimate /> */}
-                  {/* <SpotifyNowPlaying /> */}
-                </VStack>
-                <TwitchBox />
-              </HStack>
-            </Stack>
-          </VStack>
+        <Container maxW={"100%"}>
+          <Head>
+            <title>{siteTitle}</title>
+          </Head>
+          <Stack>
+            <VStack align={"start"}>
+              <Stack ml={"5rem"} h={"70vh"}>
+                <Heading
+                  lineHeight={1.1}
+                  fontWeight={600}
+                  mt={"100vh"}
+                  fontSize={["5xl", "6xl"]}
+                >
+                  Welcome to my website
+                </Heading>
+                <HStack alignItems={"start"}>
+                  <VStack alignItems={"start"}>
+                    <Text
+                      color={"gray.550"}
+                      fontSize={"2xl"}
+                      maxW={"50%"}
+                      textShadow={"-1px 0px gray"}
+                    >
+                      Here you'll find some of my favorite projects that I have
+                      worked on over the years. I made this site completely on
+                      my own using React and Next.js for the front end.
+                    </Text>
+                    <IndexLinkContainer />
+                    {/* <SvgAnimate /> */}
+                    {/* <SpotifyNowPlaying /> */}
+                  </VStack>
+                  <TwitchBox />
+                </HStack>
+              </Stack>
+            </VStack>
 
-          <Stack maxW={"100%"} mt={"25rem"} spacing={5}>
-            {sections.map((item) => {
-              return (
-                <>
-                  <SectionContainer key={item.title} {...item} />
-                  <Scroller position="fixed" section={`#${item.id}`} />
-                </>
-              );
-            })}
+            <Stack maxW={"100%"} mt={"25rem"} id={"#index"} spacing={5}>
+              {sections.map((item) => {
+                return (
+                  <>
+                    <SectionContainer key={item.title} {...item} />
+                  </>
+                );
+              })}
+            </Stack>
           </Stack>
-        </Stack>
-      </Container>
+        </Container>
+      </AnimatePresence>
     </>
   );
 }

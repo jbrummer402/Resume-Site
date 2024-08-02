@@ -18,7 +18,7 @@ export default async function GithubCard(props) {
           <Heading size={"md"}>{props.name}</Heading>
         </CardHeader>
         {Object.keys(langlist).map((item) => (
-          <CardFooter>{item}</CardFooter>
+          <CardFooter key={item}>{item}</CardFooter>
         ))}
       </Card>
     </GridItem>

@@ -82,7 +82,7 @@ export const TypingText = ({ texts, animationVariant }: AnimationProps) => {
         ))}
       </motion.span>
       {/* <CursorBlink /> */}
-      {displayArrow ? <Scroller mt={"40vw"} section="#index" /> : ""}
+      {/* {displayArrow ? <Scroller section="#index" /> : ""} */}
     </Container>
   );
 };

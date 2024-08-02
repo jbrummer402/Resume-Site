@@ -12,6 +12,17 @@ const programming_languages = [
 
 const about_me_images = ["/images/Jack_Brummer (1).jpg"];
 
+export const index: ContainerItemProps = {
+  id: "about-me",
+  title: "About Me",
+  background_image_path: "/background_2.svg",
+  sublabel: `Hi there! My name is ${full_name}`,
+  listItems: programming_languages,
+  description:
+    "I am heavily interested in nearly all things computer science. I began programming in my early teens and still love the problem solving that comes with it, and all the things you are able to do and create.",
+  image_path: about_me_images,
+};
+
 export const about_me: ContainerItemProps = {
   id: "about-me",
   title: "About Me",
