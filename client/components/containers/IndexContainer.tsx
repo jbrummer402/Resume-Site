@@ -41,9 +41,8 @@ const sections = [index, about_me, education, interests_and_hobbies];
 export default function IndexContainer(props) {
   return (
     <AnimatePresence>
-      <StartingAnimation isVisible={true} />
-      <Scroller section="#index-container" />
-      <Stack maxW={"100%"} spacing={5}>
+      <StartingAnimation isVisible={true} mt={"20rem"} />
+      <Stack spacing={5}>
         {sections.map((item) => {
           return (
             <>

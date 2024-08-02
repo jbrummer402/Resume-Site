@@ -20,8 +20,8 @@ import { ContainerItemProps } from "../../types/types";
 
 const IndexSectionContainer = ({ ...props }: ContainerItemProps) => {
   return (
-    <VStack align={"start"} mt={"50vh"}>
-      <Stack {...props} p={"10rem"}>
+    <VStack align={"start"}>
+      <Stack {...props}>
         <Heading lineHeight={1.1} fontWeight={600} fontSize={["5xl", "6xl"]}>
           Welcome to my website
         </Heading>
@@ -63,6 +63,7 @@ export default function SectionContainer({ ...props }: ContainerItemProps) {
         transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
       }}
       ref={ref}
+      id={props.id}
     >
       <Container
         maxW={"90%"}
