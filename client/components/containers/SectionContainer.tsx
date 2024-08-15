@@ -10,6 +10,7 @@ import {
   UnorderedList,
   ListItem,
   Image,
+  Box,
 } from "@chakra-ui/react";
 import { useRef, useEffect } from "react";
 import { motion, useScroll, useInView, useAnimation } from "framer-motion";
@@ -17,20 +18,25 @@ import container_styles from "../../styles/component_styles/container_styles.mod
 import IndexLinkContainer from "./IndexLinkContainers";
 import TwitchBox from "../Embeds/TwitchEmbed";
 import { ContainerItemProps } from "../../types/types";
+import SpotifyNowPlaying from "../spotify/SpotifyNowPlaying";
 
 const IndexSectionContainer = ({ ...props }: ContainerItemProps) => {
   return (
-    <VStack align={"start"}>
-      <Stack {...props}>
-        <Heading lineHeight={1.1} fontWeight={600} fontSize={["5xl", "6xl"]}>
+    <VStack align={"start"} pl={"5rem"} pt={"25rem"} {...props}>
+      <Stack maxW={"90%"}>
+        <Heading
+          lineHeight={1.1}
+          fontWeight={600}
+          fontSize={["4xl", "5xl", "6xl"]}
+        >
           Welcome to my website
         </Heading>
-        <HStack alignItems={"start"}>
-          <VStack alignItems={"start"}>
+        <Stack direction={{ sm: "column", xl: "row" }}>
+          <VStack align={"start"}>
             <Text
               color={"gray.550"}
               fontSize={"2xl"}
-              maxW={"50%"}
+              maxW={"80vw"}
               textShadow={"-1px 0px gray"}
             >
               Here you'll find some of my favorite projects that I have worked
@@ -38,11 +44,13 @@ const IndexSectionContainer = ({ ...props }: ContainerItemProps) => {
               React and Next.js for the front end.
             </Text>
             <IndexLinkContainer />
+            <SpotifyNowPlaying />
             {/* <SvgAnimate /> */}
-            {/* <SpotifyNowPlaying /> */}
           </VStack>
-          <TwitchBox />
-        </HStack>
+          <Box display={{ base: "none", md: "inline-block" }}>
+            <TwitchBox />
+          </Box>
+        </Stack>
       </Stack>
     </VStack>
   );
@@ -66,9 +74,9 @@ export default function SectionContainer({ ...props }: ContainerItemProps) {
       id={props.id}
     >
       <Container
-        maxW={"90%"}
-        mt={"10rem"}
-        mb={"10rem"}
+        ml="5rem"
+        position={"relative"}
+        maxW={"80vw"}
         backgroundImage={
           props.background_image_path
             ? props.background_image_path.toString()
@@ -101,12 +109,7 @@ export default function SectionContainer({ ...props }: ContainerItemProps) {
             <Heading fontSize={"2xl"}>{props.sublabel}</Heading>
 
             <Text fontSize={"xl"} color={"gray.550"} fontWeight={"630"}></Text>
-            <Text
-              fontSize={"xl"}
-              id={"#foo"}
-              color={"gray.550"}
-              fontWeight={"630"}
-            >
+            <Text fontSize={"xl"} color={"gray.550"} fontWeight={"630"}>
               {props.description}
             </Text>
             <UnorderedList spacing={1} paddingLeft={"3em"}>

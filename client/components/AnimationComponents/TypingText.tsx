@@ -54,7 +54,7 @@ const CursorBlink = () => {
 export const TypingText = ({ texts, animationVariant }: AnimationProps) => {
   let [displayArrow, setDisplayArrow] = useState(false);
   return (
-    <Container mt="50vh" maxW={"80vw"} mb={"20vh"}>
+    <Container mt="50vh" maxW={"90%"} mb={"20vh"}>
       <motion.span
         className="inline-block"
         initial="hidden"
@@ -78,7 +78,7 @@ export const TypingText = ({ texts, animationVariant }: AnimationProps) => {
         ))}
       </motion.span>
       {/* <CursorBlink /> */}
-      {/* {displayArrow ? <Scroller section="#index" /> : ""} */}
+      {/* {displayArrow ? <Scroller mt={"15rem"} section="#index-container" /> : ""} */}
     </Container>
   );
 };

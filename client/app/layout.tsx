@@ -18,38 +18,6 @@ import { useEffect, useRef } from "react";
 
 import { AnimationProps } from "../components/AnimationComponents/TypingText";
 
-const textAnimation: AnimationProps = {
-  texts: [
-    { text: "Hello there!", fontSize: "8vw" },
-    { text: "My name is Jack Brummer", fontSize: "4vw" },
-  ],
-  animationVariant: {
-    hidden: {
-      opacity: 0,
-      y: 20,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-    },
-  },
-};
-export function StartingAnimation({ isVisible }) {
-  let present = useIsPresent();
-  useEffect(() => {
-    !present && console.log("Ive been removed burrrrrrrrrruhjasd");
-  }, [present]);
-
-  return (
-    <motion.div
-      key={"starting-animation"}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-    >
-      <TypingText {...textAnimation} />
-    </motion.div>
-  );
-}
 export default function RootLayout({
   children,
 }: {

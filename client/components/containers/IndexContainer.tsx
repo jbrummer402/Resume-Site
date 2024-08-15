@@ -14,7 +14,7 @@ import { animate, motion } from "framer-motion";
 import IndexLinkContainer from "./IndexLinkContainers";
 const siteTitle = "Jack Brummer.com";
 const full_name = "Jack Brummer";
-import { StartingAnimation } from "../../app/layout";
+import StartingAnimation from "../AnimationComponents/StartingAnimation";
 
 import {
   index,
@@ -27,28 +27,13 @@ import { useEffect, useState } from "react";
 
 const sections = [index, about_me, education, interests_and_hobbies];
 
-// const textAnimation = {
-//   hidden: {
-//     opacity: 0,
-//     y: 20,
-//   },
-//   visible: {
-//     opacity: 1,
-//     y: 0,
-//   },
-// };
-
 export default function IndexContainer(props) {
   return (
     <AnimatePresence>
-      <StartingAnimation isVisible={true} mt={"20rem"} />
-      <Stack spacing={5}>
+      <StartingAnimation isVisible={true} />
+      <Stack spacing={"50vh"}>
         {sections.map((item) => {
-          return (
-            <>
-              <SectionContainer key={item.title} {...item} />
-            </>
-          );
+          return <SectionContainer key={item.title} {...item} />;
         })}
       </Stack>
     </AnimatePresence>
